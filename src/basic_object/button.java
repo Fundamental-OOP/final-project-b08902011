@@ -42,14 +42,7 @@ public class Button{
         this.b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 assert(e.getSource().equals(this));
-                if(person.getGold() > price){
-                    person.spent(price);
-                    person.addItem(item);
-                    ((JButton)e.getSource()).setText("Sold!");
-                }
-                else{
-                    ((JButton)e.getSource()).setText("Not Enough!");
-                }
+                game.addServant(s);
             }
         });
     }
