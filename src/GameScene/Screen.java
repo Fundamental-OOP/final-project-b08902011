@@ -3,13 +3,14 @@ package GameScene;
 import java.awt.*;
 import javax.swing.*;
 
-public class Screen{
-	private String name;
-	private JFrame frame = new JFrame();
-	public Screen(String name){
-		this.name = name;
-		frame.setSize(300, 300);
-		frame.setVisible(true);
+public class Screen extends JFrame{
+	private static final int width = 1600;
+	private static final int height = 900;
+	public Screen(){
+		super();
+		setSize(width, height);
+		setVisible(true);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 }
 
