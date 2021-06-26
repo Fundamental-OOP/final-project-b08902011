@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.awt.*;
 import javax.swing.*;
 
@@ -10,3 +11,10 @@ public class Screen{
 		frame.setVisible(true);
 	}
 }
+=======
+package basic_object;
+
+public class Screen {
+    
+}
+>>>>>>> 4fcd94a856dda2e54a7bbce77ae249194115987d

@@ -1,5 +1,5 @@
 package basic_object;
 
-class picture{
+public class Item {
     
 }
