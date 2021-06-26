@@ -1,4 +1,4 @@
-package basic_object;
+package BasicObject;
 
 class picture{
     
