@@ -1,4 +1,4 @@
-package basic_object;
+package Player;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package basic_object;
+package Player;
 
 public class Item {
     

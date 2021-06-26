@@ -1,5 +1,6 @@
-package basic_object;
+package GameScene;
 
+import Servant.*;
 public class Game extends Screen{
     public Game(){
         super("EMPTY");

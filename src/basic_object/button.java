@@ -1,5 +1,8 @@
 package basic_object;
 
+import Player.*;
+import Servant.*;
+import GameScene.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

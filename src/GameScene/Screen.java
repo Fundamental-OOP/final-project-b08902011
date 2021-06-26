@@ -1,4 +1,4 @@
-package basic_object;
+package GameScene;
 
 import java.awt.*;
 import javax.swing.*;
