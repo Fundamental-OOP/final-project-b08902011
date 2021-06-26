@@ -1,3 +1,5 @@
+package basic_object;
+
 import java.awt.*;
 import javax.swing.*;
 
