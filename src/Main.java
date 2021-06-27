@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.concurrent.TimeUnit;
 
 import BasicObject.*;
 import GameScene.*;
@@ -13,5 +12,6 @@ public class Main {
         Map map = new Map();
         Screen currentScreen = new Screen();
         HomePage menu = new HomePage(player, currentScreen, map);
+        currentScreen.setContent(menu.getScreen());
     }
 }
