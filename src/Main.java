@@ -9,11 +9,9 @@ import Servant.*;
 
 public class Main {
     public static void main(String[] args) {  	
-        Player player = new Player();
-        Screen currentScreen = new Screen();
-        HomePage menu = new HomePage(player);
-        currentScreen.setContent(menu.getContent());
+        Player player = new Player();       
         Map map = new Map();
-        // currentScreen.setContent(map.getContent());
+        Screen currentScreen = new Screen();
+        HomePage menu = new HomePage(player, currentScreen, map);
     }
 }
