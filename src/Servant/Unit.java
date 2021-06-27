@@ -11,6 +11,10 @@ public abstract class Unit {
     public boolean dead(){
         return hp <= 0;
     }
+    public int takeDamage(int damage){
+        this.hp -= (damage - this.def) > 0 ? (damage - this.def) : 1;
+        return this.hp;
+    }
     abstract public Unit Generate(Screen s, Point p, Dimension d);
     abstract public void render(Graphics g);
 }

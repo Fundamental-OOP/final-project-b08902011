@@ -27,19 +27,9 @@ public class Game extends Screen {
 
     public int TimeSlice() {// a slice in game
         for (int i = 0; i < Left.size(); i++) {
-            if (Left.get(i).dead()) {
-                Left.remove(i);
-                i--;
-                continue;
-            }
             Left.get(i).slice();
         }
         for (int i = 0; i < Right.size(); i++) {
-            if (Right.get(i).dead()) {
-                Right.remove(i);
-                i--;
-                continue;
-            }
             Right.get(i).slice();
         }
         if (LeftTower.dead()) {
