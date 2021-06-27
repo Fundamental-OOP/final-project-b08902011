@@ -6,6 +6,6 @@ import GameScene.*;
 
 public class Main {
     public static void main(String[] args) {
-    	Screen map = new Screen();
+    	HomePage menu = new HomePage();
     }
 }

@@ -8,7 +8,7 @@ public class Screen extends JFrame{
 	private static final int height = 900;
 	public Screen(){
 		super();
-		setSize(width, height);
+		setBounds(-10, 0, width, height);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
