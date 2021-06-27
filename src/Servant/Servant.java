@@ -47,22 +47,21 @@ public abstract class Servant extends Unit {
             walkCount++;
             walkCount %= walkCycle;
             attackCount = 0;
-            
+
         }
     }
+
     protected abstract void drawWalk(int index);
+
     protected abstract void drawAttack(int index);
+
     protected abstract void drawDead();
+
     protected abstract void onDead();
-    public abstract void drawInit();
+
+    // public abstract void drawInit(); Same as render
+
     public int ATK() {
         return this.atk;
-    }
-
-    public Unit Generate(Screen s, Point p, Dimension d) {
-        return null;
-    }
-
-    public void render(Graphics g) {
     }
 }

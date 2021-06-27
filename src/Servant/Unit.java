@@ -15,6 +15,6 @@ public abstract class Unit {
         this.hp -= (damage - this.def) > 0 ? (damage - this.def) : 1;
         return this.hp;
     }
-    abstract public Unit Generate(Screen s, Point p, Dimension d);
-    abstract public void render(Graphics g);
+    public abstract Unit Generate(Screen s, Point p, Dimension d);
+    public abstract void render(Graphics g);
 }

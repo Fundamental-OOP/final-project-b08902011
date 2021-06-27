@@ -2,6 +2,8 @@ package GameScene;
 
 import java.awt.*;
 import java.util.*;
+
+import Player.Player;
 import Servant.*;
 
 public class Game extends Screen {
@@ -10,8 +12,11 @@ public class Game extends Screen {
     Tower LeftTower = new Tower();
     Tower RightTower = new Tower();
 
-    public Game() {
+    public Game(Player player) {
         super();
+        Left = player.Servants();
+        LeftTower = player.MyTower();
+        //Draw bottom, tower, background
     }
 
     public void addServant(Servant s, Point p, Dimension d, boolean Camp) {
