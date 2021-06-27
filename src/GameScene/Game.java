@@ -67,6 +67,7 @@ public class Game extends Screen {
                     }
                 }
             }
+            ret.add(RightTower);
         }
         if ((!Camp && enemy) || (Camp && ally)) {
             for (Servant u : Left) {
@@ -78,6 +79,7 @@ public class Game extends Screen {
                     }
                 }
             }
+            ret.add(LeftTower);
         }
         return null;
     }

@@ -9,7 +9,7 @@ public abstract class Item {
     public String getDiscription(){
         return this.discription;
     }
-    public abstract void activate(Player p);
-    public abstract void deactivate(Player p);
+    public abstract void onGet(Player p);
+    public abstract void onLost(Player p);
     //render
 }

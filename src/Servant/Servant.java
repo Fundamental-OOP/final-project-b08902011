@@ -31,7 +31,7 @@ public abstract class Servant extends Unit {
             }
         }
         //Nothing performed, just walk;
-        
+        //Walk
     }
 
     public Unit Generate(Screen s, Point p, Dimension d) {
