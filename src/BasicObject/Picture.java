@@ -1,5 +1,0 @@
-package BasicObject;
-
-class picture{
-    
-}

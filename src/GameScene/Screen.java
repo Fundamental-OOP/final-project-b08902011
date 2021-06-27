@@ -5,7 +5,6 @@ import javax.swing.*;
 
 public class Screen{
 	protected JFrame screen;
-	protected Container contentPane;
 	private static final int width = 1600;
 	private static final int height = 900;
 	public Screen(){
@@ -17,14 +16,14 @@ public class Screen{
 	public void switch_screen(){
 
 	}
-	public void setContent(Container newScreen){
+	public void setContent(JFrame newScreen){
 		screen.getContentPane().removeAll();
-		screen.setContentPane(newScreen);
+		screen.setContentPane(newScreen.getContentPane());
 		screen.getContentPane().validate();
 		screen.getContentPane().repaint();
 	}
-	public Container getContent(){
-		return this.contentPane;
+	public JFrame getScreen(){
+		return this.screen;
 	}
 }
 
