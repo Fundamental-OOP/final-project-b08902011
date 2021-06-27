@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import BasicObject.*;
-import static BasicObject.MyButton;
+import static BasicObject.MyButton.make;
 import Player.*;
 
 public class HomePage extends Screen{
