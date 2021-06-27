@@ -2,4 +2,4 @@ HELP.md
 out/
 target/
 .vscode/
-.class
+*.class

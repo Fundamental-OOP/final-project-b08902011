@@ -9,7 +9,7 @@ import java.awt.event.*;
 
 public class Button{
     JButton b = null;
-    public Button(String text,Point p,Dimension d,Screen_controller c,int to_screen){// map 
+    public Button(String text,Point p,Dimension d,ScreenController c,int to_screen){// map 
         this.b = new JButton(text);
         this.b.setLocation(p);
         this.b.setSize(d);
