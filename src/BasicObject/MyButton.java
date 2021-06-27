@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Button{
+public class MyButton{
     public static JButton make(String text,Point p,Dimension d,Screen s){// map 
         JButton b = null;
         b = new JButton(text);
