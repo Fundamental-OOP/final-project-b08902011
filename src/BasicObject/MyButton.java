@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MyButton{
-    public static JButton make(String text,Point p,Dimension d,Screen s){// map 
+    public static JButton make(String text, Point p, Dimension d, Screen s){//Map 
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
@@ -21,7 +21,7 @@ public class MyButton{
         });
         return b;
     }
-    public static JButton make(String text,Point p,Dimension d,Player person,Item item,int price){//shop
+    public static JButton make(String text, Point p, Dimension d, Player person, Item item, int price){//Shop
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
@@ -41,7 +41,7 @@ public class MyButton{
         });
         return b;
     }
-    public static JButton make(String text,Point p,Dimension d,Game game,Servant s){//Battle
+    public static JButton make(String text, Point p, Dimension d, Game game, Servant s){//Battle
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
@@ -54,7 +54,7 @@ public class MyButton{
         });
         return b;
     }
-    public static JButton make(String text,Point p,Dimension d,Player player,int level){//Menu
+    public static JButton make(String text, Point p, Dimension d, Player player, int level, Screen currentScreen, Map nextScreen){//Menu
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
@@ -63,6 +63,7 @@ public class MyButton{
             public void actionPerformed(ActionEvent e) {
                 assert(e.getSource().equals(this));
                 player.setLevel(level);
+                // currentScreen.setContent(nextScreen.getContent());
             }
         });
         return b;
