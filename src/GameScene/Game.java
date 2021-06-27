@@ -12,6 +12,7 @@ public class Game extends Screen {
 
     public Game() {
         super();
+        screen.setVisible(false);
     }
 
     public void addServant(Servant s, Point p, Dimension d, boolean Camp) {

@@ -17,10 +17,14 @@ public class Screen{
 
 	}
 	public void setContent(JFrame newScreen){
-		screen.getContentPane().removeAll();
-		screen.setContentPane(newScreen.getContentPane());
-		screen.getContentPane().validate();
-		screen.getContentPane().repaint();
+		// screen.getContentPane().removeAll();
+		// screen.setContentPane(newScreen.getContentPane());
+		// screen.getContentPane().validate();
+		// screen.getLayeredPane().repaint();
+		screen.getLayeredPane().removeAll();
+		screen.setLayeredPane(newScreen.getLayeredPane());
+		screen.getLayeredPane().validate();
+		screen.getLayeredPane().repaint();
 	}
 	public JFrame getScreen(){
 		return this.screen;
