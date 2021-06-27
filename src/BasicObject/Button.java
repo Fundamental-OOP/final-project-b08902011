@@ -8,23 +8,25 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Button{
-    JButton b = null;
-    public Button(String text,Point p,Dimension d,ScreenController c,int to_screen){// map 
-        this.b = new JButton(text);
-        this.b.setLocation(p);
-        this.b.setSize(d);
-        this.b.addActionListener(new ActionListener() {
+    public static JButton make(String text,Point p,Dimension d,Screen s){// map 
+        JButton b = null;
+        b = new JButton(text);
+        b.setLocation(p);
+        b.setSize(d);
+        b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 assert(e.getSource().equals(this));
-                c.switch_screen(to_screen);
+                s.switch_screen();
             }
         });
+        return b;
     }
-    public Button(String text,Point p,Dimension d,Player person,Item item,int price){//shop
-        this.b = new JButton(text);
-        this.b.setLocation(p);
-        this.b.setSize(d);
-        this.b.addActionListener(new ActionListener() {
+    public static JButton make(String text,Point p,Dimension d,Player person,Item item,int price){//shop
+        JButton b = null;
+        b = new JButton(text);
+        b.setLocation(p);
+        b.setSize(d);
+        b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 assert(e.getSource().equals(this));
                 if(person.getGold() > price){
@@ -37,19 +39,32 @@ public class Button{
                 }
             }
         });
+        return b;
     }
-    public Button(String text,Point p,Dimension d,Game game,Servant s){//Battle
-        this.b = new JButton(text);
-        this.b.setLocation(p);
-        this.b.setSize(d);
-        this.b.addActionListener(new ActionListener() {
+    public static JButton make(String text,Point p,Dimension d,Game game,Servant s){//Battle
+        JButton b = null;
+        b = new JButton(text);
+        b.setLocation(p);
+        b.setSize(d);
+        b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 assert(e.getSource().equals(this));
-                game.addServant(s);
+                game.addServant(s,new Point(0,0),new Dimension(0,0));
             }
         });
+        return b;
     }
-    public JButton jbutton(){
-        return this.b;
+    public static JButton make(String text,Point p,Dimension d,Player player,int level){//Menu
+        JButton b = null;
+        b = new JButton(text);
+        b.setLocation(p);
+        b.setSize(d);
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                assert(e.getSource().equals(this));
+                player.setLevel(level);
+            }
+        });
+        return b;
     }
 }

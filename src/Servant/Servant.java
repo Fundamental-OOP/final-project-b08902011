@@ -1,12 +1,14 @@
 package Servant;
-
+import GameScene.Screen;
 import java.awt.*;
-
-public class Servant extends Unit{
+import javax.swing.*;
+public abstract class Servant extends Unit{
+    int mp = 0;
+    protected Skill SKI = null;
     public Servant(Servant tmp){
 
-    } 
-    public void render(Graphics a){
-        System.out.print("Not done\n");
+    }
+    public void Generate(Screen s){}
+    public void render(Graphics g){
     }
 }
