@@ -3,6 +3,7 @@ package Player;
 import java.util.*;
 
 public class Player {
+    private int level = 0;
     private int gold = 0;
     private Vector<Item> asset = new Vector<Item>();
     public int earn(int g){
@@ -30,5 +31,10 @@ public class Player {
     public int lossItem(Item i){
         asset.removeElement(i);
         return asset.size();
+    }
+    //========================
+    public int setLevel(int level){
+        this.level = level;
+        return this.level;
     }
 }
