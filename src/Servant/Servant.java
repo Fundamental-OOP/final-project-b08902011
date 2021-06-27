@@ -7,31 +7,31 @@ import java.awt.*;
 import javax.swing.*;
 
 public abstract class Servant extends Unit {
-    int clock = 0;
     protected Vector<Skill> SKI = new Vector<Skill>();
     protected int atk = 1;
     protected Point coordinate = new Point(0, 0);
     public Game world = null;
-
+    public final static int pace = 10;
     public void addSkill(Skill s) {
         SKI.add(s);
         SKI.sort(new Comparator<Skill>() {
             @Override
             public int compare(Skill left, Skill right) {
-                return -1 * (left.CD() - right.CD());
+                return -1 * (left.cd - right.cd);
             }
         });
     }
 
     Vector<Unit> target = null;
     public void slice() {//Vector<Unit> target
-        this.clock += 1;//Is okay to overflow
         for (Skill s : SKI) {
-            if(this.clock % s.CD() == 0 && (target = world.getTarget(this,s)) != null){
-                
-                break;
+            if(s.CD() && (target = world.getTarget(this,s)) != null){
+                s.Act(this, target);
+                return;
             }
         }
+        //Nothing performed, just walk;
+        
     }
 
     public Unit Generate(Screen s, Point p, Dimension d) {

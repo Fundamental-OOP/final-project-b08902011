@@ -49,7 +49,7 @@ public class MyButton{
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 assert(e.getSource().equals(this));
-                game.addServant(s,new Point(0,0),new Dimension(0,0));
+                game.addServant(s,new Point(0,0),new Dimension(0,0),true);
             }
         });
         return b;

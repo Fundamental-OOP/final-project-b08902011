@@ -1,68 +1,84 @@
 package GameScene;
+
 import java.awt.*;
 import java.util.*;
 import Servant.*;
-public class Game extends Screen{
-    Vector<Servant> Left = new Vector<Servant>();//Camp == true
+
+public class Game extends Screen {
+    Vector<Servant> Left = new Vector<Servant>();// Camp == true
     Vector<Servant> Right = new Vector<Servant>();
     Tower LeftTower = new Tower();
     Tower RightTower = new Tower();
-    public Game(){
+
+    public Game() {
         super();
     }
-    public void addServant(Servant s,Point p,Dimension d,boolean Camp){
 
+    public void addServant(Servant s, Point p, Dimension d, boolean Camp) {
+        if (Camp) {
+            Left.add(s);
+            // Draw s facing right
+        } else {
+            Right.add(s);
+            // Dra s facing left
+        }
     }
-    public int TimeSlice(){//a slice in game
-        for(Servant u : Left){
-            u.slice();
+
+    public int TimeSlice() {// a slice in game
+        for (int i = 0; i < Left.size(); i++) {
+            if (Left.get(i).dead()) {
+                Left.remove(i);
+                i--;
+                continue;
+            }
+            Left.get(i).slice();
         }
-        for(Servant u : Right){
-            u.slice();
+        for (int i = 0; i < Right.size(); i++) {
+            if (Right.get(i).dead()) {
+                Right.remove(i);
+                i--;
+                continue;
+            }
+            Right.get(i).slice();
         }
-        if(LeftTower.dead() && RightTower.dead()){
-            return 0;
-        }
-        else if(LeftTower.dead()){
+        if (LeftTower.dead()) {
             return -1;
-        }
-        else{
+        } else if (RightTower.dead()) {
             return 1;
         }
-        //this.updata();//Draw Everything
-        //delay(0);// Set FPS
+        // this.updata();//Draw Everything
+        // delay(0);// Set FPS
+        return 0;
     }
-    public Vector<Unit> getTarget(Servant s,Skill skill){
+
+    public Vector<Unit> getTarget(Servant s, Skill skill) {
         boolean Camp = s.Camp;
         boolean enemy = skill.toenemy;
         boolean ally = skill.toally;
         int nTarget = skill.nTarget;
         Vector<Unit> ret = new Vector<Unit>();
-        if((Camp && enemy) ||(!Camp && ally)){//Right to be selected
-            for(Servant u : Right){
-                if(skill.reachable(s,u)){
+        if ((Camp && enemy) || (!Camp && ally)) {// Right to be selected
+            for (Servant u : Right) {
+                if (skill.reachable(s, u)) {
                     ret.add(u);
                     nTarget--;
-                    if(nTarget == 0){
+                    if (nTarget == 0) {
                         return ret;
                     }
                 }
             }
         }
-        if((!Camp && enemy) ||(Camp && ally)){
-            for(Servant u : Left){
-                if(skill.reachable(s,u)){
+        if ((!Camp && enemy) || (Camp && ally)) {
+            for (Servant u : Left) {
+                if (skill.reachable(s, u)) {
                     ret.add(u);
                     nTarget--;
-                    if(nTarget == 0){
+                    if (nTarget == 0) {
                         return ret;
                     }
                 }
             }
         }
         return null;
-    }
-    private boolean intersect(Unit a,Unit b){
-        return True;
     }
 }
