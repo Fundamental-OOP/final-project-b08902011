@@ -52,6 +52,9 @@ public abstract class Servant extends Unit {
     }
     protected abstract void drawWalk(int index);
     protected abstract void drawAttack(int index);
+    protected abstract void drawDead();
+    protected abstract void onDead();
+    public abstract void drawInit();
     public int ATK() {
         return this.atk;
     }
