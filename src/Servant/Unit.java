@@ -5,13 +5,12 @@ import java.awt.*;
 import javax.swing.*;
 
 public abstract class Unit {
+    public boolean Camp = true;
     protected int hp = 1;
-    protected int atk = 1;
     protected int def = 1;
-    protected int attack_range = 1;// Pixel
-    protected int n_target = 1;
-    
-    abstract public void Generate(Screen s, Point p, Dimension d);
-
+    public boolean dead(){
+        return hp <= 0;
+    }
+    abstract public Unit Generate(Screen s, Point p, Dimension d);
     abstract public void render(Graphics g);
 }
