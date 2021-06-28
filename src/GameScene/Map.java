@@ -26,7 +26,7 @@ public class Map extends Screen{
 		imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
 
 		screen.getLayeredPane().setLayout(null);
-		screen.getLayeredPane().add(imgLabel, new Integer(Integer.MIN_VALUE));
+		screen.getLayeredPane().add(imgLabel, Integer.MIN_VALUE);
 		((JPanel) screen.getContentPane()).setOpaque(false);
 
 		screen.getContentPane().setLayout(null);
