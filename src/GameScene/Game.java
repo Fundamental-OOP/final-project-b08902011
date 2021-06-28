@@ -16,7 +16,7 @@ public class Game extends Screen {
     Tower RightTower = new Tower();
 
 
-    public Game(JFrame sharedScreen,Player player) {
+    public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
         Left = player.Servants();
         LeftTower = player.MyTower();

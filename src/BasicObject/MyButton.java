@@ -22,7 +22,7 @@ public class MyButton{
         return b;
     }
 
-    public static JButton make(String text, Point p, Dimension d, Player person, Item item, int price) {// Shop
+    public static JButton make(String text, Point p, Dimension d, Player person, Item item, int price) {//Shop
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
@@ -42,7 +42,7 @@ public class MyButton{
         return b;
     }
 
-    public static JButton make(String text, Point p, Dimension d, Game game, Unit s) {// Battle
+    public static JButton make(String text, Point p, Dimension d, Game game, Unit s) {//Battle
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
