@@ -1,11 +1,12 @@
-package Servant;
+package Unit.Servant;
 
+import Unit.*;
+import Unit.Servant.Skills.*;
 import GameScene.Game;
-import GameScene.Screen;
 import java.util.*;
 import java.awt.*;
-import javax.swing.*;
 
+/* A servant entity should inherit with state to bind Image to Class*/
 public abstract class Servant extends Unit {
     protected Vector<Skill> SKI = new Vector<Skill>();
     protected Point coordinate = new Point(0, 0);

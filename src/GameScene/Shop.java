@@ -1,5 +1,5 @@
 package GameScene;
 
-public class Shop{
-    
+public class Shop {
+
 }
