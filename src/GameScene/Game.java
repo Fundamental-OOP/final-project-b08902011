@@ -40,12 +40,12 @@ public class Game extends Screen {
         }
     }
 
-    public int TimeSlice() {// a slice in game
+    public int TimeSlice(Graphics g) {// a slice in game
         for (int i = 0; i < Left.size(); i++) {
-            Left.get(i).slice();
+            Left.get(i).slice(g);
         }
         for (int i = 0; i < Right.size(); i++) {
-            Right.get(i).slice();
+            Right.get(i).slice(g);
         }
         if (LeftTower.dead()) {
             return -1;

@@ -2,4 +2,6 @@ HELP.md
 out/
 target/
 .vscode/
+graph/
 *.class
+Assets/Servant/Unused/

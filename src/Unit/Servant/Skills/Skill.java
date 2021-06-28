@@ -10,7 +10,7 @@ public abstract class Skill {
     int CoolDownCounter = 0;
     public boolean toenemy = false;
     public boolean toally = false;
-    String discription = "";
+    String description = "";
 
     public Skill(int nTarget, int range, int cd, boolean toenemy, boolean toally) {
         this.nTarget = nTarget;
@@ -21,7 +21,7 @@ public abstract class Skill {
     }
 
     public String getDescription() {
-        return this.discription;
+        return this.description;
     }
 
     public abstract void Act(Unit performer, Vector<Unit> victim);
