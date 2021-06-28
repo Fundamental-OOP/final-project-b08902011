@@ -10,9 +10,9 @@ import BasicObject.*;
 import static BasicObject.MyButton.make;
 
 public class Map extends Screen{
-	public Map(Screen currentScreen, Game level1){
-		super();
-		screen.setVisible(false);		
+	public Map(JFrame sharedScreen, Game level1){
+		super(sharedScreen);
+	
 		BufferedImage img = null;
 		try{
 			img = ImageIO.read(new File("Assets/map.png"));
@@ -29,9 +29,11 @@ public class Map extends Screen{
 
 		screen.getContentPane().setLayout(null);
 		Dimension buttonSize = new Dimension(200, 200);
-		JButton level_1 = MyButton.make("Level1", new Point(250, 500), buttonSize, currentScreen, level1);
+		JButton level_1 = MyButton.make("Level1", new Point(250, 500), buttonSize, level1);
 		level_1.setContentAreaFilled(false);
 		level_1.setBorderPainted(true);
 		screen.getContentPane().add(level_1);
+
+		// screen.setVisible(true);
 	}
 }

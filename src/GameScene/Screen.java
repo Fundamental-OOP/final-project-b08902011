@@ -4,30 +4,32 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Screen{
+	protected JFrame sharedScreen;
 	protected JFrame screen;
 	private static final int width = 1600;
 	private static final int height = 900;
-	public Screen(){
+	public Screen(JFrame sharedScreen){
+		this.sharedScreen = sharedScreen;
 		this.screen = new JFrame();
 		screen.setBounds(-10, 0, width, height);
-		screen.setVisible(true);
+		screen.setVisible(false);
 		screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
-	public void switch_screen(){
+	public void switchScreen(){
 
 	}
-	public void setContent(JFrame newScreen){
-		// screen.getContentPane().removeAll();
-		// screen.setContentPane(newScreen.getContentPane());
-		// screen.getContentPane().validate();
-		// screen.getLayeredPane().repaint();
-		screen.getLayeredPane().removeAll();
-		screen.setLayeredPane(newScreen.getLayeredPane());
-		screen.getLayeredPane().validate();
-		screen.getLayeredPane().repaint();
+	public void setContent(){
+		sharedScreen.getContentPane().removeAll();
+		sharedScreen.setContentPane(screen.getContentPane());
+		sharedScreen.getContentPane().validate();
+		sharedScreen.getContentPane().repaint();
+		// sharedScreen.getLayeredPane().removeAll();
+		// sharedScreen.setLayeredPane(screen.getLayeredPane());
+		// sharedScreen.getLayeredPane().validate();
+		// sharedScreen.getLayeredPane().repaint();
 	}
-	public JFrame getScreen(){
-		return this.screen;
+	public JFrame get(){
+		return screen;
 	}
 }
 

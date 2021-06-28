@@ -2,6 +2,7 @@ package GameScene;
 
 import java.awt.*;
 import java.util.*;
+import javax.swing.*;
 import Servant.*;
 
 public class Game extends Screen {
@@ -10,9 +11,8 @@ public class Game extends Screen {
     Tower LeftTower = new Tower();
     Tower RightTower = new Tower();
 
-    public Game() {
-        super();
-        screen.setVisible(false);
+    public Game(JFrame sharedScreen) {
+        super(sharedScreen);
     }
 
     public void addServant(Servant s, Point p, Dimension d, boolean Camp) {

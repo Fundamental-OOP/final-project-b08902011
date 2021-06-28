@@ -16,21 +16,23 @@ public class HomePage extends Screen{
 		contentPane.add(title);		
 	}
 
-	private void setButton(Container contentPane, Player player, Screen currentScreen, Map map){
+	private void setButton(Container contentPane, Player player, Map map){
 		Dimension buttonSize = new Dimension(200, 200);
-		JButton easy = MyButton.make("easy", new Point(250, 500), buttonSize, player, 1, currentScreen, map);
+		JButton easy = MyButton.make("easy", new Point(250, 500), buttonSize, player, 1, map);
 		contentPane.add(easy);
-		JButton medium = MyButton.make("medium", new Point(700, 500), buttonSize, player, 2, currentScreen, map);
+		JButton medium = MyButton.make("medium", new Point(700, 500), buttonSize, player, 2, map);
 		contentPane.add(medium);
-		JButton hard = MyButton.make("hard", new Point(1150, 500), buttonSize, player, 3, currentScreen, map);
+		JButton hard = MyButton.make("hard", new Point(1150, 500), buttonSize, player, 3, map);
 		contentPane.add(hard);		
 	}
 
-	public HomePage(Player player, Screen currentScreen, Map map){
-		super();
-		screen.setVisible(false);
+	public HomePage(JFrame currentScreen, Player player, Map map){
+		super(currentScreen);
+		
 		screen.getContentPane().setLayout(null);
 		setTitle(screen.getContentPane());
-		setButton(screen.getContentPane(), player, currentScreen, map);
+		setButton(screen.getContentPane(), player, map);
+
+		// screen.setVisible(true);
 	}
 }
