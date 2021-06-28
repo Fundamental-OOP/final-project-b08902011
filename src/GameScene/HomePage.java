@@ -7,13 +7,13 @@ import BasicObject.*;
 import static BasicObject.MyButton.make;
 import Player.*;
 
-public class HomePage extends Screen{
-	private void setTitle(Container contentPane){
-		JLabel title = new JLabel("Game", JLabel.CENTER);	
+public class HomePage extends Screen {
+	private void setTitle(Container contentPane) {
+		JLabel title = new JLabel("Game", JLabel.CENTER);
 		title.setBounds(590, 50, 400, 200);
 		title.setFont(new java.awt.Font("Dialog", 1, 72));
 		title.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
-		contentPane.add(title);		
+		contentPane.add(title);
 	}
 
 	private void setButton(Container contentPane, Player player, Map map){
@@ -28,7 +28,6 @@ public class HomePage extends Screen{
 
 	public HomePage(JFrame currentScreen, Player player, Map map){
 		super(currentScreen);
-		
 		screen.getContentPane().setLayout(null);
 		setTitle(screen.getContentPane());
 		setButton(screen.getContentPane(), player, map);

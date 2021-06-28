@@ -12,11 +12,13 @@ import static BasicObject.MyButton.make;
 public class Map extends Screen{
 	public Map(JFrame sharedScreen, Game level1){
 		super(sharedScreen);
-	
+
 		BufferedImage img = null;
-		try{
+		try {
 			img = ImageIO.read(new File("Assets/map.png"));
-		}catch(Exception e){ System.out.println("No image!");}
+		} catch (Exception e) {
+			System.out.println("No image!");
+		}
 		Image resized = img.getScaledInstance(1600, 900, Image.SCALE_SMOOTH);
 		ImageIcon image = new ImageIcon(resized);
 
@@ -25,7 +27,7 @@ public class Map extends Screen{
 
 		screen.getLayeredPane().setLayout(null);
 		screen.getLayeredPane().add(imgLabel, new Integer(Integer.MIN_VALUE));
-		((JPanel)screen.getContentPane()).setOpaque(false);
+		((JPanel) screen.getContentPane()).setOpaque(false);
 
 		screen.getContentPane().setLayout(null);
 		Dimension buttonSize = new Dimension(200, 200);

@@ -1,9 +1,11 @@
-package Servant;
+package Unit.Servant.Skills;
 
+import Unit.*;
+import Unit.Servant.*;
 import java.util.*;
 
 public abstract class Skill {
-    int cd = 1;
+    public int cd = 1;
     int range = 1;
     public int nTarget = 1;
     int CoolDownCounter = 0;

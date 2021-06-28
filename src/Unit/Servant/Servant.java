@@ -1,11 +1,12 @@
-package Servant;
+package Unit.Servant;
 
+import Unit.*;
+import Unit.Servant.Skills.*;
 import GameScene.Game;
-import GameScene.Screen;
 import java.util.*;
 import java.awt.*;
-import javax.swing.*;
 
+/* A servant entity should inherit with state to bind Image to Class*/
 public abstract class Servant extends Unit {
     protected Vector<Skill> SKI = new Vector<Skill>();
     protected Point coordinate = new Point(0, 0);
@@ -47,22 +48,21 @@ public abstract class Servant extends Unit {
             walkCount++;
             walkCount %= walkCycle;
             attackCount = 0;
-            
+
         }
     }
+
     protected abstract void drawWalk(int index);
+
     protected abstract void drawAttack(int index);
+
     protected abstract void drawDead();
+
     protected abstract void onDead();
-    public abstract void drawInit();
+
+    // public abstract void drawInit(); Same as render
+
     public int ATK() {
         return this.atk;
-    }
-
-    public Unit Generate(Screen s, Point p, Dimension d) {
-        return null;
-    }
-
-    public void render(Graphics g) {
     }
 }

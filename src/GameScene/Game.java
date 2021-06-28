@@ -4,6 +4,11 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import Servant.*;
+import Player.Player;
+import Unit.*;
+import Unit.Tower.*;
+import Unit.Servant.*;
+import Unit.Servant.Skills.*;
 
 public class Game extends Screen {
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
@@ -11,11 +16,21 @@ public class Game extends Screen {
     Tower LeftTower = new Tower();
     Tower RightTower = new Tower();
 
+
     public Game(JFrame sharedScreen) {
         super(sharedScreen);
+        Left = player.Servants();
+        LeftTower = player.MyTower();
+        // Draw bottom, tower, background
     }
 
-    public void addServant(Servant s, Point p, Dimension d, boolean Camp) {
+    public void addUnit(Unit s, Point p, Dimension d, boolean Camp) {
+        if (s instanceof Servant) {
+            this.addServant((Servant) s, p, d, Camp);
+        }
+    }
+
+    private void addServant(Servant s, Point p, Dimension d, boolean Camp) {
         if (Camp) {
             Left.add(s);
             // Draw s facing right

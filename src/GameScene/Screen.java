@@ -15,6 +15,7 @@ public class Screen{
 		screen.setVisible(false);
 		screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
+
 	public void switchScreen(){
 
 	}
@@ -30,6 +31,6 @@ public class Screen{
 	}
 	public JFrame get(){
 		return screen;
+
 	}
 }
-
