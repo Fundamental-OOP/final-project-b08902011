@@ -9,6 +9,10 @@ public abstract class Tower extends Unit {
         super(coordinate, Camp, hp, def, myWorld);
     }
 
+    public Tower(int hp, int def) {
+        super((Point) null, true, hp, def, (Game) null);
+    }
+
     public int setHP(int hp) {
         this.hp = hp;
         return this.hp;

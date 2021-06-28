@@ -8,8 +8,7 @@ import Unit.*;
 
 public class BasicTower extends Tower {
     public BasicTower() {
-        super(new Point(0, 0), true, 1000, 10, null);
-
+        super(1000, 10);
     }
 
     public BasicTower(Point coordinate, boolean Camp, Game world) {
