@@ -12,14 +12,15 @@ import Unit.Servant.Skills.*;
 public class Game extends Screen {
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
     Vector<Servant> Right = new Vector<Servant>();
-    Tower LeftTower = new Tower();
-    Tower RightTower = new Tower();
+    Tower LeftTower = null;
+    Tower RightTower = null;
+    Point leftBornPoint = new Point(0, 0);
+    Point rightBornPoint = new Point(0, 0);
 
-
-    public Game(JFrame sharedScreen,Player player) {
+    public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
         Left = player.Servants();
-        LeftTower = player.MyTower();
+        LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         // Draw bottom, tower, background
     }
 
