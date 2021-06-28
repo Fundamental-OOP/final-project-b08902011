@@ -18,6 +18,10 @@ public abstract class Unit {
         this.myWorld = myWorld;
     }
 
+    public Unit(int hp, int def) {
+        this.hp = hp;
+        this.def = def;
+    }
     public boolean dead() {
         return hp <= 0;
     }

@@ -10,7 +10,7 @@ public abstract class Tower extends Unit {
     }
 
     public Tower(int hp, int def) {
-        super((Point) null, true, hp, def, (Game) null);
+        super(hp, def);
     }
 
     public int setHP(int hp) {
