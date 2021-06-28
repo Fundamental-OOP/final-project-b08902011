@@ -4,14 +4,14 @@ import java.awt.Graphics;
 
 public abstract class Item {
     int price = 0;
-    String discription = "No effect!\n";
+    String description = "No effect!\n";
 
-    public int getPirce() {
+    public int getPrice() {
         return this.price;
     }
 
-    public String getDiscription() {
-        return this.discription;
+    public String getDescription() {
+        return this.description;
     }
 
     public abstract void onGet(Player p);
