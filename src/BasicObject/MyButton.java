@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MyButton{
-    public static JButton make(String text, Point p, Dimension d, Screen s){//Map 
+    public static JButton make(String text, Point p, Dimension d, Screen currentScreen, Screen nextScreen){//Map 
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
@@ -16,7 +16,7 @@ public class MyButton{
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 assert(e.getSource().equals(this));
-                s.switch_screen();
+                currentScreen.setContent(nextScreen.getScreen());
             }
         });
         return b;

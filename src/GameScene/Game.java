@@ -14,9 +14,13 @@ public class Game extends Screen {
 
     public Game(Player player) {
         super();
+<<<<<<< HEAD
         Left = player.Servants();
         LeftTower = player.MyTower();
         //Draw bottom, tower, background
+=======
+        screen.setVisible(false);
+>>>>>>> 70e281d56b0432bb88cc5ddaf1af68d227ea386b
     }
 
     public void addServant(Servant s, Point p, Dimension d, boolean Camp) {
