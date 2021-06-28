@@ -4,7 +4,7 @@ import Unit.*;
 import Unit.Servant.*;
 import java.util.*;
 
-public class NormalAttack extends Skill {
+public final class NormalAttack extends Skill {
     public NormalAttack(int nTarget, int range, int cd, boolean toenemy, boolean toally) {
         super(nTarget, range, cd, toenemy, toally);
     }

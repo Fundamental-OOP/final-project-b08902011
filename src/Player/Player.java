@@ -11,7 +11,7 @@ public class Player {
     private int gold = 0;
     private Vector<Item> asset = new Vector<Item>();
     private Vector<Servant> servants = new Vector<Servant>();
-    private Tower myTower = new Tower();
+    private Tower myTower = new BasicTower(null, true, 1000, 10, null);
 
     public Vector<Servant> Servants() {
         return this.servants;

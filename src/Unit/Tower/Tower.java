@@ -1,11 +1,12 @@
 package Unit.Tower;
 
 import Unit.*;
-import GameScene.Screen;
+import GameScene.Game;
 import java.awt.*;
 
-public class Tower extends Unit {
-    public Tower() {
+public abstract class Tower extends Unit {
+    public Tower(Point coordinate,Boolean Camp,int hp,int def,Game myWorld){
+        super(coordinate, Camp, hp, def, myWorld);
     }
 
     public int setHP(int hp) {
@@ -16,12 +17,5 @@ public class Tower extends Unit {
     public int setDef(int def) {
         this.def = def;
         return this.def;
-    }
-
-    public Unit Generate(Screen s, Point p, Dimension d) {
-        return null;
-    }
-
-    public void render(Graphics g) {
     }
 }
