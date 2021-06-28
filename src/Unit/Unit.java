@@ -9,8 +9,8 @@ public abstract class Unit {
     protected int hp = 0;
     protected int def = 0;
     protected Game myWorld = null;
-    
-    public Unit(Point coordinate,boolean Camp,int hp,int def,Game myWorld){
+
+    public Unit(Point coordinate, boolean Camp, int hp, int def, Game myWorld) {
         this.coordinate = coordinate;
         this.Camp = Camp;
         this.hp = hp;
@@ -22,6 +22,7 @@ public abstract class Unit {
         this.hp = hp;
         this.def = def;
     }
+
     public boolean dead() {
         return hp <= 0;
     }
@@ -31,6 +32,7 @@ public abstract class Unit {
         return this.hp;
     }
 
-    public abstract Unit Duplicate(Game world, Point coordinate,boolean Camp);
+    public abstract Unit Duplicate(Game world, Point coordinate, boolean Camp);
+
     public abstract void render(Graphics g);
 }

@@ -5,7 +5,8 @@ import Unit.Servant.Skills.*;
 import Unit.Servant.State.State;
 import GameScene.Game;
 import java.util.*;
-import java.awt.Point;
+import java.awt.*;
+
 /* A servant entity should inherit with state to bind Image to Class*/
 public abstract class Servant extends Unit {
     protected Vector<Skill> SKI = null;
@@ -13,14 +14,14 @@ public abstract class Servant extends Unit {
     protected State stateControl = null;
     protected NormalAttack normalAttack = null;
 
-    public Servant(Point coordinate,boolean Camp,int hp,int atk,int def,State stateControl,Game myWorld){
+    public Servant(Point coordinate, boolean Camp, int hp, int atk, int def, State stateControl, Game myWorld) {
         super(coordinate, Camp, hp, def, myWorld);
         this.atk = atk;
         this.SKI = new Vector<Skill>();
         this.stateControl = stateControl;
     }
 
-    public void setNormalAttack(int nTarget,int range,int cd,boolean toenemy,boolean toally){
+    public void setNormalAttack(int nTarget, int range, int cd, boolean toenemy, boolean toally) {
         normalAttack = new NormalAttack(nTarget, range, cd, toenemy, toally);
     }
 
@@ -34,28 +35,29 @@ public abstract class Servant extends Unit {
         });
     }
 
-    public void slice() {// Vector<Unit> target
+    public void slice(Graphics g) {// Vector<Unit> target
         Vector<Unit> target = null;
         for (Skill s : SKI) {
             if (s.CD() && (target = myWorld.getTarget(this, s)) != null) {
                 s.Act(this, target);
             }
         }
-        stateControl.update();//Everything that require animation will be wrapped inside.
+        stateControl.update(g);// Everything that require animation will be wrapped inside.
     }
 
     public boolean Attack() {
-        Vector<Unit> target = null; 
+        Vector<Unit> target = null;
         if (normalAttack.CD() && (target = myWorld.getTarget(this, normalAttack)) != null) {
             normalAttack.Act(this, target);
             return true;
         }
         return false;
     }
+
     public abstract void onDead();
 
     public int ATK() {
         return this.atk;
     }
-    
+
 }
