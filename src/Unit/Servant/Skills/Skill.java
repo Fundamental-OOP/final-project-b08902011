@@ -1,7 +1,6 @@
 package Unit.Servant.Skills;
 
 import Unit.*;
-import Unit.Servant.*;
 import java.util.*;
 
 public abstract class Skill {

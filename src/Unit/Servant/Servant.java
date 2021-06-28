@@ -2,21 +2,27 @@ package Unit.Servant;
 
 import Unit.*;
 import Unit.Servant.Skills.*;
+import Unit.Servant.State.State;
 import GameScene.Game;
 import java.util.*;
-import java.awt.*;
-
+import java.awt.Point;
 /* A servant entity should inherit with state to bind Image to Class*/
 public abstract class Servant extends Unit {
-    protected Vector<Skill> SKI = new Vector<Skill>();
-    protected Point coordinate = new Point(0, 0);
-    protected int walkCycle = 10;
-    protected int walkCount = 0;
-    protected int attackCycle = 10;
-    protected int attackCount = 0;
-    protected int atk = 1;
+    protected Vector<Skill> SKI = null;
+    protected int atk = 0;
+    protected State stateControl = null;
     protected NormalAttack normalAttack = null;
-    public Game world = null;
+
+    public Servant(Point coordinate,boolean Camp,int hp,int atk,int def,State stateControl,Game myWorld){
+        super(coordinate, Camp, hp, def, myWorld);
+        this.atk = atk;
+        this.SKI = new Vector<Skill>();
+        this.stateControl = stateControl;
+    }
+
+    public void setNormalAttack(int nTarget,int range,int cd,boolean toenemy,boolean toally){
+        normalAttack = new NormalAttack(nTarget, range, cd, toenemy, toally);
+    }
 
     public void addSkill(Skill s) {
         SKI.add(s);
@@ -31,38 +37,25 @@ public abstract class Servant extends Unit {
     public void slice() {// Vector<Unit> target
         Vector<Unit> target = null;
         for (Skill s : SKI) {
-            if (s.CD() && (target = world.getTarget(this, s)) != null) {
+            if (s.CD() && (target = myWorld.getTarget(this, s)) != null) {
                 s.Act(this, target);
-                return;
             }
         }
-        if (attackCount == 0 && (target = world.getTarget(this, normalAttack)) != null) {
-            attackCount++;
-            normalAttack.Act(this, target);
-        } else if (attackCount != 0) {
-            attackCount++;
-            attackCount %= attackCycle;
-            walkCount = 0;
-            // play attack graphs
-        } else {
-            walkCount++;
-            walkCount %= walkCycle;
-            attackCount = 0;
-
-        }
+        stateControl.update();//Everything that require animation will be wrapped inside.
     }
 
-    protected abstract void drawWalk(int index);
-
-    protected abstract void drawAttack(int index);
-
-    protected abstract void drawDead();
-
-    protected abstract void onDead();
-
-    // public abstract void drawInit(); Same as render
+    public boolean Attack() {
+        Vector<Unit> target = null; 
+        if (normalAttack.CD() && (target = myWorld.getTarget(this, normalAttack)) != null) {
+            normalAttack.Act(this, target);
+            return true;
+        }
+        return false;
+    }
+    public abstract void onDead();
 
     public int ATK() {
         return this.atk;
     }
+    
 }

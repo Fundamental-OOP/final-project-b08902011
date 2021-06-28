@@ -3,6 +3,7 @@ package Player;
 import java.util.*;
 import Unit.*;
 import Unit.Tower.*;
+import Unit.Tower.BasicTower.BasicTower;
 import Unit.Servant.*;
 import Unit.Servant.Skills.*;
 
@@ -11,7 +12,7 @@ public class Player {
     private int gold = 0;
     private Vector<Item> asset = new Vector<Item>();
     private Vector<Servant> servants = new Vector<Servant>();
-    private Tower myTower = new Tower();
+    private Tower myTower = new BasicTower();
 
     public Vector<Servant> Servants() {
         return this.servants;
