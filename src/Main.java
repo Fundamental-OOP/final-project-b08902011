@@ -14,7 +14,7 @@ public class Main {
         monitor.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Player player = new Player();
-        Game level1 = new Game(monitor);
+        Game level1 = new Game(monitor,player);
         Map map = new Map(monitor, level1);
         HomePage menu = new HomePage(monitor, player, map);
         // monitor.setLayeredPane(menu.get().getLayeredPane());

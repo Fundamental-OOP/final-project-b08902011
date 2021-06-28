@@ -1,3 +1,3 @@
 del /f /q out\*
-javac -sourcepath src -d out src\Main.java src\BasicObject\* src\GameScene\* src\Player\* src\Servant\*
+javac -sourcepath src -d out src\Main.java 
 java -cp out Main

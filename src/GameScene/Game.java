@@ -3,7 +3,6 @@ package GameScene;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
-import Servant.*;
 import Player.Player;
 import Unit.*;
 import Unit.Tower.*;
@@ -17,7 +16,7 @@ public class Game extends Screen {
     Tower RightTower = new Tower();
 
 
-    public Game(JFrame sharedScreen) {
+    public Game(JFrame sharedScreen,Player player) {
         super(sharedScreen);
         Left = player.Servants();
         LeftTower = player.MyTower();
