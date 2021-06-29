@@ -8,7 +8,7 @@ import Unit.*;
 import Unit.Tower.*;
 import Unit.Servant.*;
 import Unit.Servant.Skills.*;
-
+import Unit.Servant.BasicServant.*;
 public class Game extends Screen implements Runnable {
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
     Vector<Servant> Right = new Vector<Servant>();
@@ -52,8 +52,8 @@ public class Game extends Screen implements Runnable {
         } else if (RightTower.dead()) {
             return 1;
         }
-        // this.updata();//Draw Everything
-        // delay(0);// Set FPS
+        LeftTower.render(g);
+        RightTower.render(g);
         return 0;
     }
 
@@ -89,14 +89,23 @@ public class Game extends Screen implements Runnable {
         }
         return null;
     }
-
+    public JPanel Gamepanel = new JPanel() {
+        @Override
+        public void paint(Graphics g) {
+            super.paint(g);
+            System.out.print("Good\n");
+            TimeSlice(g);
+        }
+    };
     @Override
     public void run() {
+        Left.add(new BasicServant());
         while (true) {
             sharedScreen.repaint();
+            Gamepanel.repaint();
             System.out.print("Tick\n");
             try {
-                Thread.sleep(15);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -105,25 +114,7 @@ public class Game extends Screen implements Runnable {
 
     @Override
     public void setContent() {
-        JPanel Gamepanel = new JPanel() {
-            @Override
-            public void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                renderAll(g);
-            }
-        };
         sharedScreen.add(Gamepanel);
         this.run();
-    }
-
-    public void renderAll(Graphics g) {
-        for (Servant s : Left) {
-            s.render(g);
-        }
-        for (Servant s : Right) {
-            s.render(g);
-        }
-        LeftTower.render(g);
-        RightTower.render(g);
     }
 }

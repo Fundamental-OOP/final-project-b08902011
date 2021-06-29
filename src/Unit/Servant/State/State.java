@@ -7,27 +7,27 @@ import java.awt.*;
 
 //Specify minimum Servant's State
 public abstract class State {
-    private Servant s;
+    protected Servant s;
     int attackCount = 0;
     int walkCount = 0;
-    int nAttackImage = 0;
-    int nWalkImage = 0;
-    int nDeadImage = 0;
     int deadCount = 0;
-    static private Vector<Image> attackImage = null;
-    static private Vector<Image> deadImage = null;
-    static private Vector<Image> walkImage = null;
-
+    static protected int nAttackImage = 0;
+    static protected int nWalkImage = 0;
+    static protected int nDeadImage = 0;
+    static protected Vector<Image> attackImage = null;
+    static protected Vector<Image> deadImage = null;
+    static protected Vector<Image> walkImage = null;
+    static protected Rectangle range = null; 
     private void render(Image image, Graphics g) {
-        Rectangle range = null;
         if (s.Camp) {
-            g.drawImage(image, range.x + range.width, range.y, -range.width, range.height, null);
+            g.drawImage(image, s.coordinate.x + range.width, s.coordinate.y, -range.width, range.height, null);
         } else {
-            g.drawImage(image, range.x, range.y, range.width, range.height, null);
+            g.drawImage(image, s.coordinate.x, s.coordinate.y, range.width, range.height, null);
         }
     }
 
     protected void DrawWalk(Graphics g) {
+        s.move(true);
         this.render(walkImage.get(walkCount), g);
         walkCount = reset(walkCount) + 1;
         walkCount %= nWalkImage;
@@ -54,10 +54,9 @@ public abstract class State {
     }
 
     public void update(Graphics g) {
-        if(s.dead()){
+        if (s.dead()) {
             this.DrawDead(g);
-        }
-        else if ((attackCount == 0) && s.Attack()) {// Only Try when attackCount == 0;
+        } else if ((attackCount == 0) && s.Attack()) {// Only Try when attackCount == 0;
             this.DrawAttack(g);
         } else if (attackCount != 0) {
             this.DrawAttack(g);
