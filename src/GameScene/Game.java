@@ -26,6 +26,14 @@ public class Game extends Screen implements Runnable {
 
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("Assets/battleField.png"));
+        } catch (Exception e) {
+            System.out.println("No image!");
+        }
+        Image resized = img.getScaledInstance(1555, 833, Image.SCALE_SMOOTH);
+        
         playerServants = player.Servants();
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = (Tower) player.MyTower().Duplicate(this, new Point(rightBornPoint), true);
@@ -34,25 +42,7 @@ public class Game extends Screen implements Runnable {
             this.addServant(new FemaleZombie(leftBornPoint, true, this));
             this.addServant(new MaleZombie(rightBornPoint, false, this));
         }
-
-        JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setLayout(null);
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(new File("Assets/battleField.png"));
-        } catch (Exception e) {
-            System.out.println("No image!");
-        }
-        Image resized = img.getScaledInstance(1555, 833, Image.SCALE_SMOOTH);
-        ImageIcon image = new ImageIcon(resized);
-
-        JLabel imgLabel = new JLabel(image);
-        imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
-
-        layeredPane.add(imgLabel, 0);
-        layeredPane.moveToFront(imgLabel);
-        screen.setContentPane(layeredPane);
-        screen.setVisible(true);
+        
     }
 
     public void addUnit(Unit s) {
@@ -80,6 +70,7 @@ public class Game extends Screen implements Runnable {
 
     public int TimeSlice(Graphics g) {// a slice in game
         g.setColor(Color.BLACK); // paint background with all white
+
         g.fillRect(-10, 0, 1555, 833);
         for (int i = 0; i < Left.size(); i++) {
             Left.get(i).slice(g);
