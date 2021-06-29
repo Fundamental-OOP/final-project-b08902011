@@ -26,7 +26,6 @@ public class Game extends Screen implements Runnable {
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         // Draw bottom, tower, background
-        screen.add(new JButton("1"));
     }
 
     public void addUnit(Unit s, Point p, Dimension d, boolean Camp) {
