@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         JFrame monitor = new JFrame();
         monitor.getContentPane().setLayout(null);
-        monitor.setBounds(-10, 0, 1600, 900);
+        monitor.setBounds(-10, 0, 1555, 833);
         monitor.setVisible(true);
         monitor.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

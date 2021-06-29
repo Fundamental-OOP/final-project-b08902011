@@ -30,7 +30,7 @@ public class Map extends Screen {
 	private void setButtons(JLayeredPane layeredPane, java.util.List<Screen> levels){
 		Dimension buttonSize = new Dimension(100, 100);
 		Font buttonFont = new Font("Dialog", Font.BOLD, 20);
-		JButton level_1 = MyButton.make("Level1", new Point(400, 600), buttonSize, levels.get(0));
+		JButton level_1 = MyButton.make("Level1", new Point(380, 560), buttonSize, levels.get(0));
 		level_1.setContentAreaFilled(false);
 		level_1.setBorderPainted(true);
 		level_1.setOpaque(false);
@@ -39,7 +39,7 @@ public class Map extends Screen {
 		layeredPane.add(level_1, 0);
 		layeredPane.moveToFront(level_1);
 
-		JButton level_2 = MyButton.make("Level2", new Point(420, 200), buttonSize, levels.get(1));
+		JButton level_2 = MyButton.make("Level2", new Point(410, 190), buttonSize, levels.get(1));
 		level_2.setContentAreaFilled(false);
 		level_2.setBorderPainted(true);
 		level_2.setOpaque(false);
@@ -73,5 +73,6 @@ public class Map extends Screen {
 		setButtons(layeredPane, levels);
 
 		screen.setContentPane(layeredPane);
+		screen.setVisible(true);
 	}
 }

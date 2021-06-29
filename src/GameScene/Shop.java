@@ -38,6 +38,6 @@ public class Shop extends Screen{
 		setBackground(layeredPane);
 
 		screen.setContentPane(layeredPane);
-		screen.setVisible(true);
+		// screen.setVisible(true);
 	}
 }
