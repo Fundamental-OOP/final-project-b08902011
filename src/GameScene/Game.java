@@ -99,7 +99,7 @@ public class Game extends Screen implements Runnable {
     public void run() {
         Left.add(new BasicServant());
         while (true) {
-            TimeSlice(sharedScreen.getGraphics());
+            // TimeSlice(sharedScreen.getGraphics());
             // sharedScreen.revalidate();
             // sharedScreen.repaint();
             try {
