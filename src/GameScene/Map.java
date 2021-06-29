@@ -73,6 +73,6 @@ public class Map extends Screen {
 		setButtons(layeredPane, levels);
 
 		screen.setContentPane(layeredPane);
-		screen.setVisible(true);
+		// screen.setVisible(true);
 	}
 }

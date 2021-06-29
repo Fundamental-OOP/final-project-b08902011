@@ -7,12 +7,14 @@ import Unit.Servant.Servant;
 import Unit.*;
 import GameScene.Game;
 import java.awt.*;
+import Unit.Servant.State.*;
 public class BasicServant extends Servant {
     static int initHP = 10;
     static int initATK = 10;
     static int initDEF = 10;
     public BasicServant(){
-        super(initHP, initATK, initDEF);
+        super(initHP, initATK, initDEF,new BasicServantState());
+        this.stateControl.s = this;
     }
     public void onDead(){
     }

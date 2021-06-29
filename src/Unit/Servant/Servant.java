@@ -23,10 +23,13 @@ public abstract class Servant extends Unit {
         this.stateControl = stateControl;
     }
 
-    public Servant(int hp, int atk, int def) {//Used when add to player
+    public Servant(int hp, int atk, int def,State stateControl) {//Used when add to player
         super(hp, def);
         this.atk = atk;
         this.SKI = new Vector<Skill>();
+        this.stateControl = stateControl;
+        this.normalAttack = new NormalAttack(1,1, 1, true, false);
+        this.coordinate = new Point(0,0);
     }
 
     public void setNormalAttack(int nTarget, int range, int cd, boolean toenemy, boolean toally) {
@@ -61,11 +64,11 @@ public abstract class Servant extends Unit {
     }
 
     public boolean Attack() {
-        Vector<Unit> target = null;
-        if (normalAttack.CD() && (target = myWorld.getTarget(this, normalAttack)) != null) {
-            normalAttack.Act(this, target);
-            return true;
-        }
+        // Vector<Unit> target = null;
+        // if (normalAttack.CD() && (target = myWorld.getTarget(this, normalAttack)) != null) {
+        //     normalAttack.Act(this, target);
+        //     return true;
+        // }
         return false;
     }
 
