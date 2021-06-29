@@ -7,7 +7,7 @@ import javax.imageio.*;
 
 public class NinjaState extends State {
     private static final Dimension size = new Dimension(180, 250);
-    static {
+    public NinjaState(){
         nAttackImage = 10;
         for (int i = 1; i <= nAttackImage; i++) {
             try {

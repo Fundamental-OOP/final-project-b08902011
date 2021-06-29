@@ -50,7 +50,7 @@ public class MyButton {
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 assert (e.getSource().equals(this));
-                game.addUnit(s, new Point(0, 0), new Dimension(0, 0), true);
+                game.addUnit(s);
             }
         });
         return b;

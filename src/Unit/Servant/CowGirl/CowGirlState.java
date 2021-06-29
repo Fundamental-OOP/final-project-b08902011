@@ -6,8 +6,8 @@ import javax.imageio.*;
 import java.awt.*;
 
 public class CowGirlState extends State {
-    private static final Dimension size = new Dimension(1, 1);
-    static {
+    private static final Dimension size = new Dimension(180, 180);
+    public CowGirlState() {
         nAttackImage = 3;
         for (int i = 1; i <= nAttackImage; i++) {
             try {

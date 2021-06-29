@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class BasicServantState extends State {
     private static final Dimension size = new Dimension(1, 1);
-    static {
+    public BasicServantState() {
         nAttackImage = 0;
         for (int i = 1; i <= nAttackImage; i++) {
             try {
