@@ -26,6 +26,7 @@ public class Game extends Screen implements Runnable {
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         // Draw bottom, tower, background
+        screen.add(new JButton("1"));
     }
 
     public void addUnit(Unit s, Point p, Dimension d, boolean Camp) {
@@ -95,13 +96,22 @@ public class Game extends Screen implements Runnable {
         return null;
     }
 
+
     @Override
     public void run() {
         Left.add(new BasicServant());
+        screen.setVisible(true);
+        // Gamepanel gp = new Gamepanel();
+        
+        // screen.add(gp);
+        sharedScreen.setContentPane(screen.getContentPane());
+        sharedScreen.validate();
+        sharedScreen.repaint();
         while (true) {
             // TimeSlice(sharedScreen.getGraphics());
             // sharedScreen.revalidate();
             // sharedScreen.repaint();
+
             try {
                 System.out.print("Tick\n");
                 Thread.sleep(100);
@@ -118,5 +128,6 @@ public class Game extends Screen implements Runnable {
         sharedScreen.validate();
         sharedScreen.repaint();
         this.run();
+        // sharedScreen.add(Gamepanel);
     }
 }
