@@ -9,6 +9,7 @@ import Unit.Tower.*;
 import Unit.Servant.*;
 import Unit.Servant.Skills.*;
 import Unit.Servant.BasicServant.*;
+
 public class Game extends Screen implements Runnable {
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
     Vector<Servant> Right = new Vector<Servant>();
@@ -22,6 +23,7 @@ public class Game extends Screen implements Runnable {
         Left = player.Servants();
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         // Draw bottom, tower, background
+        screen.add(new JButton("1"));
     }
 
     public void addUnit(Unit s, Point p, Dimension d, boolean Camp) {
@@ -89,20 +91,31 @@ public class Game extends Screen implements Runnable {
         }
         return null;
     }
-    public JPanel Gamepanel = new JPanel() {
+
+    public class Gamepanel extends JPanel{
         @Override
         public void paint(Graphics g) {
             super.paint(g);
             System.out.print("Good\n");
-            TimeSlice(g);
+            g.drawOval(100, 70, 30, 30);
+            // TimeSlice(g);
         }
-    };
+    }
+
     @Override
     public void run() {
         Left.add(new BasicServant());
+        screen.setVisible(true);
+        // Gamepanel gp = new Gamepanel();
+        
+        // screen.add(gp);
+        sharedScreen.setContentPane(screen.getContentPane());
+        sharedScreen.validate();
+        sharedScreen.repaint();
         while (true) {
-            sharedScreen.repaint();
-            Gamepanel.repaint();
+
+            
+            // Gamepanel.repaint();
             System.out.print("Tick\n");
             try {
                 Thread.sleep(1000);
@@ -114,7 +127,9 @@ public class Game extends Screen implements Runnable {
 
     @Override
     public void setContent() {
-        sharedScreen.add(Gamepanel);
+        
+        sharedScreen.getContentPane().removeAll();
         this.run();
+        // sharedScreen.add(Gamepanel);
     }
 }

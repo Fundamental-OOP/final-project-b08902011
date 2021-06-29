@@ -21,23 +21,31 @@ public class Shop extends Screen{
 		} catch (Exception e) {
 			System.out.println("No image!");
 		}
-		BufferedImage subImg = img.getSubimage(100, 0, 1400, img.getHeight());
-		Image resized = subImg.getScaledInstance(1600, 800, Image.SCALE_SMOOTH);
+		BufferedImage subImg = img.getSubimage(80, 0, 1400, img.getHeight());
+		Image resized = subImg.getScaledInstance(1555, 833, Image.SCALE_SMOOTH);
 		ImageIcon image = new ImageIcon(resized);
-
 		JLabel imgLabel = new JLabel(image);
-		imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
-
-		layeredPane.setLayout(null);
+		imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());		
 		layeredPane.add(imgLabel, 0);
+
+
+		JLabel title = new JLabel("Shop", JLabel.CENTER);
+		title.setBounds(205, 52, 150, 90);
+		title.setFont(new Font("Dialog", Font.BOLD, 40));
+		title.setForeground(Color.lightGray);
+		title.setOpaque(true);
+		title.setBackground(Color.darkGray);
+		layeredPane.add(title, 1);
+		layeredPane.moveToFront(title);
 	}
 
 	public Shop(JFrame sharedScreen){
 		super(sharedScreen);
 		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setLayout(null);
 		setBackground(layeredPane);
 
 		screen.setContentPane(layeredPane);
-		// screen.setVisible(true);
+		screen.setVisible(true);
 	}
 }

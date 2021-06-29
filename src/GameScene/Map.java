@@ -22,8 +22,7 @@ public class Map extends Screen {
 
 		JLabel imgLabel = new JLabel(image);
 		imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
-
-		layeredPane.setLayout(null);
+	
 		layeredPane.add(imgLabel, 0);
 	}
 
@@ -39,7 +38,7 @@ public class Map extends Screen {
 		layeredPane.add(level_1, 0);
 		layeredPane.moveToFront(level_1);
 
-		JButton level_2 = MyButton.make("Level2", new Point(410, 190), buttonSize, levels.get(1));
+		JButton level_2 = MyButton.make("Level2", new Point(400, 180), buttonSize, levels.get(1));
 		level_2.setContentAreaFilled(false);
 		level_2.setBorderPainted(true);
 		level_2.setOpaque(false);
@@ -48,7 +47,7 @@ public class Map extends Screen {
 		layeredPane.add(level_2, 0);
 		layeredPane.moveToFront(level_2);
 
-		JButton level_3 = MyButton.make("Level3", new Point(1070, 490), buttonSize, levels.get(2));
+		JButton level_3 = MyButton.make("Level3", new Point(1020, 450), buttonSize, levels.get(2));
 		level_3.setContentAreaFilled(false);
 		level_3.setBorderPainted(true);
 		level_3.setOpaque(false);
@@ -57,7 +56,7 @@ public class Map extends Screen {
 		layeredPane.add(level_3, 0);
 		layeredPane.moveToFront(level_3);
 
-		JButton shop1 = MyButton.make("Level4", new Point(920, 140), buttonSize, levels.get(3));
+		JButton shop1 = MyButton.make("Level4", new Point(890, 130), buttonSize, levels.get(3));
 		shop1.setContentAreaFilled(false);
 		shop1.setBorderPainted(true);
 		shop1.setOpaque(false);
@@ -69,10 +68,10 @@ public class Map extends Screen {
 	public Map(JFrame sharedScreen, java.util.List<Screen> levels){
 		super(sharedScreen);
 		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setLayout(null);
 		setBackground(layeredPane);
 		setButtons(layeredPane, levels);
 
 		screen.setContentPane(layeredPane);
-		screen.setVisible(true);
 	}
 }
