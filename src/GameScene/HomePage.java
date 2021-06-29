@@ -10,14 +10,14 @@ public class HomePage extends Screen {
 	private void setTitle(Container contentPane) {
 		JLabel title = new JLabel("Game", JLabel.CENTER);
 		title.setBounds(570, 110, 400, 200);
-		title.setFont(new Font("Serif", Font.ITALIC, 100));
+		title.setFont(new Font("Serif", Font.ITALIC, 120));
 		title.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
 		contentPane.add(title);
 	}
 
 	private void setButton(Container contentPane, Player player, Map map) {
 		Dimension buttonSize = new Dimension(200, 200);
-		Font buttonFont = new Font("DialogInput", Font.PLAIN, 36);
+		Font buttonFont = new Font("DialogInput", Font.PLAIN, 42);
 		JButton easy = MyButton.make("easy", new Point(220, 460), buttonSize, player, 1, map);
 		easy.setFont(buttonFont);
 		contentPane.add(easy);

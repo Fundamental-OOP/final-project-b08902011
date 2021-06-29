@@ -100,7 +100,6 @@ public class Game extends Screen implements Runnable {
     @Override
     public void run() {
         Left.add(new BasicServant());
-        screen.setVisible(true);
         // Gamepanel gp = new Gamepanel();
         
         // screen.add(gp);
