@@ -4,7 +4,12 @@ import GameScene.Game;
 import java.awt.*;
 
 public abstract class Unit {
-    protected Point coordinate = null;
+
+    public abstract Unit Duplicate(Game world, Point coordinate, boolean Camp);
+
+    public abstract void render(Graphics g);
+
+    public Point coordinate = null;
     public boolean Camp = true;
     protected int hp = 0;
     protected int def = 0;
@@ -32,7 +37,4 @@ public abstract class Unit {
         return this.hp;
     }
 
-    public abstract Unit Duplicate(Game world, Point coordinate, boolean Camp);
-
-    public abstract void render(Graphics g);
 }
