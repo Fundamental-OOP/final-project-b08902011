@@ -96,8 +96,4 @@ public class Game extends Screen implements Runnable{
             System.out.print("Tick\n");
         }
     }
-    @Override
-    public void paint(Graphics g){
-
-    }
 }

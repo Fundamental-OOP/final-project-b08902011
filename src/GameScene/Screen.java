@@ -5,8 +5,8 @@ import javax.swing.*;
 public class Screen{
 	protected JFrame sharedScreen;
 	protected JFrame screen;
-	private static final int width = 1600;
-	private static final int height = 900;
+	private static final int width = 1555;
+	private static final int height = 833;
 	public Screen(JFrame sharedScreen){
 		this.sharedScreen = sharedScreen;
 		this.screen = new JFrame();
