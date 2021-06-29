@@ -8,9 +8,6 @@ import java.awt.*;
 import java.awt.image.*;
 
 public class BasicServant extends Servant {
-    static {
-        BasicServant.stride = 0;
-    }
     static int initHP = 10;
     static int initATK = 10;
     static int initDEF = 10;

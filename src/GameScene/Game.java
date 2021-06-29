@@ -23,42 +23,36 @@ public class Game extends Screen implements Runnable {
 
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
-        Left = player.Servants();
+        playerServants = player.Servants();
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
-        RightTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
-
+        RightTower = (Tower) player.MyTower().Duplicate(this, new Point(rightBornPoint), true);
         if (true) {// For testing
-            this.addServant(new Ninja(leftBornPoint,true,this));
-            this.addServant(new FemaleZombie(leftBornPoint, true, this));
-            this.addServant(new MaleZombie(rightBornPoint, false, this));
-        }
-    }
-
-    public void addUnit(Unit s) {
-        if (s instanceof Servant) {
-            this.addServant((Servant) s);
+            this.addServant(new Ninja(new Point(leftBornPoint), true, this));
+            this.addServant(new FemaleZombie(new Point(leftBornPoint), false, this));
+            this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
         }
     }
 
     private void addServant(Servant s) {
         if (s.Camp) {
-            Left.add(s);
+            debug();
+            this.Left.add(s);
         } else {
-            Right.add(s);
+            this.Right.add(s);
         }
     }
 
-    public void removeServant(Servant s){
-        if(s.Camp){
-            Left.remove(s);
-        }
-        else{
-            Right.remove(s);
+    public void removeServant(Servant s) {
+        if (s.Camp) {
+            this.Left.remove(s);
+        } else {
+            this.Right.remove(s);
         }
     }
+
     public int TimeSlice(Graphics g) {// a slice in game
-        // g.setColor(Color.BLACK); // paint background with all white
-        // g.fillRect(-10, 0, 1555, 833);
+        g.setColor(Color.BLACK); // paint background with all white
+        g.fillRect(-10, 0, 1555, 833);
         for (int i = 0; i < Left.size(); i++) {
             Left.get(i).slice(g);
         }
@@ -74,6 +68,9 @@ public class Game extends Screen implements Runnable {
     }
 
     public Vector<Unit> getTarget(Servant s, Skill skill) {
+        if (Left.size() == 0 || Right.size() == 0) {
+            // return null;
+        }
         boolean Camp = s.Camp;
         boolean enemy = skill.toenemy;
         boolean ally = skill.toally;
@@ -89,7 +86,10 @@ public class Game extends Screen implements Runnable {
                     }
                 }
             }
-            ret.add(RightTower);
+            if (skill.reachable(s, RightTower)) {
+                ret.add(RightTower);
+
+            }
         }
         if ((!Camp && enemy) || (Camp && ally)) {
             for (Servant u : Left) {
@@ -101,7 +101,10 @@ public class Game extends Screen implements Runnable {
                     }
                 }
             }
-            ret.add(LeftTower);
+            if (skill.reachable(s, LeftTower)) {
+                ret.add(LeftTower);
+
+            }
         }
         return null;
     }
@@ -114,6 +117,7 @@ public class Game extends Screen implements Runnable {
             TimeSlice(sharedScreen.getGraphics());
             try {
                 Thread.sleep(100);
+                debug();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -127,5 +131,12 @@ public class Game extends Screen implements Runnable {
         sharedScreen.validate();
         sharedScreen.repaint();
         this.run();
+    }
+
+    public void debug() {
+        System.out.print(Left.size());
+        System.out.print(" ");
+        System.out.print(Right.size());
+        System.out.print("\n");
     }
 }

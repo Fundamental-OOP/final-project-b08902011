@@ -11,7 +11,7 @@ import java.awt.*;
 public abstract class Servant extends Unit {
 
 
-    static public int stride = 0;
+    public int stride = 0;
     protected int atk = 0;
     protected Vector<Skill> SKI = new Vector<Skill>();
     protected State stateControl = null;
@@ -48,9 +48,9 @@ public abstract class Servant extends Unit {
 
     public void move(boolean direction) {
         if (direction) {
-            this.coordinate.x += stride;
+            this.coordinate.x += this.stride;
         } else {
-            this.coordinate.x -= stride;
+            this.coordinate.x -= this.stride;
         }
     }
 

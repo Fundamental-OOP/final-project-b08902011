@@ -1,7 +1,6 @@
 package BasicObject;
 
 import Player.*;
-import Unit.*;
 import GameScene.*;
 import javax.swing.*;
 import java.awt.*;
@@ -37,20 +36,6 @@ public class MyButton {
                 } else {
                     ((JButton) e.getSource()).setText("Not Enough!");
                 }
-            }
-        });
-        return b;
-    }
-
-    public static JButton make(String text, Point p, Dimension d, Game game, Unit s) {// Battle
-        JButton b = null;
-        b = new JButton(text);
-        b.setLocation(p);
-        b.setSize(d);
-        b.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                assert (e.getSource().equals(this));
-                game.addUnit(s);
             }
         });
         return b;
