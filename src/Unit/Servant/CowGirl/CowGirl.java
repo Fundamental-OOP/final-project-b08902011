@@ -15,8 +15,8 @@ public class CowGirl extends Servant {
     static int initATK = 10;
     static int initDEF = 10;
 
-    public CowGirl(Game world) {
-        super(initHP, initATK, initDEF, new CowGirlState(), world);
+    public CowGirl(Point coordinate, boolean Camp, Game world) {
+        super(coordinate, Camp, initHP, initATK, initDEF, new CowGirlState(), world);
         this.stateControl.s = this;
     }
 
@@ -24,15 +24,7 @@ public class CowGirl extends Servant {
     public BufferedImage toImage() {
         return null;
     }
-
-    public void onDead() {
-    }
-
     public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
         return null;
-    }
-
-    public void render(Graphics g) {
-        stateControl.update(g);
     }
 }

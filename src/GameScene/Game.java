@@ -8,8 +8,12 @@ import Unit.*;
 import Unit.Tower.*;
 import Unit.Servant.*;
 import Unit.Servant.Skills.*;
+import Unit.Servant.Ninja.*;
+import Unit.Servant.FemaleZombie.*;
+import Unit.Servant.MaleZombie.*;
 
 public class Game extends Screen implements Runnable {
+    Vector<Servant> playerServants = new Vector<Servant>();// Camp == true
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
     Vector<Servant> Right = new Vector<Servant>();
     Tower LeftTower = null;
@@ -22,25 +26,39 @@ public class Game extends Screen implements Runnable {
         Left = player.Servants();
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
-    }
 
-    public void addUnit(Unit s, Point p, Dimension d, boolean Camp) {
-        if (s instanceof Servant) {
-            this.addServant((Servant) s, p, d, Camp);
+        if (true) {// For testing
+            this.addServant(new Ninja(leftBornPoint,true,this));
+            this.addServant(new FemaleZombie(leftBornPoint, true, this));
+            this.addServant(new MaleZombie(rightBornPoint, false, this));
         }
     }
 
-    private void addServant(Servant s, Point p, Dimension d, boolean Camp) {
-        if (Camp) {
+    public void addUnit(Unit s) {
+        if (s instanceof Servant) {
+            this.addServant((Servant) s);
+        }
+    }
+
+    private void addServant(Servant s) {
+        if (s.Camp) {
             Left.add(s);
         } else {
             Right.add(s);
         }
     }
 
+    public void removeServant(Servant s){
+        if(s.Camp){
+            Left.remove(s);
+        }
+        else{
+            Right.remove(s);
+        }
+    }
     public int TimeSlice(Graphics g) {// a slice in game
-        g.setColor(Color.WHITE); // paint background with all white
-        g.fillRect(-10, 0, 1555, 833);
+        // g.setColor(Color.BLACK); // paint background with all white
+        // g.fillRect(-10, 0, 1555, 833);
         for (int i = 0; i < Left.size(); i++) {
             Left.get(i).slice(g);
         }
@@ -52,8 +70,6 @@ public class Game extends Screen implements Runnable {
         } else if (RightTower.dead()) {
             return 1;
         }
-        LeftTower.render(g);
-        RightTower.render(g);
         return 0;
     }
 

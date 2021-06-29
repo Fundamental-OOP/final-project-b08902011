@@ -1,7 +1,5 @@
 import javax.swing.*;
-import java.awt.*;
 import java.util.*;
-import BasicObject.*;
 import GameScene.*;
 import Player.*;
 

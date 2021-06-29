@@ -1,6 +1,5 @@
 package Unit.Servant.BasicServant;
 
-import Unit.Servant.Servant;
 import Unit.Servant.State.State;
 import java.io.*;
 import javax.imageio.*;
@@ -8,7 +7,7 @@ import java.awt.*;
 
 public class BasicServantState extends State {
     private static final Dimension size = new Dimension(1, 1);
-    static {
+    public BasicServantState() {
         nAttackImage = 0;
         for (int i = 1; i <= nAttackImage; i++) {
             try {

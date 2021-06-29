@@ -8,7 +8,7 @@ public abstract class Unit {
 
     public abstract Unit Duplicate(Game world, Point coordinate, boolean Camp);
 
-    public abstract void render(Graphics g);
+    public abstract BufferedImage toImage();
 
     public Point coordinate = null;
     public boolean Camp = true;
@@ -38,5 +38,4 @@ public abstract class Unit {
         return this.hp;
     }
 
-    public abstract BufferedImage toImage();
 }

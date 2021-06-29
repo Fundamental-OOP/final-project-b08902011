@@ -14,8 +14,8 @@ public class MaleZombie extends Servant {
     static int initATK = 10;
     static int initDEF = 10;
 
-    public MaleZombie(Game world) {
-        super(initHP, initATK, initDEF, new MaleZombieState(), world);
+    public MaleZombie(Point coordinate, boolean Camp, Game world) {
+        super(coordinate, Camp, initHP, initATK, initDEF, new MaleZombieState(), world);
         this.stateControl.s = this;
     }
 
@@ -24,14 +24,7 @@ public class MaleZombie extends Servant {
         return null;
     }
 
-    public void onDead() {
-    }
-
     public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
         return null;
-    }
-
-    public void render(Graphics g) {
-        stateControl.update(g);
     }
 }

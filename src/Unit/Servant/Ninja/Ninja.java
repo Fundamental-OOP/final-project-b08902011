@@ -14,8 +14,8 @@ public class Ninja extends Servant {
     static int initATK = 10;
     static int initDEF = 10;
 
-    public Ninja(Game world) {
-        super(initHP, initATK, initDEF, new NinjaState(), world);
+    public Ninja(Point coordinate,boolean Camp,Game world) {
+        super(coordinate,Camp,initHP, initATK, initDEF, new NinjaState(), world);
         this.stateControl.s = this;
     }
 
@@ -29,9 +29,5 @@ public class Ninja extends Servant {
 
     public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
         return null;
-    }
-
-    public void render(Graphics g) {
-        stateControl.update(g);
     }
 }

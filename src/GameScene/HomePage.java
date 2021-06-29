@@ -1,7 +1,6 @@
 package GameScene;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import BasicObject.*;
 import Player.*;

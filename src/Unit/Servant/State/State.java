@@ -12,13 +12,13 @@ public abstract class State {
     private int attackCount = 0;
     private int walkCount = 0;
     private int deadCount = 0;
-    static protected int nAttackImage = 0;
-    static protected int nWalkImage = 0;
-    static protected int nDeadImage = 0;
-    static protected Vector<BufferedImage> attackImage = new Vector<BufferedImage>();
-    static protected Vector<BufferedImage> deadImage = new Vector<BufferedImage>();
-    static protected Vector<BufferedImage> walkImage = new Vector<BufferedImage>();
-    static protected Rectangle range = null;
+    protected int nAttackImage = 0;
+    protected int nWalkImage = 0;
+    protected int nDeadImage = 0;
+    protected Vector<BufferedImage> attackImage = new Vector<BufferedImage>();
+    protected Vector<BufferedImage> deadImage = new Vector<BufferedImage>();
+    protected Vector<BufferedImage> walkImage = new Vector<BufferedImage>();
+    protected Rectangle range = null;
 
     private void render(BufferedImage image, Graphics g) {
         if (!s.Camp) {

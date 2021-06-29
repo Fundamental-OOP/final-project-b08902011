@@ -25,14 +25,8 @@ public class BasicServant extends Servant {
         return null;
     }
 
-    public void onDead() {
-    }
 
     public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
         return null;
-    }
-
-    public void render(Graphics g) {
-        stateControl.update(g);
     }
 }
