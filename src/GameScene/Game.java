@@ -9,7 +9,7 @@ import Unit.Tower.*;
 import Unit.Servant.*;
 import Unit.Servant.Skills.*;
 
-public class Game extends Screen implements Runnable{
+public class Game extends Screen implements Runnable {
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
     Vector<Servant> Right = new Vector<Servant>();
     Tower LeftTower = null;
@@ -89,15 +89,41 @@ public class Game extends Screen implements Runnable{
         }
         return null;
     }
+
     @Override
-    public void run(){
-        while(true){
-    		sharedScreen.repaint();
+    public void run() {
+        while (true) {
+            sharedScreen.repaint();
             System.out.print("Tick\n");
+            try {
+                Thread.sleep(15);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
-    @Override
-    public void paint(Graphics g){
 
+    @Override
+    public void setContent() {
+        JPanel Gamepanel = new JPanel() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                renderAll(g);
+            }
+        };
+        sharedScreen.add(Gamepanel);
+        this.run();
+    }
+
+    public void renderAll(Graphics g) {
+        for (Servant s : Left) {
+            s.render(g);
+        }
+        for (Servant s : Right) {
+            s.render(g);
+        }
+        LeftTower.render(g);
+        RightTower.render(g);
     }
 }

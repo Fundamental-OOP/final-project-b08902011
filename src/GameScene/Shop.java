@@ -32,12 +32,6 @@ public class Shop extends Screen{
 		layeredPane.add(imgLabel, 0);
 	}
 
-<<<<<<< HEAD
-public class Shop extends Screen{
-	// private List<Item> allItem = new ArrayList();
-	// private List<Item> availableItem = new ArrayList();
-=======
->>>>>>> 718f80ecbbe8b3463173a0531c6bcef3ecd3f539
 	public Shop(JFrame sharedScreen){
 		super(sharedScreen);
 		JLayeredPane layeredPane = new JLayeredPane();
