@@ -1,14 +1,14 @@
-package Unit.Servant.BasicServant;
-import Unit.Servant.Servant;
+package Unit.Servant.FemaleZombie;
+
 import Unit.Servant.State.State;
 import java.io.*;
 import javax.imageio.*;
 import java.awt.*;
 
-public class BasicServantState extends State {
+public class FemaleZombieState extends State {
     private static final Dimension size = new Dimension(1, 1);
     static {
-        nAttackImage = 0;
+        nAttackImage = 8;
         for (int i = 1; i <= nAttackImage; i++) {
             try {
                 attackImage.add(ImageIO
@@ -18,7 +18,7 @@ public class BasicServantState extends State {
                         "Load" + "Assets/Servant/" + ServantName() + "/Attack/" + String.valueOf(i) + ".png Failed\n");
             }
         }
-        nWalkImage = 0;
+        nWalkImage = 10;
         for (int i = 1; i <= nWalkImage; i++) {
             try {
                 walkImage.add(ImageIO
@@ -28,7 +28,7 @@ public class BasicServantState extends State {
                         "Load" + "Assets/Servant/" + ServantName() + "/Walk/" + String.valueOf(i) + ".png Failed\n");
             }
         }
-        nDeadImage = 0;
+        nDeadImage = 12;
         for (int i = 1; i <= nDeadImage; i++) {
             try {
                 deadImage.add(ImageIO
@@ -42,6 +42,6 @@ public class BasicServantState extends State {
     }
 
     static public String ServantName() {
-        return "BasicSeverant";
+        return "FemaleZombie";
     }
 }

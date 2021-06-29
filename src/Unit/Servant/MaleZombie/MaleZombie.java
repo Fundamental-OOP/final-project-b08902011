@@ -1,20 +1,20 @@
-package Unit.Servant.BasicServant;
+package Unit.Servant.MaleZombie;
 
 import Unit.*;
 import Unit.Servant.Servant;
 import GameScene.Game;
 import java.awt.*;
 
-public class BasicServant extends Servant {
+public class MaleZombie extends Servant {
     static {
-        BasicServant.stride = 0;
+        MaleZombie.stride = 7;
     }
     static int initHP = 10;
     static int initATK = 10;
     static int initDEF = 10;
 
-    public BasicServant(Game world) {
-        super(initHP, initATK, initDEF, new BasicServantState(),world);
+    public MaleZombie(Game world) {
+        super(initHP, initATK, initDEF, new MaleZombieState(),world);
         this.stateControl.s = this;
     }
 

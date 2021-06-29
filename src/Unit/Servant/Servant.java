@@ -9,27 +9,25 @@ import java.awt.*;
 
 /* A servant entity should inherit with state to bind Image to Class*/
 public abstract class Servant extends Unit {
-    public abstract void onDead();
-    static public int stride = 0;
-    protected Vector<Skill> SKI = null;
-    protected int atk = 0;
-    protected State stateControl = null;
-    protected NormalAttack normalAttack = null;
 
-    public Servant(Point coordinate, boolean Camp, int hp, int atk, int def, State stateControl, Game myWorld) {//Used when Duplicate
+    public abstract void onDead();
+
+    static public int stride = 0;
+    protected int atk = 0;
+    protected Vector<Skill> SKI = new Vector<Skill>();
+    protected State stateControl = null;
+    protected NormalAttack normalAttack = new NormalAttack(1, 300, 0, true, false);
+
+    public Servant(Point coordinate, boolean Camp, int hp, int atk, int def, State stateControl, Game myWorld) {// Used
         super(coordinate, Camp, hp, def, myWorld);
         this.atk = atk;
-        this.SKI = new Vector<Skill>();
         this.stateControl = stateControl;
     }
 
-    public Servant(int hp, int atk, int def,State stateControl) {//Used when add to player
-        super(hp, def);
+    public Servant(int hp, int atk, int def, State stateControl, Game myWorld) {// Used when add to player
+        super(new Point(0, 0), true, hp, def, myWorld);
         this.atk = atk;
-        this.SKI = new Vector<Skill>();
         this.stateControl = stateControl;
-        this.normalAttack = new NormalAttack(1,1, 1, true, false);
-        this.coordinate = new Point(0,0);
     }
 
     public void setNormalAttack(int nTarget, int range, int cd, boolean toenemy, boolean toally) {
@@ -45,14 +43,15 @@ public abstract class Servant extends Unit {
             }
         });
     }
-    public void move(boolean direction){
-        if(direction){
+
+    public void move(boolean direction) {
+        if (direction) {
             this.coordinate.x += stride;
-        }
-        else{
+        } else {
             this.coordinate.x -= stride;
         }
     }
+
     public void slice(Graphics g) {// Vector<Unit> target
         Vector<Unit> target = null;
         for (Skill s : SKI) {
@@ -65,9 +64,10 @@ public abstract class Servant extends Unit {
 
     public boolean Attack() {
         // Vector<Unit> target = null;
-        // if (normalAttack.CD() && (target = myWorld.getTarget(this, normalAttack)) != null) {
-        //     normalAttack.Act(this, target);
-        //     return true;
+        // if (normalAttack.CD() && (target = myWorld.getTarget(this, normalAttack)) !=
+        // null) {
+        // normalAttack.Act(this, target);
+        // return true;
         // }
         return false;
     }

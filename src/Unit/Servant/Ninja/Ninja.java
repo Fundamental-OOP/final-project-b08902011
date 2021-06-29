@@ -1,20 +1,20 @@
-package Unit.Servant.BasicServant;
+package Unit.Servant.Ninja;
 
 import Unit.*;
-import Unit.Servant.Servant;
 import GameScene.Game;
+import Unit.Servant.Servant;
 import java.awt.*;
 
-public class BasicServant extends Servant {
-    static {
-        BasicServant.stride = 0;
+public class Ninja extends Servant {
+    static{
+        Ninja.stride = 30;
     }
     static int initHP = 10;
     static int initATK = 10;
     static int initDEF = 10;
 
-    public BasicServant(Game world) {
-        super(initHP, initATK, initDEF, new BasicServantState(),world);
+    public Ninja(Game world) {
+        super(initHP, initATK, initDEF, new NinjaState(),world);
         this.stateControl.s = this;
     }
 
