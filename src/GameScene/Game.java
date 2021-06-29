@@ -3,6 +3,9 @@ package GameScene;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
+import javax.imageio.*;
+import java.awt.image.*;
+import java.io.*;
 import Player.Player;
 import Unit.*;
 import Unit.Tower.*;
@@ -32,6 +35,25 @@ public class Game extends Screen implements Runnable {
             this.addServant(new FemaleZombie(leftBornPoint, true, this));
             this.addServant(new MaleZombie(rightBornPoint, false, this));
         }
+
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setLayout(null);
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("Assets/battleField.png"));
+        } catch (Exception e) {
+            System.out.println("No image!");
+        }
+        Image resized = img.getScaledInstance(1555, 833, Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(resized);
+
+        JLabel imgLabel = new JLabel(image);
+        imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
+
+        layeredPane.add(imgLabel, 0);
+        layeredPane.moveToFront(imgLabel);
+        screen.setContentPane(layeredPane);
+        screen.setVisible(true);
     }
 
     public void addUnit(Unit s) {
