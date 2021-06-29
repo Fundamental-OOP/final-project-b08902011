@@ -8,9 +8,6 @@ import java.awt.*;
 import java.awt.image.*;
 
 public class FemaleZombie extends Servant {
-    static {
-        FemaleZombie.stride = 5;
-    }
     static int initHP = 10;
     static int initATK = 10;
     static int initDEF = 10;
@@ -18,6 +15,7 @@ public class FemaleZombie extends Servant {
     public FemaleZombie(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new FemaleZombieState(), world);
         this.stateControl.s = this;
+        this.stride = 5;
     }
 
     @Override

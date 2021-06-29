@@ -22,9 +22,10 @@ public abstract class State {
 
     private void render(BufferedImage image, Graphics g) {
         if (!s.Camp) {
-            g.drawImage(image, s.coordinate.x + range.width, s.coordinate.y, -range.width, range.height, null);
+            g.drawImage(image, this.s.coordinate.x + range.width, 
+                    this.s.coordinate.y, -range.width, range.height, null);
         } else {
-            g.drawImage(image, s.coordinate.x, s.coordinate.y, range.width, range.height, null);
+            g.drawImage(image, this.s.coordinate.x, this.s.coordinate.y, range.width, range.height, null);
         }
     }
 
