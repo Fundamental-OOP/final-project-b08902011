@@ -27,7 +27,11 @@ public class Map extends Screen {
 		layeredPane.add(imgLabel, 0);
 	}
 
+<<<<<<< HEAD
 	private void setButtons(JLayeredPane layeredPane, java.util.List<Game> levels) {
+=======
+	private void setButtons(JLayeredPane layeredPane, java.util.List<Screen> levels){
+>>>>>>> 718f80ecbbe8b3463173a0531c6bcef3ecd3f539
 		Dimension buttonSize = new Dimension(100, 100);
 		Font buttonFont = new Font("Dialog", Font.BOLD, 20);
 		JButton level_1 = MyButton.make("Level1", new Point(400, 600), buttonSize, levels.get(0));
@@ -57,6 +61,7 @@ public class Map extends Screen {
 		layeredPane.add(level_3, 0);
 		layeredPane.moveToFront(level_3);
 
+<<<<<<< HEAD
 		JButton level_4 = MyButton.make("Level4", new Point(920, 140), buttonSize, levels.get(3));
 		level_4.setContentAreaFilled(false);
 		level_4.setBorderPainted(true);
@@ -68,6 +73,18 @@ public class Map extends Screen {
 	}
 
 	public Map(JFrame sharedScreen, java.util.List<Game> levels) {
+=======
+		JButton shop1 = MyButton.make("Level4", new Point(920, 140), buttonSize, levels.get(3));
+		shop1.setContentAreaFilled(false);
+		shop1.setBorderPainted(true);
+		shop1.setOpaque(false);
+		shop1.setFont(buttonFont);
+		shop1.setForeground(Color.white);
+		layeredPane.add(shop1, 0);
+		layeredPane.moveToFront(shop1);		
+	}
+	public Map(JFrame sharedScreen, java.util.List<Screen> levels){
+>>>>>>> 718f80ecbbe8b3463173a0531c6bcef3ecd3f539
 		super(sharedScreen);
 		JLayeredPane layeredPane = new JLayeredPane();
 		setBackground(layeredPane);

@@ -17,12 +17,14 @@ public class Main {
         Game level1 = new Game(monitor,player);
         Game level2 = new Game(monitor,player);
         Game level3 = new Game(monitor,player);
-        Game level4 = new Game(monitor,player);
-        java.util.List<Game> levels = new ArrayList<>();
+        java.util.List<Screen> levels = new ArrayList<>();
         levels.add(level1);
         levels.add(level2);
         levels.add(level3);
-        levels.add(level4);
+
+        Shop shop1 = new Shop(monitor);
+        levels.add(shop1);
+        
         GameScene.Map map = new GameScene.Map(monitor, levels);
         HomePage menu = new HomePage(monitor, player, map);
         menu.setContent();
