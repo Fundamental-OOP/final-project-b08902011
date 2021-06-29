@@ -4,22 +4,25 @@ import Unit.Servant.*;
 
 import java.util.*;
 import java.awt.*;
+import java.awt.image.*;
 
 //Specify minimum Servant's State
 public abstract class State {
-    protected Servant s;
+    public Servant s;
     int attackCount = 0;
     int walkCount = 0;
     int deadCount = 0;
-    static protected int nAttackImage = 0;
-    static protected int nWalkImage = 0;
-    static protected int nDeadImage = 0;
-    static protected Vector<Image> attackImage = null;
-    static protected Vector<Image> deadImage = null;
-    static protected Vector<Image> walkImage = null;
-    static protected Rectangle range = null; 
-    private void render(Image image, Graphics g) {
-        if (s.Camp) {
+    static protected int nAttackImage = 1;
+    static protected int nWalkImage = 1;
+    static protected int nDeadImage = 1;
+    static protected Vector<BufferedImage> attackImage = new Vector<BufferedImage>();
+    static protected Vector<BufferedImage> deadImage = new Vector<BufferedImage>();
+    static protected Vector<BufferedImage> walkImage = new Vector<BufferedImage>();
+    static protected Rectangle range = null;
+
+    private void render(BufferedImage image, Graphics g) {
+        g.setColor(Color.WHITE); // paint background with all white
+        g.fillRect(s.coordinate.x, s.coordinate.y, 300, 300);if (!s.Camp) {
             g.drawImage(image, s.coordinate.x + range.width, s.coordinate.y, -range.width, range.height, null);
         } else {
             g.drawImage(image, s.coordinate.x, s.coordinate.y, range.width, range.height, null);

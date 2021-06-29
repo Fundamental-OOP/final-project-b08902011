@@ -1,5 +1,7 @@
 package GameScene;
 
+import java.io.*;
+import javax.imageio.*;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
@@ -22,6 +24,7 @@ public class Game extends Screen implements Runnable {
         super(sharedScreen);
         Left = player.Servants();
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
+        RightTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         // Draw bottom, tower, background
         screen.add(new JButton("1"));
     }
@@ -43,19 +46,20 @@ public class Game extends Screen implements Runnable {
     }
 
     public int TimeSlice(Graphics g) {// a slice in game
-        for (int i = 0; i < Left.size(); i++) {
-            Left.get(i).slice(g);
-        }
-        for (int i = 0; i < Right.size(); i++) {
-            Right.get(i).slice(g);
-        }
-        if (LeftTower.dead()) {
-            return -1;
-        } else if (RightTower.dead()) {
-            return 1;
-        }
-        LeftTower.render(g);
-        RightTower.render(g);
+        Left.get(0).slice(g);
+        // for (int i = 0; i < Left.size(); i++) {
+        //     Left.get(i).slice(g);
+        // }
+        // for (int i = 0; i < Right.size(); i++) {
+        //     Right.get(i).slice(g);
+        // }
+        // if (LeftTower.dead()) {
+        //     return -1;
+        // } else if (RightTower.dead()) {
+        //     return 1;
+        // }
+        // LeftTower.render(g);
+        // RightTower.render(g);
         return 0;
     }
 
@@ -92,15 +96,6 @@ public class Game extends Screen implements Runnable {
         return null;
     }
 
-    public class Gamepanel extends JPanel{
-        @Override
-        public void paint(Graphics g) {
-            super.paint(g);
-            System.out.print("Good\n");
-            g.drawOval(100, 70, 30, 30);
-            // TimeSlice(g);
-        }
-    }
 
     @Override
     public void run() {
@@ -113,12 +108,13 @@ public class Game extends Screen implements Runnable {
         sharedScreen.validate();
         sharedScreen.repaint();
         while (true) {
+            TimeSlice(sharedScreen.getGraphics());
+            // sharedScreen.revalidate();
+            // sharedScreen.repaint();
 
-            
-            // Gamepanel.repaint();
-            System.out.print("Tick\n");
             try {
-                Thread.sleep(1000);
+                System.out.print("Tick\n");
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -127,8 +123,10 @@ public class Game extends Screen implements Runnable {
 
     @Override
     public void setContent() {
-        
         sharedScreen.getContentPane().removeAll();
+        sharedScreen.setContentPane(screen.getContentPane());
+        sharedScreen.validate();
+        sharedScreen.repaint();
         this.run();
         // sharedScreen.add(Gamepanel);
     }
