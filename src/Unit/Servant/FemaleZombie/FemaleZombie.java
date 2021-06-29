@@ -5,6 +5,8 @@ import Unit.Servant.Servant;
 import GameScene.Game;
 import java.awt.*;
 
+import java.awt.image.*;
+
 public class FemaleZombie extends Servant {
     static {
         FemaleZombie.stride = 5;
@@ -14,8 +16,13 @@ public class FemaleZombie extends Servant {
     static int initDEF = 10;
 
     public FemaleZombie(Game world) {
-        super(initHP, initATK, initDEF, new FemaleZombieState(),world);
+        super(initHP, initATK, initDEF, new FemaleZombieState(), world);
         this.stateControl.s = this;
+    }
+
+    @Override
+    public BufferedImage toImage() {
+        return null;
     }
 
     public void onDead() {

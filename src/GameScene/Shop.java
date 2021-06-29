@@ -10,12 +10,12 @@ import BasicObject.*;
 import static BasicObject.MyButton.make;
 import Player.*;
 
-public class Shop extends Screen{
+public class Shop extends Screen {
 	private Map map;
 	private java.util.List<Item> allItem = new ArrayList<>();
 	private java.util.List<Item> availableItem = new ArrayList<>();
 
-	private void setBackground(JLayeredPane layeredPane){
+	private void setBackground(JLayeredPane layeredPane) {
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(new File("Assets/shop.jpg"));
@@ -26,9 +26,8 @@ public class Shop extends Screen{
 		Image resized = subImg.getScaledInstance(1555, 833, Image.SCALE_SMOOTH);
 		ImageIcon image = new ImageIcon(resized);
 		JLabel imgLabel = new JLabel(image);
-		imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());		
+		imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
 		layeredPane.add(imgLabel, 0);
-
 
 		JLabel title = new JLabel("Shop", JLabel.CENTER);
 		title.setBounds(225, 67, 133, 50);
@@ -40,7 +39,7 @@ public class Shop extends Screen{
 		layeredPane.moveToFront(title);
 	}
 
-	private java.util.List<JPanel> setShelves(JLayeredPane layeredPane){
+	private java.util.List<JPanel> setShelves(JLayeredPane layeredPane) {
 		java.util.List<JPanel> shelves = new ArrayList<>();
 		Dimension shelfSize = new Dimension(420, 220);
 
@@ -58,7 +57,7 @@ public class Shop extends Screen{
 		shelf2.setBackground(Color.magenta);
 		shelves.add(shelf2);
 		layeredPane.add(shelf2, 0);
-		layeredPane.moveToFront(shelf2);		
+		layeredPane.moveToFront(shelf2);
 
 		JPanel shelf3 = new JPanel();
 		shelf3.setLocation(410, 300);
@@ -66,7 +65,7 @@ public class Shop extends Screen{
 		shelf3.setBackground(Color.magenta);
 		shelves.add(shelf3);
 		layeredPane.add(shelf3, 0);
-		layeredPane.moveToFront(shelf3);		
+		layeredPane.moveToFront(shelf3);
 
 		JPanel shelf4 = new JPanel();
 		shelf4.setLocation(858, 300);
@@ -95,7 +94,7 @@ public class Shop extends Screen{
 		return shelves;
 	}
 
-	public Shop(JFrame sharedScreen){
+	public Shop(JFrame sharedScreen) {
 		super(sharedScreen);
 		JLayeredPane layeredPane = new JLayeredPane();
 		layeredPane.setLayout(null);
@@ -109,7 +108,7 @@ public class Shop extends Screen{
 		// screen.setVisible(true);
 	}
 
-	public void setMap(Map map){
+	public void setMap(Map map) {
 		this.map = map;
 	}
 }

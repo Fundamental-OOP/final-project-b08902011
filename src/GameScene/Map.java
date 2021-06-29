@@ -22,11 +22,11 @@ public class Map extends Screen {
 
 		JLabel imgLabel = new JLabel(image);
 		imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
-	
+
 		layeredPane.add(imgLabel, 0);
 	}
 
-	private void setButtons(JLayeredPane layeredPane, java.util.List<Screen> levels){
+	private void setButtons(JLayeredPane layeredPane, java.util.List<Screen> levels) {
 		Dimension buttonSize = new Dimension(100, 100);
 		Font buttonFont = new Font("Dialog", Font.BOLD, 20);
 		JButton level_1 = MyButton.make("Level1", new Point(380, 560), buttonSize, levels.get(0));
@@ -63,9 +63,10 @@ public class Map extends Screen {
 		shop1.setFont(buttonFont);
 		shop1.setForeground(Color.white);
 		layeredPane.add(shop1, 0);
-		layeredPane.moveToFront(shop1);		
+		layeredPane.moveToFront(shop1);
 	}
-	public Map(JFrame sharedScreen, java.util.List<Screen> levels){
+
+	public Map(JFrame sharedScreen, java.util.List<Screen> levels) {
 		super(sharedScreen);
 		JLayeredPane layeredPane = new JLayeredPane();
 		layeredPane.setLayout(null);

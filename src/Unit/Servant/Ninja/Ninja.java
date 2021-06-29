@@ -4,9 +4,10 @@ import Unit.*;
 import GameScene.Game;
 import Unit.Servant.Servant;
 import java.awt.*;
+import java.awt.image.*;
 
 public class Ninja extends Servant {
-    static{
+    static {
         Ninja.stride = 30;
     }
     static int initHP = 10;
@@ -14,8 +15,13 @@ public class Ninja extends Servant {
     static int initDEF = 10;
 
     public Ninja(Game world) {
-        super(initHP, initATK, initDEF, new NinjaState(),world);
+        super(initHP, initATK, initDEF, new NinjaState(), world);
         this.stateControl.s = this;
+    }
+
+    @Override
+    public BufferedImage toImage() {
+        return null;
     }
 
     public void onDead() {

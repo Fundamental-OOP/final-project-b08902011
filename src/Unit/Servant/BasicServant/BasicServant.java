@@ -5,6 +5,8 @@ import Unit.Servant.Servant;
 import GameScene.Game;
 import java.awt.*;
 
+import java.awt.image.*;
+
 public class BasicServant extends Servant {
     static {
         BasicServant.stride = 0;
@@ -14,8 +16,13 @@ public class BasicServant extends Servant {
     static int initDEF = 10;
 
     public BasicServant(Game world) {
-        super(initHP, initATK, initDEF, new BasicServantState(),world);
+        super(initHP, initATK, initDEF, new BasicServantState(), world);
         this.stateControl.s = this;
+    }
+
+    @Override
+    public BufferedImage toImage() {
+        return null;
     }
 
     public void onDead() {

@@ -2,6 +2,7 @@ package Unit;
 
 import GameScene.Game;
 import java.awt.*;
+import java.awt.image.*;
 
 public abstract class Unit {
 
@@ -37,4 +38,5 @@ public abstract class Unit {
         return this.hp;
     }
 
+    public abstract BufferedImage toImage();
 }
