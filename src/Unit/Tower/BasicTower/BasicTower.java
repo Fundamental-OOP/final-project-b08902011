@@ -2,7 +2,6 @@ package Unit.Tower.BasicTower;
 
 import Unit.Tower.Tower;
 import java.awt.*;
-import java.nio.Buffer;
 
 import GameScene.Game;
 import Unit.*;
@@ -15,6 +14,7 @@ public class BasicTower extends Tower {
 
     @Override
     public BufferedImage toImage() {
+        //Not Done
         return null;
     }
 
@@ -25,10 +25,5 @@ public class BasicTower extends Tower {
     @Override
     public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
         return (Unit) (new BasicTower(coordinate, Camp, world));
-    }
-
-    @Override
-    public void render(Graphics g) {
-
     }
 }

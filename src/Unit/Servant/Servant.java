@@ -63,12 +63,11 @@ public abstract class Servant extends Unit {
     }
 
     public boolean Attack() {
-        // Vector<Unit> target = null;
-        // if (normalAttack.CD() && (target = myWorld.getTarget(this, normalAttack)) !=
-        // null) {
-        // normalAttack.Act(this, target);
-        // return true;
-        // }
+        Vector<Unit> target = null;
+        if (normalAttack.CD() && (target = myWorld.getTarget(this, normalAttack)) != null) {
+            normalAttack.Act(this, target);
+            return true;
+        }
         return false;
     }
 

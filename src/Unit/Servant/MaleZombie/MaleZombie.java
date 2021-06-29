@@ -30,8 +30,4 @@ public class MaleZombie extends Servant {
     public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
         return null;
     }
-
-    public void render(Graphics g) {
-        stateControl.update(g);
-    }
 }

@@ -52,8 +52,6 @@ public class Game extends Screen implements Runnable {
         } else if (RightTower.dead()) {
             return 1;
         }
-        LeftTower.render(g);
-        RightTower.render(g);
         return 0;
     }
 

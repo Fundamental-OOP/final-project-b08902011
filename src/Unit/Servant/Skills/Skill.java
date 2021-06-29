@@ -1,16 +1,17 @@
 package Unit.Servant.Skills;
 
 import Unit.*;
+
 import java.util.*;
 
 public abstract class Skill {
     public int cd = 1;
-    int range = 1;
+    public int range = 1;
     public int nTarget = 1;
-    int CoolDownCounter = 0;
     public boolean toenemy = false;
     public boolean toally = false;
-    String description = "";
+    private int CoolDownCounter = 0;
+    static protected String description = "";
 
     public Skill(int nTarget, int range, int cd, boolean toenemy, boolean toally) {
         this.nTarget = nTarget;
@@ -21,7 +22,7 @@ public abstract class Skill {
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public abstract void Act(Unit performer, Vector<Unit> victim);
@@ -29,9 +30,8 @@ public abstract class Skill {
     public boolean CD() {
         return (CoolDownCounter++) >= cd;
     }
-
+    
     public boolean reachable(Unit performer, Unit victim) {
-        // Not done, need to define border of Servant
-        return true;
+        return ((performer.coordinate.x - performer.coordinate.x) <= this.range);
     }
 }
