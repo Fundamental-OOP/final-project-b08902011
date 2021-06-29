@@ -1,6 +1,5 @@
 package GameScene;
 
-import java.awt.*;
 import javax.swing.*;
 
 public class Screen{
@@ -21,5 +20,11 @@ public class Screen{
 		sharedScreen.setContentPane(screen.getContentPane());
 		sharedScreen.validate();
 		sharedScreen.repaint();
+		if(this instanceof Runnable){
+			this.run();
+		}
+	}
+	public void run(){
+  		System.out.print("Error in Screen.run()\n");
 	}
 }

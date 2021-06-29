@@ -8,10 +8,9 @@ import javax.imageio.*;
 import java.awt.image.*;
 import java.io.*;
 import BasicObject.*;
-import static BasicObject.MyButton.make;
 
-public class Map extends Screen{
-	private void setBackground(JLayeredPane layeredPane){
+public class Map extends Screen {
+	private void setBackground(JLayeredPane layeredPane) {
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(new File("Assets/map.png"));
@@ -25,10 +24,10 @@ public class Map extends Screen{
 		imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
 
 		layeredPane.setLayout(null);
-		layeredPane.add(imgLabel, 0);		
+		layeredPane.add(imgLabel, 0);
 	}
 
-	private void setButtons(JLayeredPane layeredPane, java.util.List<Game> levels){
+	private void setButtons(JLayeredPane layeredPane, java.util.List<Game> levels) {
 		Dimension buttonSize = new Dimension(100, 100);
 		Font buttonFont = new Font("Dialog", Font.BOLD, 20);
 		JButton level_1 = MyButton.make("Level1", new Point(400, 600), buttonSize, levels.get(0));
@@ -65,14 +64,15 @@ public class Map extends Screen{
 		level_4.setFont(buttonFont);
 		level_4.setForeground(Color.white);
 		layeredPane.add(level_4, 0);
-		layeredPane.moveToFront(level_4);		
+		layeredPane.moveToFront(level_4);
 	}
-	public Map(JFrame sharedScreen, java.util.List<Game> levels){
+
+	public Map(JFrame sharedScreen, java.util.List<Game> levels) {
 		super(sharedScreen);
 		JLayeredPane layeredPane = new JLayeredPane();
 		setBackground(layeredPane);
 		setButtons(layeredPane, levels);
-	
+
 		screen.setContentPane(layeredPane);
 	}
 }

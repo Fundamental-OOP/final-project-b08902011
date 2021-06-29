@@ -9,7 +9,7 @@ import Unit.Tower.*;
 import Unit.Servant.*;
 import Unit.Servant.Skills.*;
 
-public class Game extends Screen {
+public class Game extends Screen implements Runnable{
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
     Vector<Servant> Right = new Vector<Servant>();
     Tower LeftTower = null;
@@ -88,5 +88,16 @@ public class Game extends Screen {
             ret.add(LeftTower);
         }
         return null;
+    }
+    @Override
+    public void run(){
+        while(true){
+    		sharedScreen.repaint();
+            System.out.print("Tick\n");
+        }
+    }
+    @Override
+    public void paint(Graphics g){
+
     }
 }

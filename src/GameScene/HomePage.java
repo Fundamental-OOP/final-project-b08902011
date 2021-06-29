@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import BasicObject.*;
-import static BasicObject.MyButton.make;
 import Player.*;
 
 public class HomePage extends Screen {
@@ -16,7 +15,7 @@ public class HomePage extends Screen {
 		contentPane.add(title);
 	}
 
-	private void setButton(Container contentPane, Player player, Map map){
+	private void setButton(Container contentPane, Player player, Map map) {
 		Dimension buttonSize = new Dimension(200, 200);
 		Font buttonFont = new Font("DialogInput", Font.PLAIN, 36);
 		JButton easy = MyButton.make("easy", new Point(250, 460), buttonSize, player, 1, map);
@@ -27,10 +26,10 @@ public class HomePage extends Screen {
 		contentPane.add(medium);
 		JButton hard = MyButton.make("hard", new Point(1150, 460), buttonSize, player, 3, map);
 		hard.setFont(buttonFont);
-		contentPane.add(hard);		
+		contentPane.add(hard);
 	}
 
-	public HomePage(JFrame currentScreen, Player player, Map map){
+	public HomePage(JFrame currentScreen, Player player, Map map) {
 		super(currentScreen);
 		setTitle(screen.getContentPane());
 		setButton(screen.getContentPane(), player, map);
