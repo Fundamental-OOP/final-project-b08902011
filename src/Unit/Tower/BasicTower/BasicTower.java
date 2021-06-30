@@ -1,21 +1,45 @@
 package Unit.Tower.BasicTower;
 
 import Unit.Tower.Tower;
+
 import java.awt.*;
 
 import GameScene.Game;
 import Unit.*;
 import java.awt.image.*;
+import java.util.*;
+import java.io.*;
+import javax.imageio.*;
 
 public class BasicTower extends Tower {
+    // Should be encapsulated;
+    private static Vector<BufferedImage> img = new Vector<BufferedImage>();
+    private static final int nIdleImage = 1;
+    static {
+        for (int i = 1; i <= nIdleImage; i++) {
+            try {
+                img.add(ImageIO.read(new File("Assets/Tower/BasicTower/Idle/" + String.valueOf(i) + ".jpg")));
+            } catch (Exception e) {
+            }
+        }
+    }
+    private int imgCounter = 0;
+    private Dimension size = new Dimension(100, 100);
+
     public BasicTower() {
         super(1000, 10);
     }
 
     @Override
     public BufferedImage toImage() {
-        //Not Done
+        // Unuse
         return null;
+    }
+
+    public void slice(Graphics g) {// Vector<Unit> target
+        g.drawImage(img.get(imgCounter), this.coordinate.x, this.coordinate.y, size.width, size.height, null);
+        imgCounter++;
+        (imgCounter) %= nIdleImage;
     }
 
     public BasicTower(Point coordinate, boolean Camp, Game world) {

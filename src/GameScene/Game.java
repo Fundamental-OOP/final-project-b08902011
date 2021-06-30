@@ -17,14 +17,14 @@ import Unit.Servant.MaleZombie.*;
 import Unit.Servant.CowGirl.*;
 import BasicObject.*;
 
-public class Game extends Screen implements Runnable {
+public class Game extends Screen {
     Vector<Servant> playerServants = new Vector<Servant>();// Camp == true
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
     Vector<Servant> Right = new Vector<Servant>();
     Tower LeftTower = null;
     Tower RightTower = null;
     private static final Point leftBornPoint = new Point(0, 0);
-    private static final Point rightBornPoint = new Point(800, 0);
+    private static final Point rightBornPoint = new Point(1300, 0);
 
     private void setButtons(JLayeredPane layeredPane, Vector<Servant> playerServants){
         int buttonWidth = 200, buttonHeight = 100, posX = 300, posY = 600;
@@ -74,12 +74,6 @@ public class Game extends Screen implements Runnable {
         
     }
 
-    public void addUnit(Unit s) {
-        if (s instanceof Servant) {
-            this.addServant((Servant) s);
-        }
-    }
-
     private void addServant(Servant s) {
         if (s.Camp) {
             this.Left.add(s);
@@ -97,8 +91,12 @@ public class Game extends Screen implements Runnable {
     }
 
     public int TimeSlice(Graphics g) {// a slice in game
+        if (LeftTower.dead()) {
+            return -1;
+        } else if (RightTower.dead()) {
+            return 1;
+        }
         g.setColor(Color.BLACK); // paint background with all white
-
         g.fillRect(-10, 0, Screen.width, Screen.height);
         for (int i = 0; i < Left.size(); i++) {
             Left.get(i).slice(g);
@@ -106,11 +104,8 @@ public class Game extends Screen implements Runnable {
         for (int i = 0; i < Right.size(); i++) {
             Right.get(i).slice(g);
         }
-        if (LeftTower.dead()) {
-            return -1;
-        } else if (RightTower.dead()) {
-            return 1;
-        }
+        LeftTower.slice(g);
+        RightTower.slice(g);
         return 0;
     }
 
@@ -153,14 +148,15 @@ public class Game extends Screen implements Runnable {
 
             }
         }
-        return null;
+        return ret.size() == 0 ? null : ret;
     }
 
     @Override
     public void run() {
+        int gameflag = 0;
         while (true) {
             BufferedImage image = new BufferedImage(Screen.width, Screen.height, BufferedImage.TYPE_INT_RGB);
-            TimeSlice(image.createGraphics());
+            gameflag = TimeSlice(image.createGraphics());
             sharedScreen.getGraphics().drawImage(image, 0, 0, null);
             sharedScreen.validate();
             sharedScreen.repaint();
@@ -168,6 +164,13 @@ public class Game extends Screen implements Runnable {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            }
+            if(gameflag == 1){
+                System.out.print("Win");
+                return;
+            }else if (gameflag == -1) {
+                System.out.print("Lose");
+                return;
             }
         }
     }
@@ -180,62 +183,4 @@ public class Game extends Screen implements Runnable {
         sharedScreen.repaint();
         this.run();
     }
-
-    // public void debug() {
-    // }
-    // protected class BattlePane extends JPanel{
-    // @Override
-    // public void repaint(){
-    // System.out.print("Repaint\n");
-    // }
-    // @Override
-    // public void paint(Graphics g){
-    // System.out.print("Paint\n");
-    // }
-
-    // @Override
-    // public void paintComponent(Graphics g) {
-    // System.out.print("PaintComponent\n");
-    // }
-
-    // @Override
-    // public void update(Graphics g) {
-    // System.out.print("Update\n");
-    // }
-    // }
-
-    // protected class BattleFrame extends JFrame {
-    // @Override
-    // public void repaint() {
-    // System.out.print("Repaint\n");
-    // }
-
-    // @Override
-    // public void paint(Graphics g) {
-    // TimeSlice(g);
-    // System.out.print("Paint\n");
-    // }
-
-    // @Override
-    // public void update(Graphics g) {
-    // System.out.print("Update\n");
-    // }
-    // }
-
-    // @Override
-    // public void run() {
-    // BattleFrame test = new BattleFrame();
-    // test.add(new BattlePane());
-    // while (true) {
-    // test.validate();
-    // test.repaint();
-    // System.out.print("Tick\n");
-    // try {
-    // Thread.sleep(100);
-    // debug();
-    // } catch (InterruptedException e) {
-    // e.printStackTrace();
-    // }
-    // }
-    // }
 }

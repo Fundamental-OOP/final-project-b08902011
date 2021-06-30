@@ -8,8 +8,8 @@ import java.awt.image.*;
 
 public class MaleZombie extends Servant {
     static int initHP = 2000;
-    static int initATK = 50;
-    static int initDEF = 60;
+    static int initATK = 200;
+    static int initDEF = 40;
 
     public MaleZombie(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new MaleZombieState(), world);

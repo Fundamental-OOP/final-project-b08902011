@@ -7,15 +7,15 @@ import java.awt.*;
 import java.awt.image.*;
 
 public class Ninja extends Servant {
-    static int initHP = 400;
-    static int initATK = 100;
-    static int initDEF = 40;
+    static int initHP = 500;
+    static int initATK = 130;
+    static int initDEF = 50;
 
     public Ninja(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new NinjaState(), world);
         this.stride = 15;
         this.stateControl.s = this;
-        this.setNormalAttack(2, 100, 0, true, false);
+        this.setNormalAttack(2, 200, 0, true, false);
     }
 
     @Override
