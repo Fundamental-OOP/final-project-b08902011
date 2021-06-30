@@ -8,14 +8,15 @@ import java.awt.*;
 import java.awt.image.*;
 
 public class FemaleZombie extends Servant {
-    static int initHP = 10;
-    static int initATK = 10;
+    static int initHP = 1000;
+    static int initATK = 50;
     static int initDEF = 10;
 
     public FemaleZombie(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new FemaleZombieState(), world);
         this.stateControl.s = this;
         this.stride = 5;
+        this.setNormalAttack(1, 130, 0, true, false);
     }
 
     @Override

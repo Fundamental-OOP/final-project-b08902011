@@ -7,14 +7,15 @@ import java.awt.*;
 import java.awt.image.*;
 
 public class MaleZombie extends Servant {
-    static int initHP = 10;
-    static int initATK = 10;
-    static int initDEF = 10;
+    static int initHP = 2000;
+    static int initATK = 50;
+    static int initDEF = 60;
 
     public MaleZombie(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new MaleZombieState(), world);
         this.stateControl.s = this;
         this.stride = 7;
+        this.setNormalAttack(1, 80, 0, true, false);
     }
 
     @Override

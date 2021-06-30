@@ -14,16 +14,15 @@ import Unit.Servant.Skills.*;
 import Unit.Servant.Ninja.*;
 import Unit.Servant.FemaleZombie.*;
 import Unit.Servant.MaleZombie.*;
-import java.awt.image.*;
-
+import Unit.Servant.CowGirl.*;
 public class Game extends Screen implements Runnable {
     Vector<Servant> playerServants = new Vector<Servant>();// Camp == true
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
     Vector<Servant> Right = new Vector<Servant>();
     Tower LeftTower = null;
     Tower RightTower = null;
-    Point leftBornPoint = new Point(0, 0);
-    Point rightBornPoint = new Point(800, 0);
+    private static final Point leftBornPoint = new Point(0, 0);
+    private static final Point rightBornPoint = new Point(800, 0);
 
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
@@ -38,10 +37,11 @@ public class Game extends Screen implements Runnable {
         playerServants = player.Servants();
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = (Tower) player.MyTower().Duplicate(this, new Point(rightBornPoint), true);
-        if (true) {// For testing
+        if (true) {
             this.addServant(new Ninja(new Point(leftBornPoint), true, this));
             this.addServant(new FemaleZombie(new Point(leftBornPoint), true, this));
             this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
+            this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
         }
 
     }

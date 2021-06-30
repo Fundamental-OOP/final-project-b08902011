@@ -15,7 +15,7 @@ public abstract class Servant extends Unit {
     protected int atk = 0;
     protected Vector<Skill> SKI = new Vector<Skill>();
     protected State stateControl = null;
-    protected NormalAttack normalAttack = new NormalAttack(1, 300, 0, true, false);
+    protected NormalAttack normalAttack = new NormalAttack(1, 200, 0, true, false);
 
     public Servant(Point coordinate, boolean Camp, int hp, int atk, int def, State stateControl, Game myWorld) {// Used
         super(coordinate, Camp, hp, def, myWorld);

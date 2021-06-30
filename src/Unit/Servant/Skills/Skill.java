@@ -32,6 +32,6 @@ public abstract class Skill {
     }
     
     public boolean reachable(Unit performer, Unit victim) {
-        return ((performer.coordinate.x - performer.coordinate.x) <= this.range);
+        return (Math.abs(performer.coordinate.x - victim.coordinate.x) <= this.range);
     }
 }
