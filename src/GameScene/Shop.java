@@ -7,12 +7,41 @@ import javax.imageio.*;
 import java.awt.image.*;
 import java.io.*;
 import BasicObject.*;
-import static BasicObject.MyButton.make;
 import Player.*;
 
 public class Shop extends Screen {
-	private java.util.List<Item> allItem = new ArrayList<>();
-	private java.util.List<Item> availableItem = new ArrayList<>();
+	private static Vector<Item> allItem = new Vector<Item>();
+	static {
+		allItem.add(new Soup());
+		allItem.add(new Soup());
+		allItem.add(new Soup());
+		allItem.add(new Soup());
+		allItem.add(new Soup());
+		allItem.add(new Soup());
+	}
+	private JLabel account = null;
+	public Shop(JFrame sharedScreen, Player player) {
+		super(sharedScreen);
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setLayout(null);
+		setBackground(layeredPane);
+		setShelves(layeredPane);
+
+		JButton backButton = MyButton.makeMap("Back", new Point(20, 50), new Dimension(150, 100), player.hardness);
+		layeredPane.add(backButton, 0);
+		layeredPane.moveToFront(backButton);
+
+		account = new JLabel("Account Balance:"+String.valueOf(player.getGold()));
+		account.setBounds(50, 300, 250, 70);
+      	account.setBackground(Color.GRAY);
+		account.setForeground(Color.BLUE);
+		account.setOpaque(true);
+		account.setFont(new Font("DialogInput", Font.PLAIN, 20));
+		layeredPane.add(account);
+		layeredPane.moveToFront(account);
+
+		screen.setContentPane(layeredPane);
+	}
 
 	private void setBackground(JLayeredPane layeredPane) {
 		BufferedImage img = null;
@@ -38,72 +67,27 @@ public class Shop extends Screen {
 		layeredPane.moveToFront(title);
 	}
 
-	private java.util.List<JPanel> setShelves(JLayeredPane layeredPane) {
-		java.util.List<JPanel> shelves = new ArrayList<>();
+	private Item PickItem() {
+		return allItem.get((int) (Math.random() * allItem.size()));
+	}
+
+	private void setShelves(JLayeredPane layeredPane) {
 		Dimension shelfSize = new Dimension(420, 220);
-
-		JPanel shelf1 = new JPanel();
-		shelf1.setLocation(410, 60);
-		shelf1.setSize(shelfSize);
-		shelf1.setBackground(Color.magenta);
-		shelves.add(shelf1);
-		layeredPane.add(shelf1, 0);
-		layeredPane.moveToFront(shelf1);
-
-		JPanel shelf2 = new JPanel();
-		shelf2.setLocation(858, 60);
-		shelf2.setSize(shelfSize);
-		shelf2.setBackground(Color.magenta);
-		shelves.add(shelf2);
-		layeredPane.add(shelf2, 0);
-		layeredPane.moveToFront(shelf2);
-
-		JPanel shelf3 = new JPanel();
-		shelf3.setLocation(410, 300);
-		shelf3.setSize(shelfSize);
-		shelf3.setBackground(Color.magenta);
-		shelves.add(shelf3);
-		layeredPane.add(shelf3, 0);
-		layeredPane.moveToFront(shelf3);
-
-		JPanel shelf4 = new JPanel();
-		shelf4.setLocation(858, 300);
-		shelf4.setSize(shelfSize);
-		shelf4.setBackground(Color.magenta);
-		shelves.add(shelf4);
-		layeredPane.add(shelf4, 0);
-		layeredPane.moveToFront(shelf4);
-
-		JPanel shelf5 = new JPanel();
-		shelf5.setLocation(410, 540);
-		shelf5.setSize(shelfSize);
-		shelf5.setBackground(Color.magenta);
-		shelves.add(shelf5);
-		layeredPane.add(shelf5, 0);
-		layeredPane.moveToFront(shelf4);
-
-		JPanel shelf6 = new JPanel();
-		shelf6.setLocation(858, 540);
-		shelf6.setSize(shelfSize);
-		shelf6.setBackground(Color.magenta);
-		shelves.add(shelf6);
-		layeredPane.add(shelf6, 0);
-		layeredPane.moveToFront(shelf6);
-
-		return shelves;
+		Dimension ButtonSize = new Dimension(420, 60);
+		Point[] location = { new Point(410, 60), new Point(858, 60), new Point(410, 300), new Point(858, 300),
+				new Point(410, 540), new Point(858, 540) };
+		for (int i = 0; i < 6; i++) {
+			Item t = PickItem();
+			BufferedImage image = t.toImage();
+			JLabel imgLabel = new JLabel(new ImageIcon(image));
+			imgLabel.setBounds(location[i].x, location[i].y, shelfSize.width, shelfSize.height);
+			layeredPane.add(imgLabel, 0);
+			layeredPane.moveToFront(imgLabel);
+			JButton tButton = MyButton.makeShopButton(t.toString() + " " + String.valueOf(t.getPrice()) + "$",
+					new Point(location[i].x, location[i].y + 160), ButtonSize, t);
+			layeredPane.add(tButton, 0);
+			layeredPane.moveToFront(tButton);
+		}
 	}
 
-	public Shop(JFrame sharedScreen) {
-		super(sharedScreen);
-		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setLayout(null);
-		setBackground(layeredPane);
-		java.util.List<JPanel> shelves = setShelves(layeredPane);
-//Should be replace with ending bottum
-		JButton backButton = MyButton.make("Back", new Point(380, 560), new Dimension(100, 100), null);
-		layeredPane.add(backButton, 0);
-		layeredPane.moveToFront(backButton);
-		screen.setContentPane(layeredPane);
-		// screen.setVisible(true);
-	}
 }

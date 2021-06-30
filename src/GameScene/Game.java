@@ -40,7 +40,6 @@ public class Game extends Screen {
 
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
-        
         // playerServants = player.Servants();
         playerServants.add(new Ninja(new Point(380, 560), true, this));
         playerServants.add(new CowGirl(new Point(380, 560), true, this));
@@ -70,7 +69,6 @@ public class Game extends Screen {
         layeredPane.add(imgLabel, 0);
         setButtons(layeredPane, playerServants);
         screen.setContentPane(layeredPane);
-        screen.setVisible(true);
         
     }
 
@@ -166,21 +164,12 @@ public class Game extends Screen {
                 e.printStackTrace();
             }
             if(gameflag == 1){
-                System.out.print("Win");
+                System.out.print("Win\n");
                 return;
             }else if (gameflag == -1) {
-                System.out.print("Lose");
+                System.out.print("Lose\n");
                 return;
             }
         }
-    }
-
-    @Override
-    public void setContent() {
-        sharedScreen.getContentPane().removeAll();
-        sharedScreen.setContentPane(screen.getContentPane());
-        sharedScreen.validate();
-        sharedScreen.repaint();
-        this.run();
     }
 }

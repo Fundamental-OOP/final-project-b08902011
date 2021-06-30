@@ -1,12 +1,9 @@
-import javax.sql.rowset.serial.SerialRef;
 import javax.swing.*;
 
 import BasicObject.MyButton;
 
-import java.util.*;
 import GameScene.*;
 import Player.*;
-import GameScene.Map;
 
 public class Main {
     public static void main(String[] args) {

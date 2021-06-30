@@ -38,9 +38,9 @@ public class Map extends Screen {
 		layeredPane.add(level_3, 0);
 		layeredPane.moveToFront(level_3);
 
-		// JButton shop1 = MyButton.make("Level4", new Point(890, 130), buttonSize, levels.get(3));
-		// layeredPane.add(shop1, 0);
-		// layeredPane.moveToFront(shop1);
+		JButton shop1 = MyButton.makeShop("Level4", new Point(890, 130), buttonSize);
+		layeredPane.add(shop1, 0);
+		layeredPane.moveToFront(shop1);
 	}
 
 	public Map(JFrame sharedScreen) {
@@ -49,7 +49,6 @@ public class Map extends Screen {
 		layeredPane.setLayout(null);
 		setBackground(layeredPane);
 		setButtons(layeredPane);
-
 		screen.setContentPane(layeredPane);
 	}
 }

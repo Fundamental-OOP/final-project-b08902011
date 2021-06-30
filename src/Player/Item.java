@@ -1,6 +1,6 @@
 package Player;
 
-import java.awt.Graphics;
+import java.awt.image.*;
 
 public abstract class Item {
     int price = 0;
@@ -18,5 +18,5 @@ public abstract class Item {
 
     public abstract void onLost(Player p);
 
-    public abstract void render(Graphics g);
+    public abstract BufferedImage toImage();
 }
