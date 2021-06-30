@@ -11,7 +11,6 @@ import static BasicObject.MyButton.make;
 import Player.*;
 
 public class Shop extends Screen {
-	private Map map;
 	private java.util.List<Item> allItem = new ArrayList<>();
 	private java.util.List<Item> availableItem = new ArrayList<>();
 
@@ -100,15 +99,11 @@ public class Shop extends Screen {
 		layeredPane.setLayout(null);
 		setBackground(layeredPane);
 		java.util.List<JPanel> shelves = setShelves(layeredPane);
-
-		JButton backButton = MyButton.make("Back", new Point(380, 560), new Dimension(100, 100), map);
+//Should be replace with ending bottum
+		JButton backButton = MyButton.make("Back", new Point(380, 560), new Dimension(100, 100), null);
 		layeredPane.add(backButton, 0);
 		layeredPane.moveToFront(backButton);
 		screen.setContentPane(layeredPane);
 		// screen.setVisible(true);
-	}
-
-	public void setMap(Map map) {
-		this.map = map;
 	}
 }

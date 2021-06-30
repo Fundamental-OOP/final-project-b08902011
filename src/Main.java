@@ -1,32 +1,23 @@
+import javax.sql.rowset.serial.SerialRef;
 import javax.swing.*;
+
+import BasicObject.MyButton;
+
 import java.util.*;
 import GameScene.*;
 import Player.*;
+import GameScene.Map;
 
 public class Main {
     public static void main(String[] args) {
         JFrame monitor = new JFrame();
         monitor.getContentPane().setLayout(null);
-        monitor.setBounds(-10, 0, 1555, 833);
+        monitor.setBounds(-10, 0, Screen.width, Screen.height);
         monitor.setVisible(true);
         monitor.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         Player player = new Player();
-        Game level1 = new Game(monitor, player);
-        Game level2 = new Game(monitor, player);
-        Game level3 = new Game(monitor, player);
-        java.util.List<Screen> levels = new ArrayList<>();
-
-        levels.add(level1);
-        levels.add(level2);
-        levels.add(level3);
-
-        Shop shop1 = new Shop(monitor);
-        levels.add(shop1);
-
-        GameScene.Map map = new GameScene.Map(monitor, levels);
-        shop1.setMap(map);
-        HomePage menu = new HomePage(monitor, player, map);
-        menu.setContent();
+        MyButton.Init(monitor, player);
+        HomePage menu = new HomePage(monitor);
+        menu.start();
     }
 }

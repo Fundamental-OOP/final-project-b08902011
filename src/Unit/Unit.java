@@ -7,7 +7,7 @@ import java.awt.image.*;
 public abstract class Unit {
 
     public abstract Unit Duplicate(Game world, Point coordinate, boolean Camp);
-
+    public abstract void slice(Graphics g);
     public abstract BufferedImage toImage();
 
     public Point coordinate = null;

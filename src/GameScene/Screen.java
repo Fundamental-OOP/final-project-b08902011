@@ -2,7 +2,7 @@ package GameScene;
 
 import javax.swing.*;
 
-public class Screen {
+public class Screen extends Thread{
 	protected JFrame sharedScreen;
 	protected JFrame screen;
 	public static final int width = 1555;
@@ -18,6 +18,10 @@ public class Screen {
 	}
 
 	public void setContent() {
+		
+	}
+	@Override
+	public void run(){
 		sharedScreen.getContentPane().removeAll();
 		sharedScreen.setContentPane(screen.getContentPane());
 		sharedScreen.validate();

@@ -3,7 +3,6 @@ package GameScene;
 import java.awt.*;
 import javax.swing.*;
 import BasicObject.*;
-import Player.*;
 
 public class HomePage extends Screen {
 	private void setTitle(Container contentPane) {
@@ -14,23 +13,19 @@ public class HomePage extends Screen {
 		contentPane.add(title);
 	}
 
-	private void setButton(Container contentPane, Player player, Map map) {
+	private void setButton(Container contentPane) {
 		Dimension buttonSize = new Dimension(200, 200);
-		Font buttonFont = new Font("DialogInput", Font.PLAIN, 42);
-		JButton easy = MyButton.make("easy", new Point(220, 460), buttonSize, player, 1, map);
-		easy.setFont(buttonFont);
+		JButton easy = MyButton.makeMap("easy", new Point(220, 460), buttonSize, 1);
 		contentPane.add(easy);
-		JButton medium = MyButton.make("medium", new Point(670, 460), buttonSize, player, 2, map);
-		medium.setFont(buttonFont);
+		JButton medium = MyButton.makeMap("medium", new Point(670, 460), buttonSize, 2);
 		contentPane.add(medium);
-		JButton hard = MyButton.make("hard", new Point(1120, 460), buttonSize, player, 3, map);
-		hard.setFont(buttonFont);
+		JButton hard = MyButton.makeMap("hard", new Point(1120, 460), buttonSize, 3);
 		contentPane.add(hard);
 	}
 
-	public HomePage(JFrame currentScreen, Player player, Map map) {
+	public HomePage(JFrame currentScreen) {
 		super(currentScreen);
 		setTitle(screen.getContentPane());
-		setButton(screen.getContentPane(), player, map);
+		setButton(screen.getContentPane());
 	}
 }

@@ -9,7 +9,7 @@ import java.awt.image.*;
 
 public class CowGirl extends Servant {
     static int initHP = 200;
-    static int initATK = 160;
+    static int initATK = 60;
     static int initDEF = 30;
 
     public CowGirl(Point coordinate, boolean Camp, Game world) {

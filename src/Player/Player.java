@@ -8,12 +8,17 @@ import Unit.Servant.*;
 public class Player {
     private int level = 0;
     private int gold = 0;
+    private int hardness = 0;
     private Vector<Item> asset = new Vector<Item>();
     private Vector<Servant> servants = new Vector<Servant>();
     private Tower myTower = new BasicTower();
 
     public Vector<Servant> Servants() {
         return this.servants;
+    }
+
+    public void setHardness(int h) {
+        this.hardness = h;
     }
 
     public Tower MyTower() {

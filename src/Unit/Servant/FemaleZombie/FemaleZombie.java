@@ -9,8 +9,8 @@ import java.awt.image.*;
 
 public class FemaleZombie extends Servant {
     static int initHP = 1000;
-    static int initATK = 50;
-    static int initDEF = 10;
+    static int initATK = 120;
+    static int initDEF = 60;
 
     public FemaleZombie(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new FemaleZombieState(), world);
