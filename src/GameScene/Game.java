@@ -15,6 +15,8 @@ import Unit.Servant.Ninja.*;
 import Unit.Servant.FemaleZombie.*;
 import Unit.Servant.MaleZombie.*;
 import Unit.Servant.CowGirl.*;
+import BasicObject.*;
+
 public class Game extends Screen implements Runnable {
     Vector<Servant> playerServants = new Vector<Servant>();// Camp == true
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
@@ -24,17 +26,24 @@ public class Game extends Screen implements Runnable {
     private static final Point leftBornPoint = new Point(0, 0);
     private static final Point rightBornPoint = new Point(800, 0);
 
+    private void setButtons(JLayeredPane layeredPane, Vector<Servant> playerServants){
+        int buttonWidth = 200, buttonHeight = 100, posX = 300, posY = 600;
+        Dimension buttonSize = new Dimension(buttonWidth, buttonHeight);
+        for(int i = 0; i < playerServants.size(); i++){
+            JButton oneServant = MyButton.make(playerServants.get(i).getClass().toString(),
+                new Point(posX + (buttonWidth + 50) * i, posY), buttonSize, this, playerServants.get(i));
+            layeredPane.add(oneServant, 0);
+            layeredPane.moveToFront(oneServant);
+        }
+        
+    }
+
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(new File("Assets/battleField.png"));
-        } catch (Exception e) {
-            System.out.println("No image!");
-        }
-        Image resized = img.getScaledInstance(Screen.width, Screen.height, Image.SCALE_SMOOTH);
-
-        playerServants = player.Servants();
+        
+        // playerServants = player.Servants();
+        playerServants.add(new Ninja(new Point(380, 560), true, this));
+        playerServants.add(new CowGirl(new Point(380, 560), true, this));
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = (Tower) player.MyTower().Duplicate(this, new Point(rightBornPoint), true);
         if (true) {
@@ -44,6 +53,25 @@ public class Game extends Screen implements Runnable {
             this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
         }
 
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setLayout(null);
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("Assets/battleField.png"));
+        } catch (Exception e) {
+            System.out.println("No image!");
+        }
+        Image resized = img.getScaledInstance(Screen.width, Screen.height, Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(resized);
+
+        JLabel imgLabel = new JLabel(image);
+        imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
+
+        layeredPane.add(imgLabel, 0);
+        setButtons(layeredPane, playerServants);
+        screen.setContentPane(layeredPane);
+        screen.setVisible(true);
+        
     }
 
     public void addUnit(Unit s) {
