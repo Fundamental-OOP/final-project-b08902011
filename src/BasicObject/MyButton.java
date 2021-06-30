@@ -119,20 +119,25 @@ public class MyButton {
                     player.spent(item.getPrice());
                     player.addItem(item);
                     ((JButton) e.getSource()).setText("Sold!");
+                    Shop.nAvalible--;
+                    if(Shop.nAvalible == 0){
+                        Shop.nAvalible = 6;
+                    }
+                    Shop shop = new Shop(sharedScreen, player);
+                    shop.start();
+                    synchronized (shop) {
+                        try {
+                            shop.join();
+                        } catch (InterruptedException err) {
+                            System.out.print("InterruptedException in MyButton.makeGame");
+                        } finally {
+                            System.out.print("Leave Shop\n");
+                        }
+                    }
                 } else {
                     ((JButton) e.getSource()).setText("Not Enough!");
                 }
-                Shop shop = new Shop(sharedScreen, player);
-                shop.start();
-                synchronized (shop) {
-                    try {
-                        shop.join();
-                    } catch (InterruptedException err) {
-                        System.out.print("InterruptedException in MyButton.makeGame");
-                    } finally {
-                        System.out.print("Leave Shop\n");
-                    }
-                }
+               
             }
         });
         return b;

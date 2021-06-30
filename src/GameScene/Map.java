@@ -8,6 +8,7 @@ import java.io.*;
 import BasicObject.*;
 
 public class Map extends Screen {
+	private static int Stage = 0;
 	private void setBackground(JLayeredPane layeredPane) {
 		BufferedImage img = null;
 		try {

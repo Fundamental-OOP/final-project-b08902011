@@ -10,16 +10,13 @@ import BasicObject.*;
 import Player.*;
 
 public class Shop extends Screen {
+	public static int nAvalible = 6;
 	private static Vector<Item> allItem = new Vector<Item>();
 	static {
 		allItem.add(new Soup());
-		allItem.add(new Soup());
-		allItem.add(new Soup());
-		allItem.add(new Soup());
-		allItem.add(new Soup());
-		allItem.add(new Soup());
 	}
 	private JLabel account = null;
+
 	public Shop(JFrame sharedScreen, Player player) {
 		super(sharedScreen);
 		JLayeredPane layeredPane = new JLayeredPane();
@@ -31,9 +28,9 @@ public class Shop extends Screen {
 		layeredPane.add(backButton, 0);
 		layeredPane.moveToFront(backButton);
 
-		account = new JLabel("Account Balance:"+String.valueOf(player.getGold()));
+		account = new JLabel("Account Balance:" + String.valueOf(player.getGold()));
 		account.setBounds(50, 300, 250, 70);
-      	account.setBackground(Color.GRAY);
+		account.setBackground(Color.GRAY);
 		account.setForeground(Color.BLUE);
 		account.setOpaque(true);
 		account.setFont(new Font("DialogInput", Font.PLAIN, 20));
@@ -77,6 +74,15 @@ public class Shop extends Screen {
 		Point[] location = { new Point(410, 60), new Point(858, 60), new Point(410, 300), new Point(858, 300),
 				new Point(410, 540), new Point(858, 540) };
 		for (int i = 0; i < 6; i++) {
+			JPanel backgroud = new JPanel();
+			backgroud.setLocation(location[i].x, location[i].y);
+			backgroud.setSize(shelfSize);
+			backgroud.setBackground(Color.magenta);
+			layeredPane.add(backgroud, 0);
+			layeredPane.moveToFront(backgroud);
+		}
+		for (int i = 0; i < nAvalible; i++) {
+
 			Item t = PickItem();
 			BufferedImage image = t.toImage();
 			JLabel imgLabel = new JLabel(new ImageIcon(image));
