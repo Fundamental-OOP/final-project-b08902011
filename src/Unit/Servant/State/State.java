@@ -30,7 +30,7 @@ public abstract class State {
     }
 
     protected void DrawWalk(Graphics g) {
-        s.move(true);
+        s.move(s.Camp);
         this.render(walkImage.get(walkCount), g);
         walkCount = reset(walkCount) + 1;
         walkCount %= nWalkImage;

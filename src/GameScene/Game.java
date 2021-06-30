@@ -11,7 +11,7 @@ import Unit.Servant.Skills.*;
 import Unit.Servant.Ninja.*;
 import Unit.Servant.FemaleZombie.*;
 import Unit.Servant.MaleZombie.*;
-
+import java.awt.image.*;
 public class Game extends Screen implements Runnable {
     Vector<Servant> playerServants = new Vector<Servant>();// Camp == true
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
@@ -35,7 +35,6 @@ public class Game extends Screen implements Runnable {
 
     private void addServant(Servant s) {
         if (s.Camp) {
-            debug();
             this.Left.add(s);
         } else {
             this.Right.add(s);
@@ -112,12 +111,14 @@ public class Game extends Screen implements Runnable {
     @Override
     public void run() {
         while (true) {
-            sharedScreen.revalidate();
+            // sharedScreen.getContentPane().repaint();
+            BufferedImage image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+            TimeSlice(image.createGraphics());
+            sharedScreen.validate();
             sharedScreen.repaint();
-            TimeSlice(sharedScreen.getGraphics());
+            System.out.print("Tick\n");
             try {
                 Thread.sleep(100);
-                debug();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -133,10 +134,62 @@ public class Game extends Screen implements Runnable {
         this.run();
     }
 
-    public void debug() {
-        System.out.print(Left.size());
-        System.out.print(" ");
-        System.out.print(Right.size());
-        System.out.print("\n");
-    }
+    // public void debug() {
+    // }
+    // protected class BattlePane extends JPanel{
+    //     @Override
+    //     public void repaint(){
+    //         System.out.print("Repaint\n");
+    //     }
+    //     @Override
+    //     public void paint(Graphics g){
+    //         System.out.print("Paint\n");
+    //     }
+        
+    //     @Override
+    //     public void paintComponent(Graphics g) {
+    //         System.out.print("PaintComponent\n");
+    //     }
+        
+    //     @Override
+    //     public void update(Graphics g) {
+    //         System.out.print("Update\n");
+    //     }
+    // }
+    
+    // protected class BattleFrame extends JFrame {
+    //     @Override
+    //     public void repaint() {
+    //         System.out.print("Repaint\n");
+    //     }
+
+    //     @Override
+    //     public void paint(Graphics g) {
+    //         TimeSlice(g);
+    //         System.out.print("Paint\n");
+    //     }
+
+
+    //     @Override
+    //     public void update(Graphics g) {
+    //         System.out.print("Update\n");
+    //     }
+    // }
+    
+    // @Override
+    // public void run() {
+    //     BattleFrame test = new BattleFrame();
+    //     test.add(new BattlePane());
+    //     while (true) {
+    //         test.validate();
+    //         test.repaint();
+    //         System.out.print("Tick\n");
+    //         try {
+    //             Thread.sleep(100);
+    //             debug();
+    //         } catch (InterruptedException e) {
+    //             e.printStackTrace();
+    //         }
+    //     }
+    // }
 }
