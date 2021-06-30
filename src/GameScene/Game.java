@@ -1,6 +1,8 @@
 package GameScene;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.*;
 import javax.swing.*;
 import javax.imageio.*;
@@ -16,6 +18,7 @@ import Unit.Servant.FemaleZombie.*;
 import Unit.Servant.MaleZombie.*;
 import Unit.Servant.CowGirl.*;
 import BasicObject.*;
+import java.awt.Component.*;
 
 public class Game extends Screen {
     Vector<Servant> playerServants = new Vector<Servant>();// Camp == true
@@ -64,6 +67,15 @@ public class Game extends Screen {
             this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
         }
         loadBackground();
+
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setLayout(null);
+        setButtons(layeredPane, playerServants);
+        screen.setContentPane(layeredPane);
+        screen.validate();
+        screen.repaint();
+        // return;
+        screen.setVisible(true);
     }
 
     private void addServant(Servant s) {
@@ -145,6 +157,17 @@ public class Game extends Screen {
     @Override
     public void run() {
         int gameflag = 0;
+        sharedScreen.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent keyEvent) {
+                if (keyEvent.getKeyCode() == KeyEvent.VK_W) {
+                    addServant(playerServants.get(0));
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent keyEvent) {
+            }
+        });
         while (true) {
             BufferedImage image = new BufferedImage(Screen.width, Screen.height, BufferedImage.TYPE_INT_RGB);
             gameflag = TimeSlice(image.createGraphics());
@@ -152,13 +175,14 @@ public class Game extends Screen {
             sharedScreen.getGraphics().drawImage(image, 0, 0, null);
             sharedScreen.validate();
             sharedScreen.repaint();
-            JLabel imgLabel = new JLabel(new ImageIcon(image));
-            imgLabel.setBounds(0, 0, Screen.width, Screen.height);
-            imgLabel.setVisible(true);
-            screen.add(imgLabel);
-            screen.validate();
-            screen.repaint();
-            screen.setVisible(true);
+
+            // JLabel imgLabel = new JLabel(new ImageIcon(image));
+            // imgLabel.setBounds(0, 0, Screen.width, Screen.height);
+            // imgLabel.setVisible(true);
+            // sharedScreen.getContentPane().removeAll();
+            // screen.add(imgLabel);
+            // screen.validate();
+            // screen.repaint();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
