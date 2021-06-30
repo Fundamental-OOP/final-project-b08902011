@@ -9,7 +9,7 @@ import BasicObject.*;
 import java.util.*;
 public class Map extends Screen {
 	private static int stage = -1;
-	private static final int endStage = 3;
+	private static final int endStage = 4;
 	private static Vector<Vector<Point>> location = new Vector<Vector<Point>>();
 	static {
 		location.add(new Vector<Point>());
@@ -18,9 +18,14 @@ public class Map extends Screen {
 		location.get(0).add(new Point(500, 580));
 		location.add(new Vector<Point>());
 		location.get(1).add(new Point(400, 180));
+		location.get(1).add(new Point(560, 400));
 		location.get(1).add(new Point(1020, 450));
 		location.add(new Vector<Point>());
-		location.get(2).add(new Point(890, 130));
+		location.get(2).add(new Point(760, 130));
+		location.get(2).add(new Point(760, 260));
+		location.get(2).add(new Point(1000, 230));
+		location.add(new Vector<Point>());
+		location.get(3).add(new Point(890, 130));
 	}
 	private void setBackground(JLayeredPane layeredPane) {
 		BufferedImage img = null;
@@ -42,7 +47,7 @@ public class Map extends Screen {
 		Dimension buttonSize = new Dimension(100, 100);
 		for (int z = 0; z < location.get(stage).size(); z++) {
 			int r = (int) (Math.random() * 100);
-			if (r < 10) {
+			if (r < 100) {
 				JButton b = MyButton.makeShop("Shop", location.get(stage).get(z), buttonSize);
 				layeredPane.add(b, 0);
 				layeredPane.moveToFront(b);

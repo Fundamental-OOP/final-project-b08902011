@@ -56,8 +56,8 @@ public class Game extends Screen {
         super(sharedScreen);
 
         // playerServants = player.Servants();
-        playerServants.add(new Ninja(new Point(380, 560), true, this));
-        playerServants.add(new CowGirl(new Point(380, 560), true, this));
+        playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
+        playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = (Tower) player.MyTower().Duplicate(this, new Point(rightBornPoint), true);
         if (true) {
@@ -68,14 +68,14 @@ public class Game extends Screen {
         }
         loadBackground();
 
-        JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setLayout(null);
-        setButtons(layeredPane, playerServants);
-        screen.setContentPane(layeredPane);
-        screen.validate();
-        screen.repaint();
-        // return;
-        screen.setVisible(true);
+        // JLayeredPane layeredPane = new JLayeredPane();
+        // layeredPane.setLayout(null);
+        // setButtons(layeredPane, playerServants);
+        // screen.setContentPane(layeredPane);
+        // screen.validate();
+        // screen.repaint();
+        // // return;
+        // screen.setVisible(true);
     }
 
     private void addServant(Servant s) {
@@ -160,6 +160,7 @@ public class Game extends Screen {
         sharedScreen.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
+                System.out.print("Listen\n");
                 if (keyEvent.getKeyCode() == KeyEvent.VK_W) {
                     addServant(playerServants.get(0));
                 }
