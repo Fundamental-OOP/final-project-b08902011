@@ -15,7 +15,7 @@ public class Map extends Screen {
 		} catch (Exception e) {
 			System.out.println("No image!");
 		}
-		Image resized = img.getScaledInstance(1555, 833, Image.SCALE_SMOOTH);
+		Image resized = img.getScaledInstance(Screen.width, Screen.height, Image.SCALE_SMOOTH);
 		ImageIcon image = new ImageIcon(resized);
 
 		JLabel imgLabel = new JLabel(image);

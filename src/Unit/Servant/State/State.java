@@ -1,7 +1,7 @@
 package Unit.Servant.State;
 
 import Unit.Servant.*;
-
+import Unit.Unit;
 import java.util.*;
 import java.awt.*;
 import java.awt.image.*;
@@ -22,10 +22,11 @@ public abstract class State {
 
     private void render(BufferedImage image, Graphics g) {
         if (!s.Camp) {
-            g.drawImage(image, this.s.coordinate.x + range.width, 
-                    this.s.coordinate.y, -range.width, range.height, null);
+            g.drawImage(image, this.s.coordinate.x + range.width, Unit.MAX_HEIGHT - this.s.coordinate.y - range.height,
+                    -range.width, range.height, null);
         } else {
-            g.drawImage(image, this.s.coordinate.x, this.s.coordinate.y, range.width, range.height, null);
+            g.drawImage(image, this.s.coordinate.x, Unit.MAX_HEIGHT - this.s.coordinate.y - range.height, range.width,
+                    range.height, null);
         }
     }
 

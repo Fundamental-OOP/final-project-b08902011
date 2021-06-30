@@ -8,8 +8,9 @@ import java.awt.image.*;
 
 public class Ninja extends Servant {
     static int initHP = 10;
-    static int initATK = 10;
+    static int initATK = 100;
     static int initDEF = 10;
+
     public Ninja(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new NinjaState(), world);
         this.stride = 15;

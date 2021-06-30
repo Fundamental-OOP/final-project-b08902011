@@ -23,7 +23,7 @@ public class Shop extends Screen {
 			System.out.println("No image!");
 		}
 		BufferedImage subImg = img.getSubimage(80, 0, 1400, img.getHeight());
-		Image resized = subImg.getScaledInstance(1555, 833, Image.SCALE_SMOOTH);
+		Image resized = subImg.getScaledInstance(Screen.width, Screen.height, Image.SCALE_SMOOTH);
 		ImageIcon image = new ImageIcon(resized);
 		JLabel imgLabel = new JLabel(image);
 		imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());

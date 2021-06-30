@@ -15,6 +15,7 @@ import Unit.Servant.Ninja.*;
 import Unit.Servant.FemaleZombie.*;
 import Unit.Servant.MaleZombie.*;
 import java.awt.image.*;
+
 public class Game extends Screen implements Runnable {
     Vector<Servant> playerServants = new Vector<Servant>();// Camp == true
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
@@ -32,17 +33,17 @@ public class Game extends Screen implements Runnable {
         } catch (Exception e) {
             System.out.println("No image!");
         }
-        Image resized = img.getScaledInstance(1555, 833, Image.SCALE_SMOOTH);
-        
+        Image resized = img.getScaledInstance(Screen.width, Screen.height, Image.SCALE_SMOOTH);
+
         playerServants = player.Servants();
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = (Tower) player.MyTower().Duplicate(this, new Point(rightBornPoint), true);
         if (true) {// For testing
-            this.addServant(new Ninja(leftBornPoint,true,this));
-            this.addServant(new FemaleZombie(leftBornPoint, true, this));
-            this.addServant(new MaleZombie(rightBornPoint, false, this));
+            this.addServant(new Ninja(new Point(leftBornPoint), true, this));
+            this.addServant(new FemaleZombie(new Point(leftBornPoint), true, this));
+            this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
         }
-        
+
     }
 
     public void addUnit(Unit s) {
@@ -70,7 +71,7 @@ public class Game extends Screen implements Runnable {
     public int TimeSlice(Graphics g) {// a slice in game
         g.setColor(Color.BLACK); // paint background with all white
 
-        g.fillRect(-10, 0, 1555, 833);
+        g.fillRect(-10, 0, Screen.width, Screen.height);
         for (int i = 0; i < Left.size(); i++) {
             Left.get(i).slice(g);
         }
@@ -130,12 +131,11 @@ public class Game extends Screen implements Runnable {
     @Override
     public void run() {
         while (true) {
-            // sharedScreen.getContentPane().repaint();
-            BufferedImage image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+            BufferedImage image = new BufferedImage(Screen.width, Screen.height, BufferedImage.TYPE_INT_RGB);
             TimeSlice(image.createGraphics());
+            sharedScreen.getGraphics().drawImage(image, 0, 0, null);
             sharedScreen.validate();
             sharedScreen.repaint();
-            System.out.print("Tick\n");
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -156,59 +156,58 @@ public class Game extends Screen implements Runnable {
     // public void debug() {
     // }
     // protected class BattlePane extends JPanel{
-    //     @Override
-    //     public void repaint(){
-    //         System.out.print("Repaint\n");
-    //     }
-    //     @Override
-    //     public void paint(Graphics g){
-    //         System.out.print("Paint\n");
-    //     }
-        
-    //     @Override
-    //     public void paintComponent(Graphics g) {
-    //         System.out.print("PaintComponent\n");
-    //     }
-        
-    //     @Override
-    //     public void update(Graphics g) {
-    //         System.out.print("Update\n");
-    //     }
+    // @Override
+    // public void repaint(){
+    // System.out.print("Repaint\n");
     // }
-    
+    // @Override
+    // public void paint(Graphics g){
+    // System.out.print("Paint\n");
+    // }
+
+    // @Override
+    // public void paintComponent(Graphics g) {
+    // System.out.print("PaintComponent\n");
+    // }
+
+    // @Override
+    // public void update(Graphics g) {
+    // System.out.print("Update\n");
+    // }
+    // }
+
     // protected class BattleFrame extends JFrame {
-    //     @Override
-    //     public void repaint() {
-    //         System.out.print("Repaint\n");
-    //     }
-
-    //     @Override
-    //     public void paint(Graphics g) {
-    //         TimeSlice(g);
-    //         System.out.print("Paint\n");
-    //     }
-
-
-    //     @Override
-    //     public void update(Graphics g) {
-    //         System.out.print("Update\n");
-    //     }
+    // @Override
+    // public void repaint() {
+    // System.out.print("Repaint\n");
     // }
-    
+
+    // @Override
+    // public void paint(Graphics g) {
+    // TimeSlice(g);
+    // System.out.print("Paint\n");
+    // }
+
+    // @Override
+    // public void update(Graphics g) {
+    // System.out.print("Update\n");
+    // }
+    // }
+
     // @Override
     // public void run() {
-    //     BattleFrame test = new BattleFrame();
-    //     test.add(new BattlePane());
-    //     while (true) {
-    //         test.validate();
-    //         test.repaint();
-    //         System.out.print("Tick\n");
-    //         try {
-    //             Thread.sleep(100);
-    //             debug();
-    //         } catch (InterruptedException e) {
-    //             e.printStackTrace();
-    //         }
-    //     }
+    // BattleFrame test = new BattleFrame();
+    // test.add(new BattlePane());
+    // while (true) {
+    // test.validate();
+    // test.repaint();
+    // System.out.print("Tick\n");
+    // try {
+    // Thread.sleep(100);
+    // debug();
+    // } catch (InterruptedException e) {
+    // e.printStackTrace();
+    // }
+    // }
     // }
 }
