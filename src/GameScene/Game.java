@@ -27,17 +27,18 @@ public class Game extends Screen {
     private static final Point rightBornPoint = new Point(1300, 0);
     Image background;
 
-    private void setButtons(JLayeredPane layeredPane, Vector<Servant> playerServants){
+    private void setButtons(JLayeredPane layeredPane, Vector<Servant> playerServants) {
         int buttonWidth = 200, buttonHeight = 150, posX = 300, posY = 600;
         Dimension buttonSize = new Dimension(buttonWidth, buttonHeight);
-        for(int i = 0; i < playerServants.size(); i++){
+        for (int i = 0; i < playerServants.size(); i++) {
             JButton oneServant = MyButton.make(playerServants.get(i).getClass().toString(),
-                new Point(posX + (buttonWidth + 50) * i, posY), buttonSize, this, playerServants.get(i));
+                    new Point(posX + (buttonWidth + 50) * i, posY), buttonSize, this, playerServants.get(i));
             layeredPane.add(oneServant, 1);
             layeredPane.moveToFront(oneServant);
         }
     }
-    private void loadBackground(){
+
+    private void loadBackground() {
         BufferedImage img = null;
         try {
             img = ImageIO.read(new File("Assets/battleField.png"));
@@ -45,12 +46,12 @@ public class Game extends Screen {
             System.out.println("No image!");
         }
         Image resized = img.getScaledInstance(Screen.width, Screen.height, Image.SCALE_SMOOTH);
-        background = resized;        
+        background = resized;
     }
 
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
-        
+
         // playerServants = player.Servants();
         playerServants.add(new Ninja(new Point(380, 560), true, this));
         playerServants.add(new CowGirl(new Point(380, 560), true, this));
@@ -144,14 +145,6 @@ public class Game extends Screen {
     @Override
     public void run() {
         int gameflag = 0;
-        // sharedScreen.getContentPane().removeAll();
-        // JLayeredPane layeredPane = new JLayeredPane();
-        // layeredPane.setLayout(null);
-        // setButtons(layeredPane, playerServants);
-        // sharedScreen.setContentPane(layeredPane);
-        // sharedScreen.validate();
-        // sharedScreen.repaint();
-        // return;
         while (true) {
             BufferedImage image = new BufferedImage(Screen.width, Screen.height, BufferedImage.TYPE_INT_RGB);
             gameflag = TimeSlice(image.createGraphics());
@@ -162,7 +155,6 @@ public class Game extends Screen {
             JLabel imgLabel = new JLabel(new ImageIcon(image));
             imgLabel.setBounds(0, 0, Screen.width, Screen.height);
             imgLabel.setVisible(true);
-            // sharedScreen.getContentPane().removeAll();
             screen.add(imgLabel);
             screen.validate();
             screen.repaint();
@@ -172,22 +164,13 @@ public class Game extends Screen {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if(gameflag == 1){
+            if (gameflag == 1) {
                 System.out.print("Win");
                 return;
-            }else if (gameflag == -1) {
+            } else if (gameflag == -1) {
                 System.out.print("Lose");
                 return;
             }
         }
-    }
-
-    @Override
-    public void setContent() {
-        sharedScreen.getContentPane().removeAll();
-        sharedScreen.setContentPane(screen.getContentPane());
-        sharedScreen.validate();
-        sharedScreen.repaint();
-        this.run();
     }
 }

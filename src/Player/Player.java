@@ -6,7 +6,7 @@ import Unit.Tower.BasicTower.BasicTower;
 import Unit.Servant.*;
 
 public class Player {
-    private int level = 0;
+    public int stage = 0;
     private int gold = 1000;
     public int hardness = 0;
     private Vector<Item> asset = new Vector<Item>();
@@ -59,10 +59,8 @@ public class Player {
         asset.removeElement(i);
         return asset.size();
     }
-
-    // ========================
-    public int setLevel(int level) {
-        this.level = level;
-        return this.level;
+    public int Win(){
+        this.stage++;
+        return this.stage;
     }
 }

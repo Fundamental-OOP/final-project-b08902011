@@ -6,9 +6,22 @@ import javax.imageio.*;
 import java.awt.image.*;
 import java.io.*;
 import BasicObject.*;
-
+import java.util.*;
 public class Map extends Screen {
-	private static int Stage = 0;
+	private static int stage = -1;
+	private static final int endStage = 3;
+	private static Vector<Vector<Point>> location = new Vector<Vector<Point>>();
+	static {
+		location.add(new Vector<Point>());
+		location.get(0).add(new Point(380, 560));
+		location.get(0).add(new Point(260, 460));
+		location.get(0).add(new Point(500, 580));
+		location.add(new Vector<Point>());
+		location.get(1).add(new Point(400, 180));
+		location.get(1).add(new Point(1020, 450));
+		location.add(new Vector<Point>());
+		location.get(2).add(new Point(890, 130));
+	}
 	private void setBackground(JLayeredPane layeredPane) {
 		BufferedImage img = null;
 		try {
@@ -27,25 +40,25 @@ public class Map extends Screen {
 
 	private void setButtons(JLayeredPane layeredPane) {
 		Dimension buttonSize = new Dimension(100, 100);
-		JButton level_1 = MyButton.makeGame("Level1", new Point(380, 560), buttonSize);
-		layeredPane.add(level_1, 0);
-		layeredPane.moveToFront(level_1);
-
-		JButton level_2 = MyButton.makeGame("Level2", new Point(400, 180), buttonSize);
-		layeredPane.add(level_2, 0);
-		layeredPane.moveToFront(level_2);
-
-		JButton level_3 = MyButton.makeGame("Level3", new Point(1020, 450), buttonSize);
-		layeredPane.add(level_3, 0);
-		layeredPane.moveToFront(level_3);
-
-		JButton shop1 = MyButton.makeShop("Level4", new Point(890, 130), buttonSize);
-		layeredPane.add(shop1, 0);
-		layeredPane.moveToFront(shop1);
+		for (int z = 0; z < location.get(stage).size(); z++) {
+			int r = (int) (Math.random() * 100);
+			if (r < 10) {
+				JButton b = MyButton.makeShop("Shop", location.get(stage).get(z), buttonSize);
+				layeredPane.add(b, 0);
+				layeredPane.moveToFront(b);
+			} else if (r < 101) {
+				JButton b = MyButton.makeGame("Battle", location.get(stage).get(z), buttonSize);
+				layeredPane.add(b, 0);
+				layeredPane.moveToFront(b);
+			}
+		}
 	}
 
 	public Map(JFrame sharedScreen) {
 		super(sharedScreen);
+		System.out.print("obj\n");
+		Map.stage++;
+		System.out.print("obj\n");
 		JLayeredPane layeredPane = new JLayeredPane();
 		layeredPane.setLayout(null);
 		setBackground(layeredPane);

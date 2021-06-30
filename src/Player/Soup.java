@@ -24,12 +24,10 @@ public class Soup extends Item {
     
     @Override
     public void onGet(Player p) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void onLost(Player p) {
-        // TODO Auto-generated method stub
     }
 
     @Override
