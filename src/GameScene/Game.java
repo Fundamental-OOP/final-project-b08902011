@@ -3,6 +3,9 @@ package GameScene;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
+import javax.imageio.*;
+import java.awt.image.*;
+import java.io.*;
 import Player.Player;
 import Unit.*;
 import Unit.Tower.*;
@@ -23,13 +26,28 @@ public class Game extends Screen implements Runnable {
 
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("Assets/battleField.png"));
+        } catch (Exception e) {
+            System.out.println("No image!");
+        }
+        Image resized = img.getScaledInstance(1555, 833, Image.SCALE_SMOOTH);
+        
         playerServants = player.Servants();
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = (Tower) player.MyTower().Duplicate(this, new Point(rightBornPoint), true);
         if (true) {// For testing
-            this.addServant(new Ninja(new Point(leftBornPoint), true, this));
-            this.addServant(new FemaleZombie(new Point(leftBornPoint), false, this));
-            this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
+            this.addServant(new Ninja(leftBornPoint,true,this));
+            this.addServant(new FemaleZombie(leftBornPoint, true, this));
+            this.addServant(new MaleZombie(rightBornPoint, false, this));
+        }
+        
+    }
+
+    public void addUnit(Unit s) {
+        if (s instanceof Servant) {
+            this.addServant((Servant) s);
         }
     }
 
@@ -51,6 +69,7 @@ public class Game extends Screen implements Runnable {
 
     public int TimeSlice(Graphics g) {// a slice in game
         g.setColor(Color.BLACK); // paint background with all white
+
         g.fillRect(-10, 0, 1555, 833);
         for (int i = 0; i < Left.size(); i++) {
             Left.get(i).slice(g);
