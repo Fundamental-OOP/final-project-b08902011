@@ -122,7 +122,7 @@ public class Shop extends Screen {
 	public void runningEvent() {
 		if (buy == true) {
 			buy = false;
-			account.setText("Account Balance:" + String.valueOf(player.getGold()));
+			account.setText("<html><body>" + "Account Balance:" + "<br>" + String.valueOf(player.getGold()) + "<body></html>");
 		}
 	}
 }

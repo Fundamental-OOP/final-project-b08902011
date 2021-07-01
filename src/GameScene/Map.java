@@ -17,19 +17,18 @@ public class Map extends Screen {
 	public Screen nextScreen = null;
 	static {
 		location.add(new Vector<Point>());
-		location.get(0).add(new Point(380, 560));
-		location.get(0).add(new Point(260, 460));
-		location.get(0).add(new Point(500, 580));
+		location.get(0).add(new Point(330, 500));
+		location.get(0).add(new Point(450, 580));
 		location.add(new Vector<Point>());
-		location.get(1).add(new Point(400, 180));
-		location.get(1).add(new Point(560, 400));
-		location.get(1).add(new Point(1020, 450));
+		location.get(1).add(new Point(405, 170));
+		location.get(1).add(new Point(545, 400));
+		location.get(1).add(new Point(1080, 430));
 		location.add(new Vector<Point>());
-		location.get(2).add(new Point(760, 130));
-		location.get(2).add(new Point(760, 260));
-		location.get(2).add(new Point(1000, 230));
+		location.get(2).add(new Point(740, 120));
+		location.get(2).add(new Point(770, 270));
+		location.get(2).add(new Point(1000, 210));
 		location.add(new Vector<Point>());
-		location.get(3).add(new Point(890, 130));
+		location.get(3).add(new Point(890, 100));
 	}
 
 	public Map(JFrame sharedScreen) {

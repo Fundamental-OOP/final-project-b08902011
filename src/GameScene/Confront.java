@@ -56,7 +56,7 @@ public class Confront extends Screen {
             layeredPane.add(Label, 1);
             layeredPane.moveToFront(Label);
 
-            JButton b = MyButton.exitButton("Back", new Point(80, 50), new Dimension(170, 80), this);
+            JButton b = MyButton.exitButton("Back", new Point(1120, 680), new Dimension(170, 80), this);
             b.setFont(new Font("DialogInput", Font.BOLD, 42));
             layeredPane.add(b, 0);
             layeredPane.moveToFront(b);
