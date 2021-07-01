@@ -16,99 +16,86 @@ public class MyButton {
     private static JFrame sharedScreen = null;
     private static Player player = null;
 
-    public static JButton makeShop(String text, Point p, Dimension d) {// Map
+    public static JButton setShopButton(String text, Point p, Dimension d, Map self) {// Map
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
         b.setSize(d);
-        b.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                assert (e.getSource().equals(this));
-                Shop shop = new Shop(sharedScreen, player);
-                shop.start();
-                synchronized (shop) {
-                    try {
-                        shop.join();
-                    } catch (InterruptedException err) {
-                        System.out.print("InterruptedException in MyButton.makeGame");
-                    } finally {
-                        System.out.print("Leave Shop\n");
-                    }
-                }
-            }
-        });
         b.setContentAreaFilled(false);
         b.setBorderPainted(true);
         b.setOpaque(false);
         b.setFont(new Font("Dialog", Font.BOLD, 20));
         b.setForeground(Color.white);
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                self.nextScreen = new Shop(sharedScreen, player);
+                self.end();
+            }
+        });
         return b;
     }
 
-    public static JButton makeGame(String text, Point p, Dimension d) {// Map
+    public static JButton setGameButton(String text, Point p, Dimension d, Map self) {// Map
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
         b.setSize(d);
-        b.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                assert (e.getSource().equals(this));
-                Game game = new Game(sharedScreen, player);
-                game.start();
-                synchronized (game) {
-                    try {
-                        game.wait();
-                    } catch (InterruptedException err) {
-                        System.out.print("InterruptedException in MyButton.makeGame");
-                    } finally {
-                        System.out.print("Leave Game\n");
-                        Map map = new Map(sharedScreen);
-                        map.start();
-                    }
-                }
-            }
-        });
         b.setContentAreaFilled(false);
         b.setBorderPainted(true);
         b.setOpaque(false);
         b.setFont(new Font("Dialog", Font.BOLD, 20));
         b.setForeground(Color.white);
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                self.nextScreen = new Game(sharedScreen, player);
+                self.end();
+            }
+        });
         return b;
     }
 
-    public static JButton makeMap(String text, Point p, Dimension d, int hardness) {// Map
+    public static JButton exitButton(String text, Point p, Dimension d, Screen self) {// Map
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
         b.setSize(d);
-        b.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                assert (e.getSource().equals(this));
-                player.setHardness(hardness);
-                Map map = new Map(sharedScreen);
-                map.start();
-                synchronized (map) {
-                    try {
-                        map.join();
-
-                    } catch (InterruptedException err) {
-                        System.out.print("InterruptedException in MyButton.makeMap");
-                    } finally {
-                        System.out.print("Leave Map\n");
-                    }
-                }
-            }
-        });
         b.setBackground(Color.RED);
         b.setContentAreaFilled(false);
         b.setBorderPainted(true);
         b.setOpaque(true);
         b.setFont(new Font("DialogInput", Font.PLAIN, 42));
         b.setForeground(Color.green);
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                self.end();
+            }
+        });
         return b;
     }
 
-    public static JButton makeShopButton(String text, Point p, Dimension d, Item item) {// Shop
+    public static JButton setHardnessButton(String text, Point p, Dimension d, int hardness, Screen self) {// Map
+        JButton b = null;
+        b = new JButton(text);
+        b.setLocation(p);
+        b.setSize(d);
+        b.setBackground(Color.RED);
+        b.setContentAreaFilled(false);
+        b.setBorderPainted(true);
+        b.setOpaque(true);
+        b.setFont(new Font("DialogInput", Font.PLAIN, 42));
+        b.setForeground(Color.green);
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                player.setHardness(hardness);
+                if (self != null) {
+                    self.end();
+                }
+            }
+        });
+        return b;
+    }
+
+    public static JButton buyItemButton(String text, Point p, Dimension d, Item item,Shop self) {// Shop
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
@@ -119,25 +106,10 @@ public class MyButton {
                     player.spent(item.getPrice());
                     player.addItem(item);
                     ((JButton) e.getSource()).setText("Sold!");
-                    Shop.nAvalible--;
-                    if(Shop.nAvalible == 0){
-                        Shop.nAvalible = 6;
-                    }
-                    Shop shop = new Shop(sharedScreen, player);
-                    shop.start();
-                    synchronized (shop) {
-                        try {
-                            shop.join();
-                        } catch (InterruptedException err) {
-                            System.out.print("InterruptedException in MyButton.makeGame");
-                        } finally {
-                            System.out.print("Leave Shop\n");
-                        }
-                    }
+                    self.Buy();               
                 } else {
                     ((JButton) e.getSource()).setText("Not Enough!");
                 }
-               
             }
         });
         return b;

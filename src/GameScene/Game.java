@@ -156,6 +156,7 @@ public class Game extends Screen {
 
     @Override
     public void run() {
+        this.running = true;
         int gameflag = 0;
         sharedScreen.addKeyListener(new KeyAdapter() {
             @Override
@@ -165,25 +166,25 @@ public class Game extends Screen {
                     addServant(playerServants.get(0));
                 }
             }
+
             @Override
             public void keyReleased(KeyEvent keyEvent) {
             }
         });
-        while (true) {
+
+        while (this.running) {
             BufferedImage image = new BufferedImage(Screen.width, Screen.height, BufferedImage.TYPE_INT_RGB);
             gameflag = TimeSlice(image.createGraphics());
-            sharedScreen.getContentPane().removeAll();
-            sharedScreen.getGraphics().drawImage(image, 0, 0, null);
+
+            JLabel imgLabel = new JLabel(new ImageIcon(image));
+            imgLabel.setBounds(0, 0, Screen.width, Screen.height);
+            imgLabel.setVisible(true);
+            JLayeredPane tmp = new JLayeredPane();
+            tmp.add(imgLabel);
+            screen.setContentPane(tmp);
+            sharedScreen.setContentPane(screen.getContentPane());
             sharedScreen.validate();
             sharedScreen.repaint();
-
-            // JLabel imgLabel = new JLabel(new ImageIcon(image));
-            // imgLabel.setBounds(0, 0, Screen.width, Screen.height);
-            // imgLabel.setVisible(true);
-            // sharedScreen.getContentPane().removeAll();
-            // screen.add(imgLabel);
-            // screen.validate();
-            // screen.repaint();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -197,5 +198,10 @@ public class Game extends Screen {
                 return;
             }
         }
+    }
+
+    @Override
+    public void end() {
+        System.out.print("Calling end in game do nothing.");
     }
 }

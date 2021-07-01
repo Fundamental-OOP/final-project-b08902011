@@ -10,24 +10,39 @@ import BasicObject.*;
 import Player.*;
 
 public class Shop extends Screen {
-	public static int nAvalible = 6;
+	public static final int nAvalible = 6;
+	private JLabel account = null;
+	private boolean buy = false;
 	private static Vector<Item> allItem = new Vector<Item>();
 	static {
 		allItem.add(new Soup());
 	}
-	private JLabel account = null;
-
+	private	JLayeredPane layeredPane = new JLayeredPane();
+	private Player player;
 	public Shop(JFrame sharedScreen, Player player) {
 		super(sharedScreen);
-		JLayeredPane layeredPane = new JLayeredPane();
+		this.player = player;
 		layeredPane.setLayout(null);
-		setBackground(layeredPane);
-		setShelves(layeredPane);
+		setBackground();
+		setShelves();
+		setButton();
+		setAccountBalance();
+		screen.setContentPane(layeredPane);
+	}
+	public void Buy(){
+		this.buy = true;
+	}
+	private Item PickItem() {
+		return allItem.get((int) (Math.random() * allItem.size()));
+	}
 
-		JButton backButton = MyButton.makeMap("Back", new Point(20, 50), new Dimension(150, 100), player.hardness);
+	private void setButton() {
+		JButton backButton = MyButton.exitButton("Back", new Point(20, 50), new Dimension(150, 100), this);
 		layeredPane.add(backButton, 0);
 		layeredPane.moveToFront(backButton);
+	}
 
+	private void setAccountBalance() {
 		account = new JLabel("Account Balance:" + String.valueOf(player.getGold()));
 		account.setBounds(50, 300, 250, 70);
 		account.setBackground(Color.GRAY);
@@ -36,11 +51,9 @@ public class Shop extends Screen {
 		account.setFont(new Font("DialogInput", Font.PLAIN, 20));
 		layeredPane.add(account);
 		layeredPane.moveToFront(account);
-
-		screen.setContentPane(layeredPane);
 	}
 
-	private void setBackground(JLayeredPane layeredPane) {
+	private void setBackground() {
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(new File("Assets/shop.jpg"));
@@ -64,36 +77,30 @@ public class Shop extends Screen {
 		layeredPane.moveToFront(title);
 	}
 
-	private Item PickItem() {
-		return allItem.get((int) (Math.random() * allItem.size()));
-	}
-
-	private void setShelves(JLayeredPane layeredPane) {
+	private void setShelves() {
 		Dimension shelfSize = new Dimension(420, 220);
 		Dimension ButtonSize = new Dimension(420, 60);
 		Point[] location = { new Point(410, 60), new Point(858, 60), new Point(410, 300), new Point(858, 300),
 				new Point(410, 540), new Point(858, 540) };
-		for (int i = 0; i < 6; i++) {
-			JPanel backgroud = new JPanel();
-			backgroud.setLocation(location[i].x, location[i].y);
-			backgroud.setSize(shelfSize);
-			backgroud.setBackground(Color.magenta);
-			layeredPane.add(backgroud, 0);
-			layeredPane.moveToFront(backgroud);
-		}
 		for (int i = 0; i < nAvalible; i++) {
-
 			Item t = PickItem();
 			BufferedImage image = t.toImage();
 			JLabel imgLabel = new JLabel(new ImageIcon(image));
 			imgLabel.setBounds(location[i].x, location[i].y, shelfSize.width, shelfSize.height);
 			layeredPane.add(imgLabel, 0);
 			layeredPane.moveToFront(imgLabel);
-			JButton tButton = MyButton.makeShopButton(t.toString() + " " + String.valueOf(t.getPrice()) + "$",
-					new Point(location[i].x, location[i].y + 160), ButtonSize, t);
+			JButton tButton = MyButton.buyItemButton(t.toString() + " " + String.valueOf(t.getPrice()) + "$",
+					new Point(location[i].x, location[i].y + 160), ButtonSize, t,this);
 			layeredPane.add(tButton, 0);
 			layeredPane.moveToFront(tButton);
 		}
 	}
 
+	@Override
+	public void runningEvent() {
+		if (buy == true) {
+			buy = false;
+			account.setText("Account Balance:" + String.valueOf(player.getGold()));
+		}
+	}
 }
