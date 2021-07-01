@@ -37,13 +37,26 @@ public class Confront extends Screen {
         super(sharedScreen);
         if (counter < Scene.size()) {
             layeredPane.setLayout(null);
-            Image resized = Scene.get(counter).getScaledInstance(Screen.width, Screen.height, Image.SCALE_SMOOTH);
-            // resized.getGraphics().drawImage(Partner.get(counter).toImage(), 1000, 600, 200, 200, null);
+            Image resized = Scene.get(counter).getScaledInstance(Screen.width, Screen.height, Image.SCALE_SMOOTH);            
             ImageIcon image = new ImageIcon(resized);
             JLabel imgLabel = new JLabel(image);
             imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
             layeredPane.add(imgLabel, 0);
-            JButton b = MyButton.exitButton("Back", new Point(10, 50), new Dimension(100, 100), this);
+
+            ImageIcon image2 = new ImageIcon(Partner.get(counter).toImage());
+
+            JLabel imgLabel2 = new JLabel(image2);
+            imgLabel2.setBounds(600, 200, 400, 700);
+            layeredPane.add(imgLabel2, 1);
+            layeredPane.moveToFront(imgLabel2);
+
+            JLabel Label = new JLabel("Let me join you!");
+            Label.setFont(new Font("Dialog", Font.BOLD, 30));
+            Label.setBounds(800, 200, 300, 100);
+            layeredPane.add(Label, 1);
+            layeredPane.moveToFront(Label);
+
+            JButton b = MyButton.exitButton("Back", new Point(10, 50), new Dimension(200, 80), this);
             layeredPane.add(b, 0);
             layeredPane.moveToFront(b);
             screen.setContentPane(layeredPane);

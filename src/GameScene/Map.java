@@ -66,7 +66,7 @@ public class Map extends Screen {
 	private void setButtons() {
 		Dimension buttonSize = new Dimension(100, 100);
 		for (int z = 0; z < location.get(stage).size(); z++) {
-			int r = (int) (Math.random() * 200);
+			int r = (int) (Math.random() * 400);
 			if (r < 100) {
 				JButton b = MyButton.setShopButton("Shop", location.get(stage).get(z), buttonSize, this);
 				layeredPane.add(b, 0);
@@ -76,7 +76,7 @@ public class Map extends Screen {
 				layeredPane.add(b, 0);
 				layeredPane.moveToFront(b);
 			}else{
-				JButton b = MyButton.setConfrontButton("Confront", location.get(stage).get(z), buttonSize, this);
+				JButton b = MyButton.setConfrontButton("!?!", location.get(stage).get(z), buttonSize, this);
 				layeredPane.add(b, 0);
 				layeredPane.moveToFront(b);
 			}

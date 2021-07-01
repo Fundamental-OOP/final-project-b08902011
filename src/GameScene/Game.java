@@ -64,7 +64,7 @@ public class Game extends Screen {
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
         playerServants = player.Servants();
-        playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
+        // playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = new BasicTower(new Point(rightBornPoint), true, this);
         this.addServant(new Ninja(new Point(leftBornPoint), false, this));
@@ -150,6 +150,11 @@ public class Game extends Screen {
     public void run() {
         this.running = true;
         int gameflag = 0;
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         while (this.running) {
             BufferedImage image = new BufferedImage(Screen.width, Screen.height, BufferedImage.TYPE_INT_RGB);
             gameflag = TimeSlice(image.createGraphics());

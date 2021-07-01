@@ -27,7 +27,7 @@ public class BasicServant extends Servant {
 
     @Override
     public BufferedImage toImage() {
-        return null;
+        return Overview;
     }
 
 

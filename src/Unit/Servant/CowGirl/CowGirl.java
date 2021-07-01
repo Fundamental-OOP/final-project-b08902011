@@ -29,10 +29,10 @@ public class CowGirl extends Servant {
 
     @Override
     public BufferedImage toImage() {
-        return null;
+        return Overview;
     }
     public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
-        return new CowGirl(new Point(this.coordinate), this.Camp, this.myWorld);
+        return new CowGirl(new Point(coordinate), Camp, world);
     }
     
     static public String ServantName() {

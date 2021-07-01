@@ -34,7 +34,7 @@ public class Ninja extends Servant {
     }
 
     public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
-        return new Ninja(new Point(this.coordinate), this.Camp, this.myWorld);
+        return new Ninja(new Point(coordinate), Camp, world);
     }
 
     static public String ServantName() {
