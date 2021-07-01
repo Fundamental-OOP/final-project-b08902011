@@ -6,9 +6,9 @@ import javax.imageio.*;
 import java.io.*;
 import Unit.Servant.*;
 
-public class Shose extends Item {
+public class Shoes extends Item {
     private static BufferedImage img;
-    private static String name = "Shose";
+    private static String name = "Shoes";
     static {
         try {
             img = (ImageIO.read(new File("Assets/Item/" + name + ".jpg")));
@@ -17,7 +17,7 @@ public class Shose extends Item {
         }
     }
 
-    public Shose() {
+    public Shoes() {
         super();
         this.price = 130;
         this.description = "Add 5 speed to your Servants.";
