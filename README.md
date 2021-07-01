@@ -1,7 +1,7 @@
 # Final-Project
 
 組員: B08902011杜展廷、B08902025王熙創
-
+- 因為wsl X11問題我們使用powershell進行開發，makefile command沒有環境能夠測試，如果遇到問題請使用Start.bat啟動遊戲。
 - Description:
     - src/
         - BasicObject/
