@@ -24,7 +24,7 @@ public class MyButton {
         b.setContentAreaFilled(false);
         b.setBorderPainted(true);
         b.setOpaque(false);
-        b.setFont(new Font("Dialog", Font.BOLD, 20));
+        b.setFont(new Font("Dialog", Font.BOLD, 24));
         b.setForeground(Color.white);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -43,7 +43,7 @@ public class MyButton {
         b.setContentAreaFilled(false);
         b.setBorderPainted(true);
         b.setOpaque(false);
-        b.setFont(new Font("Dialog", Font.BOLD, 20));
+        b.setFont(new Font("Dialog", Font.BOLD, 24));
         b.setForeground(Color.white);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -62,7 +62,7 @@ public class MyButton {
         b.setContentAreaFilled(false);
         b.setBorderPainted(true);
         b.setOpaque(false);
-        b.setFont(new Font("Dialog", Font.BOLD, 20));
+        b.setFont(new Font("Dialog", Font.BOLD, 24));
         b.setForeground(Color.white);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
