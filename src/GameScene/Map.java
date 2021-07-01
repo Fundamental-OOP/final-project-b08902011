@@ -96,7 +96,11 @@ public class Map extends Screen {
 		super.running = false;
 		Map.stage++;
 		if (Map.stage < Map.endStage) {
-			this.screen.removeAll();
+			// this.screen.removeAll();
+			// this.screen.validate();
+			// this.screen.repaint();
+			this.screen.getContentPane().removeAll();
+			this.setBackground();
 			this.setButtons();
 			this.screen.setContentPane(layeredPane);
 		}
