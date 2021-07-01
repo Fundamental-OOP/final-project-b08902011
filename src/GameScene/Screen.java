@@ -21,7 +21,6 @@ public class Screen{
 	}
 	public void run() {
 		this.running = true;
-		sharedScreen.getContentPane().removeAll();
 		sharedScreen.setContentPane(screen.getContentPane());
 		sharedScreen.validate();
 		sharedScreen.repaint();
@@ -32,7 +31,6 @@ public class Screen{
 			}catch(Exception e){
 
 			}
-			// System.out.print("Running\n");
 		}
 	}
 	public void runningEvent(){}

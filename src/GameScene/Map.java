@@ -86,5 +86,6 @@ public class Map extends Screen {
 		this.screen.removeAll();
 		this.setButtons();
 		this.screen.setContentPane(layeredPane);
+		System.out.println("Leave Map");
 	}
 }

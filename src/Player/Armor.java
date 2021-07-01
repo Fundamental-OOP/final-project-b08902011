@@ -3,11 +3,13 @@ package Player;
 import java.awt.image.BufferedImage;
 import javax.imageio.*;
 
+import Unit.Servant.Servant;
+
 import java.io.*;
 
-public class Pan extends Item {
+public class Armor extends Item {
     private static BufferedImage img;
-    private static String name = "Pan";
+    private static String name = "Armor";
     static {
         try {
             img = (ImageIO.read(new File("Assets/Item/" + name + ".jpg")));
@@ -16,10 +18,10 @@ public class Pan extends Item {
         }
     }
 
-    public Pan() {
+    public Armor() {
         super();
-        this.price = 1000;
-        this.description = "It can cook good meal.";
+        this.price = 200;
+        this.description = "Add 20 Def to your Servants.";
     }
 
     @Override
@@ -29,10 +31,16 @@ public class Pan extends Item {
 
     @Override
     public void onGet(Player p) {
+        for (Servant s : p.Servants()) {
+            s.addDef(20);
+        }
     }
 
     @Override
     public void onLost(Player p) {
+        for (Servant s : p.Servants()) {
+            s.addDef(-20);
+        }
     }
 
     @Override

@@ -21,6 +21,7 @@ public class Shop extends Screen {
 		allItem.add(new Pan());
 		allItem.add(new Sword());
 		allItem.add(new Brick());
+		allItem.add(new Armor());
 	}
 	private JLayeredPane layeredPane = new JLayeredPane();
 	private Player player;
@@ -103,7 +104,7 @@ public class Shop extends Screen {
 		for (int i = 0; i < nAvalible; i++) {
 			Item t = PickItem();
 			BufferedImage image = t.toImage();
-			System.out.print(t.toString()+"\n");
+			System.out.print(t.toString() + "\n");
 			JLabel imgLabel = new JLabel(new ImageIcon(image));
 			imgLabel.setBounds(location[i].x, location[i].y, shelfSize.width, shelfSize.height);
 			layeredPane.add(imgLabel, 0);
