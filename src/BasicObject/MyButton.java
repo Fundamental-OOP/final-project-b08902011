@@ -92,7 +92,7 @@ public class MyButton {
         return b;
     }
 
-    public static JButton setHardnessButton(String text, Point p, Dimension d, int hardness, Screen self) {// Map
+    public static JButton setDifficultyButton(String text, Point p, Dimension d, int difficulty, Screen self) {// Homepage
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
@@ -105,7 +105,7 @@ public class MyButton {
         b.setForeground(Color.green);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                player.setHardness(hardness);
+                player.setHardness(difficulty);
                 if (self != null) {
                     self.end();
                 }
