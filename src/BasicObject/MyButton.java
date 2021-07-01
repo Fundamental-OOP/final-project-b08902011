@@ -125,8 +125,8 @@ public class MyButton {
         b.setOpaque(false);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                assert (e.getSource().equals(this));
-                game.addServant(servant);
+                game.addServant((Servant)servant.Duplicate(game, new Point(0,0), true));
+                System.out.print("Hi\n");
             }
         });
         return b;

@@ -23,7 +23,7 @@ public class BasicServant extends Servant {
     }
 
 
-    public Servant Duplicate(Game world, Point coordinate, boolean Camp) {
+    public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
         return null;
     }
 }

@@ -23,7 +23,7 @@ public class CowGirl extends Servant {
     public BufferedImage toImage() {
         return null;
     }
-    public Servant Duplicate(Game world, Point coordinate, boolean Camp) {
-        return null;
+    public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
+        return new CowGirl(new Point(this.coordinate), this.Camp, this.myWorld);
     }
 }

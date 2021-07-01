@@ -24,7 +24,7 @@ public class FemaleZombie extends Servant {
         return null;
     }
 
-    public  Servant Duplicate(Game world, Point coordinate, boolean Camp) {
-        return null;
+    public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
+        return new FemaleZombie(new Point(this.coordinate), this.Camp, this.myWorld);
     }
 }
