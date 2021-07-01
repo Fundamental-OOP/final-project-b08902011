@@ -97,12 +97,12 @@ public class MyButton {
         b = new JButton(text);
         b.setLocation(p);
         b.setSize(d);
-        b.setBackground(Color.RED);
+        // b.setBackground(Color.RED);
         b.setContentAreaFilled(false);
         b.setBorderPainted(true);
-        b.setOpaque(true);
-        b.setFont(new Font("DialogInput", Font.PLAIN, 42));
-        b.setForeground(Color.green);
+        // b.setOpaque(true);
+        b.setFont(new Font("DialogInput", Font.BOLD, 44));
+        b.setForeground(Color.white);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 player.setHardness(difficulty);
@@ -117,6 +117,7 @@ public class MyButton {
     public static JButton buyItemButton(String text, Point p, Dimension d, Item item, Shop self) {// Shop
         JButton b = null;
         b = new JButton(text);
+        b.setFont(new Font("Dialog", Font.PLAIN, 16));
         b.setLocation(p);
         b.setSize(d);
         b.addActionListener(new ActionListener() {
