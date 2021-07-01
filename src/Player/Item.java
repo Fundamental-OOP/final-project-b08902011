@@ -4,12 +4,11 @@ import java.awt.image.*;
 
 public abstract class Item {
     int price = 0;
-    String description = "No effect!\n";
+    protected String description = "No effect!\n";
 
     public int getPrice() {
         return this.price;
     }
-
     public String getDescription() {
         return this.description;
     }

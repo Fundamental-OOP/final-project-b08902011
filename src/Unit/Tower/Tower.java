@@ -13,13 +13,4 @@ public abstract class Tower extends Unit {
         super(hp, def);
     }
 
-    public int setHP(int hp) {
-        this.hp = hp;
-        return this.hp;
-    }
-
-    public int setDef(int def) {
-        this.def = def;
-        return this.def;
-    }
 }

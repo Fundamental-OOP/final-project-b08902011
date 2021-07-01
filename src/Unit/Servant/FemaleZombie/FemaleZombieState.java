@@ -7,6 +7,7 @@ import java.awt.*;
 
 public class FemaleZombieState extends State {
     private static final Dimension size = new Dimension(180, 180);
+
     public FemaleZombieState() {
         nAttackImage = 8;
         for (int i = 1; i <= nAttackImage; i++) {

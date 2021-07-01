@@ -10,7 +10,6 @@ import java.awt.*;
 /* A servant entity should inherit with state to bind Image to Class*/
 public abstract class Servant extends Unit {
 
-
     public int stride = 0;
     protected int atk = 0;
     protected Vector<Skill> SKI = new Vector<Skill>();
@@ -23,9 +22,10 @@ public abstract class Servant extends Unit {
         this.stateControl = stateControl;
     }
 
-    public void onDead(){
+    public void onDead() {
         this.myWorld.removeServant(this);
     }
+
     public Servant(int hp, int atk, int def, State stateControl, Game myWorld) {// Used when add to player
         super(new Point(100, 100), true, hp, def, myWorld);
         this.atk = atk;
@@ -77,4 +77,12 @@ public abstract class Servant extends Unit {
         return this.atk;
     }
 
+    public int addATK(int atk) {
+        this.atk += atk;
+        return this.atk;
+    }
+
+    public int addStride(int stride) {
+        return this.stride += stride;
+    }
 }

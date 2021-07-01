@@ -95,20 +95,22 @@ public class MyButton {
         return b;
     }
 
-    public static JButton buyItemButton(String text, Point p, Dimension d, Item item,Shop self) {// Shop
+    public static JButton buyItemButton(String text, Point p, Dimension d, Item item, Shop self) {// Shop
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);
         b.setSize(d);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (player.getGold() > item.getPrice() && !((JButton) e.getSource()).getText().equals("Sold!")) {
-                    player.spent(item.getPrice());
-                    player.addItem(item);
-                    ((JButton) e.getSource()).setText("Sold!");
-                    self.Buy();               
-                } else {
-                    ((JButton) e.getSource()).setText("Not Enough!");
+                if (!((JButton) e.getSource()).getText().equals("Sold!")) {
+                    if (player.getGold() > item.getPrice()) {
+                        player.spent(item.getPrice());
+                        player.addItem(item);
+                        ((JButton) e.getSource()).setText("Sold!");
+                        self.Buy();
+                    } else {
+                        ((JButton) e.getSource()).setText("Not Enough!");
+                    }
                 }
             }
         });
@@ -125,7 +127,7 @@ public class MyButton {
         b.setOpaque(false);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                game.addServant((Servant)servant.Duplicate(game, new Point(0,0), true));
+                game.addServant((Servant) servant.Duplicate(game, new Point(0, 0), true));
                 System.out.print("Hi\n");
             }
         });

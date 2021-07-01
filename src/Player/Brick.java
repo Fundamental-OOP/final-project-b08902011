@@ -2,35 +2,39 @@ package Player;
 
 import java.awt.image.BufferedImage;
 import javax.imageio.*;
+
 import java.io.*;
 
-public class Soup extends Item {
-    static BufferedImage img;
+public class Brick extends Item {
+    private static BufferedImage img;
+    private static String name = "Brick";
     static {
         try {
-            img = (ImageIO.read(new File("Assets/Item/Soup.jpg")));
+            img = (ImageIO.read(new File("Assets/Item/" + name + ".jpg")));
         } catch (Exception e) {
-            System.out.print("Soup\n");
+            System.out.print(name + "\n");
         }
     }
-    public Soup(){
+
+    public Brick() {
         super();
-        this.price = 30;
-        this.description = "Add 100 Hp to your Tower.";
+        this.price = 70;
+        this.description = "Add 30 Def to your Tower.";
     }
+
     @Override
     public String toString() {
-        return "Soup";
+        return name;
     }
-    
+
     @Override
     public void onGet(Player p) {
-        p.MyTower().addHP(100);
+        p.MyTower().addDef(30);
     }
 
     @Override
     public void onLost(Player p) {
-        p.MyTower().addHP(-100);
+        p.MyTower().addDef(-30);
     }
 
     @Override

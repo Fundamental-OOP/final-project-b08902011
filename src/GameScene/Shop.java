@@ -16,9 +16,15 @@ public class Shop extends Screen {
 	private static Vector<Item> allItem = new Vector<Item>();
 	static {
 		allItem.add(new Soup());
+		allItem.add(new Shose());
+		allItem.add(new Cake());
+		allItem.add(new Pan());
+		allItem.add(new Sword());
+		allItem.add(new Brick());
 	}
-	private	JLayeredPane layeredPane = new JLayeredPane();
+	private JLayeredPane layeredPane = new JLayeredPane();
 	private Player player;
+
 	public Shop(JFrame sharedScreen, Player player) {
 		super(sharedScreen);
 		this.player = player;
@@ -29,9 +35,11 @@ public class Shop extends Screen {
 		setAccountBalance();
 		screen.setContentPane(layeredPane);
 	}
-	public void Buy(){
+
+	public void Buy() {
 		this.buy = true;
 	}
+
 	private Item PickItem() {
 		return allItem.get((int) (Math.random() * allItem.size()));
 	}
@@ -83,14 +91,26 @@ public class Shop extends Screen {
 		Point[] location = { new Point(410, 60), new Point(858, 60), new Point(410, 300), new Point(858, 300),
 				new Point(410, 540), new Point(858, 540) };
 		for (int i = 0; i < nAvalible; i++) {
+			JLabel backLabel = new JLabel();
+			backLabel.setLocation(location[i]);
+			backLabel.setSize(shelfSize);
+			backLabel.setBackground(Color.magenta);
+			backLabel.setOpaque(true);
+			layeredPane.add(backLabel, 0);
+			layeredPane.moveToFront(backLabel);
+		}
+
+		for (int i = 0; i < nAvalible; i++) {
 			Item t = PickItem();
 			BufferedImage image = t.toImage();
+			System.out.print(t.toString()+"\n");
 			JLabel imgLabel = new JLabel(new ImageIcon(image));
 			imgLabel.setBounds(location[i].x, location[i].y, shelfSize.width, shelfSize.height);
 			layeredPane.add(imgLabel, 0);
 			layeredPane.moveToFront(imgLabel);
-			JButton tButton = MyButton.buyItemButton(t.toString() + " " + String.valueOf(t.getPrice()) + "$",
-					new Point(location[i].x, location[i].y + 160), ButtonSize, t,this);
+			JButton tButton = MyButton.buyItemButton(
+					t.toString() + " " + String.valueOf(t.getPrice()) + "$ " + t.getDescription(),
+					new Point(location[i].x, location[i].y + 160), ButtonSize, t, this);
 			layeredPane.add(tButton, 0);
 			layeredPane.moveToFront(tButton);
 		}

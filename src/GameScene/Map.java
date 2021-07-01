@@ -67,7 +67,7 @@ public class Map extends Screen {
 		Dimension buttonSize = new Dimension(100, 100);
 		for (int z = 0; z < location.get(stage).size(); z++) {
 			int r = (int) (Math.random() * 100);
-			if (r < 0) {
+			if (r < 50) {
 				JButton b = MyButton.setShopButton("Shop", location.get(stage).get(z), buttonSize, this);
 				layeredPane.add(b, 0);
 				layeredPane.moveToFront(b);

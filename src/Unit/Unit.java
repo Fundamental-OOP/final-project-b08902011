@@ -7,7 +7,9 @@ import java.awt.image.*;
 public abstract class Unit {
 
     public abstract Unit Duplicate(Game world, Point coordinate, boolean Camp);
+
     public abstract void slice(Graphics g);
+
     public abstract BufferedImage toImage();
 
     public Point coordinate = null;
@@ -16,6 +18,7 @@ public abstract class Unit {
     protected int def = 0;
     protected Game myWorld = null;
     public static final int MAX_HEIGHT = 600;
+
     public Unit(Point coordinate, boolean Camp, int hp, int def, Game myWorld) {
         this.coordinate = coordinate;
         this.Camp = Camp;
@@ -31,6 +34,16 @@ public abstract class Unit {
 
     public boolean dead() {
         return hp <= 0;
+    }
+
+    public int addHP(int hp) {
+        this.hp += hp;
+        return this.hp;
+    }
+
+    public int addDef(int def) {
+        this.def += def;
+        return this.def;
     }
 
     public int takeDamage(int damage) {

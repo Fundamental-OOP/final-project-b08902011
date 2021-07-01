@@ -28,11 +28,11 @@ public class Screen{
 		while(running){
 			runningEvent();
 			try{
-				java.lang.Thread.sleep(2000);
+				java.lang.Thread.sleep(1000);
 			}catch(Exception e){
 
 			}
-			System.out.print("Running\n");
+			// System.out.print("Running\n");
 		}
 	}
 	public void runningEvent(){}
