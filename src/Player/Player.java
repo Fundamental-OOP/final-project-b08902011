@@ -7,7 +7,7 @@ import Unit.Servant.*;
 
 public class Player {
     public int stage = 0;
-    private int gold = 1000;
+    private int gold = 100;
     public int hardness = 0;
     private Vector<Item> asset = new Vector<Item>();
     private Vector<Servant> servants = new Vector<Servant>();
@@ -15,6 +15,10 @@ public class Player {
 
     public Vector<Servant> Servants() {
         return this.servants;
+    }
+
+    public void addMember(Servant s) {
+        this.servants.add(s);
     }
 
     public int setHardness(int h) {
@@ -60,7 +64,8 @@ public class Player {
         asset.removeElement(i);
         return asset.size();
     }
-    public int Win(){
+
+    public int Win() {
         this.stage++;
         return this.stage;
     }

@@ -1,7 +1,6 @@
 package GameScene;
 
 import javax.swing.JFrame;
-import Player.Player;
 
 public class ScreenController {
     private JFrame mainScreen;

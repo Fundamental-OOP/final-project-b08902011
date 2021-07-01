@@ -2,7 +2,6 @@ package Unit.Servant.State;
 
 import Unit.Servant.*;
 import Unit.Unit;
-import java.util.*;
 import java.awt.*;
 import java.awt.image.*;
 
@@ -15,9 +14,13 @@ public abstract class State {
     protected int nAttackImage = 0;
     protected int nWalkImage = 0;
     protected int nDeadImage = 0;
-    protected Vector<BufferedImage> attackImage = new Vector<BufferedImage>();
-    protected Vector<BufferedImage> deadImage = new Vector<BufferedImage>();
-    protected Vector<BufferedImage> walkImage = new Vector<BufferedImage>();
+
+    protected abstract BufferedImage attackImage(int index);
+
+    protected abstract BufferedImage deadImage(int index);
+
+    protected abstract BufferedImage walkImage(int index);
+
     protected Rectangle range = null;
 
     private void render(BufferedImage image, Graphics g) {
@@ -32,19 +35,19 @@ public abstract class State {
 
     protected void DrawWalk(Graphics g) {
         s.move(s.Camp);
-        this.render(walkImage.get(walkCount), g);
+        this.render(walkImage(walkCount), g);
         walkCount = reset(walkCount) + 1;
         walkCount %= nWalkImage;
     }
 
     protected void DrawAttack(Graphics g) {
-        this.render(attackImage.get(attackCount), g);
+        this.render(attackImage(attackCount), g);
         attackCount = reset(attackCount) + 1;
         attackCount %= nAttackImage;
     }
 
     protected void DrawDead(Graphics g) {
-        this.render(deadImage.get(deadCount), g);
+        this.render(deadImage(deadCount), g);
         deadCount = reset(deadCount) + 1;
         if (deadCount == nDeadImage) {
             s.onDead();

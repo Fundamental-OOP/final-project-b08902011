@@ -8,6 +8,7 @@ public class Screen{
 	public static final int width = 1555;
 	public static final int height = 833;
 	protected boolean running = true;
+	protected JLayeredPane layeredPane = new JLayeredPane();
 	public Screen(JFrame sharedScreen) {
 		this.sharedScreen = sharedScreen;
 		this.screen = new JFrame();

@@ -11,6 +11,7 @@ import java.io.*;
 import Player.Player;
 import Unit.*;
 import Unit.Tower.*;
+import Unit.Tower.BasicTower.BasicTower;
 import Unit.Servant.*;
 import Unit.Servant.Skills.*;
 import Unit.Servant.Ninja.*;
@@ -18,6 +19,7 @@ import Unit.Servant.FemaleZombie.*;
 import Unit.Servant.MaleZombie.*;
 import Unit.Servant.CowGirl.*;
 import BasicObject.*;
+
 public class Game extends Screen {
     Vector<Servant> playerServants = new Vector<Servant>();// Camp == true
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
@@ -32,8 +34,8 @@ public class Game extends Screen {
         int buttonWidth = 200, buttonHeight = 150, posX = 300, posY = 600;
         Dimension buttonSize = new Dimension(buttonWidth, buttonHeight);
         for (int i = 0; i < playerServants.size(); i++) {
-            JButton oneServant = MyButton.make("", new Point(posX + (buttonWidth + 50) * i, posY),
-                buttonSize, this, playerServants.get(i));
+            JButton oneServant = MyButton.make("", new Point(posX + (buttonWidth + 50) * i, posY), buttonSize, this,
+                    playerServants.get(i));
             BufferedImage img = null;
             try {
                 img = ImageIO.read(new File("Assets/battleField.png"));
@@ -71,20 +73,14 @@ public class Game extends Screen {
         playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
         playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
-        RightTower = (Tower) player.MyTower().Duplicate(this, new Point(rightBornPoint), true);
-        if (true) {
-            this.addServant(new Ninja(new Point(leftBornPoint), true, this));
-            this.addServant(new FemaleZombie(new Point(leftBornPoint), true, this));
-            this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
-            this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
-        }
+        RightTower = new BasicTower(new Point(rightBornPoint), true, this);
+        // if (true) {
+        // this.addServant(new Ninja(new Point(leftBornPoint), true, this));
+        // this.addServant(new FemaleZombie(new Point(leftBornPoint), true, this));
+        // this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
+        // this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
+        // }
         loadBackground();
-
-        // setButtons(layeredPane, playerServants);
-        // screen.setContentPane(layeredPane);
-        // screen.validate();
-        // screen.repaint();
-        // screen.setVisible(true);
     }
 
     public void addServant(Servant s) {
@@ -122,9 +118,6 @@ public class Game extends Screen {
     }
 
     public Vector<Unit> getTarget(Servant s, Skill skill) {
-        if (Left.size() == 0 || Right.size() == 0) {
-            // return null;
-        }
         boolean Camp = s.Camp;
         boolean enemy = skill.toenemy;
         boolean ally = skill.toally;
@@ -142,7 +135,6 @@ public class Game extends Screen {
             }
             if (skill.reachable(s, RightTower)) {
                 ret.add(RightTower);
-
             }
         }
         if ((!Camp && enemy) || (Camp && ally)) {
@@ -167,20 +159,6 @@ public class Game extends Screen {
     public void run() {
         this.running = true;
         int gameflag = 0;
-        // sharedScreen.addKeyListener(new KeyAdapter() {
-        //     @Override
-        //     public void keyPressed(KeyEvent keyEvent) {
-        //         System.out.print("Listen\n");
-        //         if (keyEvent.getKeyCode() == KeyEvent.VK_W) {
-        //             addServant(playerServants.get(0));
-        //         }
-        //     }
-
-        //     @Override
-        //     public void keyReleased(KeyEvent keyEvent) {
-        //     }
-        // });
-
         while (this.running) {
             BufferedImage image = new BufferedImage(Screen.width, Screen.height, BufferedImage.TYPE_INT_RGB);
             gameflag = TimeSlice(image.createGraphics());
@@ -192,7 +170,7 @@ public class Game extends Screen {
             layeredPane.add(imgLabel, 0);
 
             setButtons(layeredPane, playerServants);
-            
+
             JLabel money = new JLabel("Money", JLabel.CENTER);
             money.setBounds(70, 570, 200, 200);
             money.setFont(new Font("Serif", Font.PLAIN, 40));
@@ -204,7 +182,7 @@ public class Game extends Screen {
             sharedScreen.validate();
             sharedScreen.repaint();
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

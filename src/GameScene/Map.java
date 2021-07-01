@@ -13,7 +13,7 @@ public class Map extends Screen {
 	private static final int endStage = 3;
 	private static Vector<Vector<Point>> location = new Vector<Vector<Point>>();
 	private boolean gameOver = false;
-	private JLayeredPane layeredPane = new JLayeredPane();
+	
 	public Screen nextScreen = null;
 	static {
 		location.add(new Vector<Point>());
@@ -66,13 +66,17 @@ public class Map extends Screen {
 	private void setButtons() {
 		Dimension buttonSize = new Dimension(100, 100);
 		for (int z = 0; z < location.get(stage).size(); z++) {
-			int r = (int) (Math.random() * 100);
-			if (r < 50) {
+			int r = (int) (Math.random() * 200);
+			if (r < 100) {
 				JButton b = MyButton.setShopButton("Shop", location.get(stage).get(z), buttonSize, this);
 				layeredPane.add(b, 0);
 				layeredPane.moveToFront(b);
-			} else if (r <= 100) {
+			} else if (r < 250) {
 				JButton b = MyButton.setGameButton("Battle", location.get(stage).get(z), buttonSize, this);
+				layeredPane.add(b, 0);
+				layeredPane.moveToFront(b);
+			}else{
+				JButton b = MyButton.setConfrontButton("Confront", location.get(stage).get(z), buttonSize, this);
 				layeredPane.add(b, 0);
 				layeredPane.moveToFront(b);
 			}

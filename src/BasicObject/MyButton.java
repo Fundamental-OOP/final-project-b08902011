@@ -54,6 +54,25 @@ public class MyButton {
         return b;
     }
 
+    public static JButton setConfrontButton(String text, Point p, Dimension d, Map self) {// Map
+        JButton b = null;
+        b = new JButton(text);
+        b.setLocation(p);
+        b.setSize(d);
+        b.setContentAreaFilled(false);
+        b.setBorderPainted(true);
+        b.setOpaque(false);
+        b.setFont(new Font("Dialog", Font.BOLD, 20));
+        b.setForeground(Color.white);
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                self.nextScreen = new Confront(sharedScreen, player);
+                self.end();
+            }
+        });
+        return b;
+    }
+    
     public static JButton exitButton(String text, Point p, Dimension d, Screen self) {// Map
         JButton b = null;
         b = new JButton(text);

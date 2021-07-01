@@ -4,9 +4,15 @@ import Unit.Servant.State.State;
 import java.io.*;
 import javax.imageio.*;
 import java.awt.*;
+import java.util.*;
+import java.awt.image.*;
 
 public class CowGirlState extends State {
     private static final Dimension size = new Dimension(180, 180);
+    private static Vector<BufferedImage> attackImage = new Vector<BufferedImage>();
+    private static Vector<BufferedImage> deadImage = new Vector<BufferedImage>();
+    private static Vector<BufferedImage> walkImage = new Vector<BufferedImage>();
+
     public CowGirlState() {
         nAttackImage = 3;
         for (int i = 1; i <= nAttackImage; i++) {
@@ -43,5 +49,20 @@ public class CowGirlState extends State {
 
     static public String ServantName() {
         return "CowGirl";
+    }
+
+    @Override
+    protected BufferedImage attackImage(int index) {
+        return attackImage.get(index);
+    }
+
+    @Override
+    protected BufferedImage deadImage(int index) {
+        return deadImage.get(index);
+    }
+
+    @Override
+    protected BufferedImage walkImage(int index) {
+        return walkImage.get(index);
     }
 }

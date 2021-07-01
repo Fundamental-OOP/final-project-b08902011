@@ -23,7 +23,6 @@ public class Shop extends Screen {
 		allItem.add(new Brick());
 		allItem.add(new Armor());
 	}
-	private JLayeredPane layeredPane = new JLayeredPane();
 	private Player player;
 
 	public Shop(JFrame sharedScreen, Player player) {

@@ -4,9 +4,15 @@ import Unit.Servant.State.State;
 import java.io.*;
 import javax.imageio.*;
 import java.awt.*;
+import java.util.*;
+import java.awt.image.*;
 
 public class BasicServantState extends State {
     private static final Dimension size = new Dimension(1, 1);
+    private static Vector<BufferedImage> attackImage = new Vector<BufferedImage>();
+    private static Vector<BufferedImage> deadImage = new Vector<BufferedImage>();
+    private static Vector<BufferedImage> walkImage = new Vector<BufferedImage>();
+
     public BasicServantState() {
         nAttackImage = 0;
         for (int i = 1; i <= nAttackImage; i++) {
@@ -43,5 +49,20 @@ public class BasicServantState extends State {
 
     static public String ServantName() {
         return "BasicSeverant";
+    }
+
+    @Override
+    protected BufferedImage attackImage(int index) {
+        return attackImage.get(index);
+    }
+
+    @Override
+    protected BufferedImage deadImage(int index) {
+        return deadImage.get(index);
+    }
+
+    @Override
+    protected BufferedImage walkImage(int index) {
+        return walkImage.get(index);
     }
 }
