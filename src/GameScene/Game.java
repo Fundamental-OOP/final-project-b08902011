@@ -42,8 +42,6 @@ public class Game extends Screen {
             playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
             playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
         }
-        LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
-        RightTower = new BasicTower(new Point(rightBornPoint), true, this);
         loadBackground();
         this.Aifequence = 80 - 7 * (player.hardness + player.stage);
         fee = 0;
