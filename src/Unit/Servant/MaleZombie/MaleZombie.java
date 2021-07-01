@@ -40,4 +40,10 @@ public class MaleZombie extends Servant {
     static public String ServantName() {
         return "MaleZombie";
     }
+    
+    static int cost = 90;
+    @Override
+    public int getCost() {
+        return cost;
+    }
 }

@@ -38,4 +38,11 @@ public class CowGirl extends Servant {
     static public String ServantName() {
         return "CowGirl";
     }
+    
+    static int cost = 300;
+
+    @Override
+    public int getCost() {
+        return cost;
+    }
 }

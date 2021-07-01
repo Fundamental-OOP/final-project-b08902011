@@ -20,6 +20,7 @@ public class BasicServant extends Servant {
 
         }
     }
+
     public BasicServant(Game world) {
         super(initHP, initATK, initDEF, new BasicServantState(), world);
         this.stateControl.s = this;
@@ -30,12 +31,16 @@ public class BasicServant extends Servant {
         return Overview;
     }
 
-
     public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
         return null;
     }
-    
+
     static public String ServantName() {
         return "BasicSeverant";
+    }
+
+    @Override
+    public int getCost() {
+        return 0;
     }
 }
