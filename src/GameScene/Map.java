@@ -73,7 +73,7 @@ public class Map extends Screen {
 		} else {
 			for (int z = 0; z < location.get(stage).size(); z++) {
 				int r = (int) (Math.random() * 400);
-				if (r < 700 && charCount > 0) {
+				if (r < 70 && charCount > 0) {
 					JButton b = MyButton.setConfrontButton("!?!", location.get(stage).get(z), buttonSize, this);
 					layeredPane.add(b, 0);
 					layeredPane.moveToFront(b);
