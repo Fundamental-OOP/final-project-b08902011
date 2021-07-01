@@ -75,7 +75,7 @@ public class Map extends Screen {
 				JButton b = MyButton.setGameButton("Battle", location.get(stage).get(z), buttonSize, this);
 				layeredPane.add(b, 0);
 				layeredPane.moveToFront(b);
-			}else{
+			} else {
 				JButton b = MyButton.setConfrontButton("!?!", location.get(stage).get(z), buttonSize, this);
 				layeredPane.add(b, 0);
 				layeredPane.moveToFront(b);
@@ -92,7 +92,8 @@ public class Map extends Screen {
 		this.screen.setContentPane(layeredPane);
 		System.out.println("Leave Map");
 	}
-	public int curStage(){
+
+	public int curStage() {
 		return Map.stage;
 	}
 }

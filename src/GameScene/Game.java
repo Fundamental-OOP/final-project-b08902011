@@ -224,7 +224,7 @@ public class Game extends Screen {
     private void RuleBasedAI() {
         Aicounter++;
         if (Aicounter % Aifrequence == 0) {
-            addServant(aiServants.get((int) Math.random() * aiServants.size()));
+            addServant(aiServants.get((int) (Math.random() * aiServants.size())));
             Aicounter %= Aifrequence;
         }
     }
