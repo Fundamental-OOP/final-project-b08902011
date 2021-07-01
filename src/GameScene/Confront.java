@@ -12,6 +12,7 @@ import javax.imageio.*;
 import Unit.Servant.CowGirl.*;
 import Unit.Servant.MaleZombie.*;
 import Unit.Servant.Ninja.*;
+
 import java.awt.*;
 import javax.swing.*;
 import BasicObject.*;
@@ -30,6 +31,17 @@ public class Confront extends Screen {
         Partner.add(new CowGirl(new Point(0, 0), true, null));
         Partner.add(new Ninja(new Point(0, 0), true, null));
         Partner.add(new MaleZombie(new Point(0, 0), true, null));
+        for (int y = 0; y < Scene.size(); y++) {
+            for (int x = 0; x < Scene.size() - 1; x++) {
+                for (int w = x + 1; w < Scene.size(); w++) {
+                    if ((int) (Math.random() * 3) > 1) {
+                        Collections.swap(Scene, x, w);
+                        Collections.swap(Partner, x, w);
+                    }
+                }
+            }
+        }
+
     }
     private static int counter = 0;
 
@@ -37,7 +49,7 @@ public class Confront extends Screen {
         super(sharedScreen);
         if (counter < Scene.size()) {
             layeredPane.setLayout(null);
-            Image resized = Scene.get(counter).getScaledInstance(Screen.width, Screen.height, Image.SCALE_SMOOTH);            
+            Image resized = Scene.get(counter).getScaledInstance(Screen.width, Screen.height, Image.SCALE_SMOOTH);
             ImageIcon image = new ImageIcon(resized);
             JLabel imgLabel = new JLabel(image);
             imgLabel.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
