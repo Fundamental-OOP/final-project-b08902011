@@ -4,14 +4,22 @@ import Unit.*;
 import Unit.Servant.Servant;
 import GameScene.Game;
 import java.awt.*;
-
 import java.awt.image.*;
+import javax.imageio.*;
+import java.io.*;
 
 public class FemaleZombie extends Servant {
     static int initHP = 1000;
     static int initATK = 120;
     static int initDEF = 60;
+    static BufferedImage Overview;
+    static {
+        try {
+            Overview = ImageIO.read(new File("Assets/Servant/" + ServantName() + "/overview.png"));
+        } catch (Exception e) {
 
+        }
+    }
     public FemaleZombie(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new FemaleZombieState(), world);
         this.stateControl.s = this;
@@ -26,5 +34,9 @@ public class FemaleZombie extends Servant {
 
     public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
         return new FemaleZombie(new Point(this.coordinate), this.Camp, this.myWorld);
+    }
+    
+    static public String ServantName() {
+        return "FemaleZombie";
     }
 }

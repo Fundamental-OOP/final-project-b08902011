@@ -36,12 +36,7 @@ public class Game extends Screen {
         for (int i = 0; i < playerServants.size(); i++) {
             JButton oneServant = MyButton.make("", new Point(posX + (buttonWidth + 50) * i, posY), buttonSize, this,
                     playerServants.get(i));
-            BufferedImage img = null;
-            try {
-                img = ImageIO.read(new File("Assets/battleField.png"));
-            } catch (Exception e) {
-                System.out.println("No image!");
-            }
+            BufferedImage img = playerServants.get(i).toImage();
             Image resized = img.getScaledInstance(img.getWidth(), img.getHeight(), Image.SCALE_SMOOTH);
             oneServant.setIcon(new ImageIcon(resized));
 
@@ -68,18 +63,14 @@ public class Game extends Screen {
 
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
-
-        // playerServants = player.Servants();
+        playerServants = player.Servants();
         playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
-        playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = new BasicTower(new Point(rightBornPoint), true, this);
-        // if (true) {
-        // this.addServant(new Ninja(new Point(leftBornPoint), true, this));
-        // this.addServant(new FemaleZombie(new Point(leftBornPoint), true, this));
-        // this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
-        // this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
-        // }
+        this.addServant(new Ninja(new Point(leftBornPoint), false, this));
+        this.addServant(new FemaleZombie(new Point(leftBornPoint), false, this));
+        this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
+        this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
         loadBackground();
     }
 
@@ -182,7 +173,7 @@ public class Game extends Screen {
             sharedScreen.validate();
             sharedScreen.repaint();
             try {
-                Thread.sleep(10);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

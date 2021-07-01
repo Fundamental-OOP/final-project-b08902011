@@ -4,14 +4,22 @@ import Unit.*;
 import Unit.Servant.Servant;
 import GameScene.Game;
 import java.awt.*;
-
 import java.awt.image.*;
+import javax.imageio.*;
+import java.io.*;
 
 public class CowGirl extends Servant {
     static int initHP = 200;
     static int initATK = 60;
     static int initDEF = 30;
+    static BufferedImage Overview;
+    static {
+        try {
+            Overview = ImageIO.read(new File("Assets/Servant/" + ServantName() + "/overview.png"));
+        } catch (Exception e) {
 
+        }
+    }
     public CowGirl(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new CowGirlState(), world);
         this.stateControl.s = this;
@@ -25,5 +33,9 @@ public class CowGirl extends Servant {
     }
     public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
         return new CowGirl(new Point(this.coordinate), this.Camp, this.myWorld);
+    }
+    
+    static public String ServantName() {
+        return "CowGirl";
     }
 }
