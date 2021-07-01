@@ -10,13 +10,13 @@ import BasicObject.*;
 import Player.*;
 
 public class Shop extends Screen {
-	public static final int nAvalible = 6;
+	public static final int nAvailable = 6;
 	private JLabel account = null;
 	private boolean buy = false;
 	private static Vector<Item> allItem = new Vector<Item>();
 	static {
 		allItem.add(new Soup());
-		allItem.add(new Shose());
+		allItem.add(new Shoes());
 		allItem.add(new Cake());
 		allItem.add(new Pan());
 		allItem.add(new Sword());
@@ -28,35 +28,35 @@ public class Shop extends Screen {
 	public Shop(JFrame sharedScreen, Player player) {
 		super(sharedScreen);
 		this.player = player;
-		layeredPane.setLayout(null);
+		layeredPane.setLayout(null);		
 		setBackground();
-		setShelves();
-		setButton();
+		setBackButton();
+		setShelves();		
 		setAccountBalance();
 		screen.setContentPane(layeredPane);
 	}
 
-	public void Buy() {
-		this.buy = true;
-	}
+	public void Buy() { this.buy = true;}
 
 	private Item PickItem() {
 		return allItem.get((int) (Math.random() * allItem.size()));
 	}
 
-	private void setButton() {
-		JButton backButton = MyButton.exitButton("Back", new Point(20, 50), new Dimension(150, 100), this);
+	private void setBackButton() {
+		JButton backButton = MyButton.exitButton("Back", new Point(1260, 740), new Dimension(100, 43), this);
+		backButton.setFont(new Font("Dialog", Font.BOLD, 28));
 		layeredPane.add(backButton, 0);
 		layeredPane.moveToFront(backButton);
 	}
 
 	private void setAccountBalance() {
-		account = new JLabel("Account Balance:" + String.valueOf(player.getGold()));
-		account.setBounds(50, 300, 250, 70);
-		account.setBackground(Color.GRAY);
-		account.setForeground(Color.BLUE);
+		String str = "<html><body>" + "Account Balance:" + "<br>" + String.valueOf(player.getGold()) + "<body></html>";
+		account = new JLabel(str, JLabel.CENTER);
+		account.setBounds(225, 210, 135, 160);
+		account.setBackground(Color.BLUE);
+		account.setForeground(Color.YELLOW);
 		account.setOpaque(true);
-		account.setFont(new Font("DialogInput", Font.PLAIN, 20));
+		account.setFont(new Font("DialogInput", Font.BOLD, 26));
 		layeredPane.add(account);
 		layeredPane.moveToFront(account);
 	}
@@ -86,11 +86,11 @@ public class Shop extends Screen {
 	}
 
 	private void setShelves() {
-		Dimension shelfSize = new Dimension(420, 220);
-		Dimension ButtonSize = new Dimension(420, 60);
+		Dimension shelfSize = new Dimension(420, 160);
+		Dimension buttonSize = new Dimension(420, 60);
 		Point[] location = { new Point(410, 60), new Point(858, 60), new Point(410, 300), new Point(858, 300),
 				new Point(410, 540), new Point(858, 540) };
-		for (int i = 0; i < nAvalible; i++) {
+		for (int i = 0; i < nAvailable; i++) {
 			JLabel backLabel = new JLabel();
 			backLabel.setLocation(location[i]);
 			backLabel.setSize(shelfSize);
@@ -100,17 +100,19 @@ public class Shop extends Screen {
 			layeredPane.moveToFront(backLabel);
 		}
 
-		for (int i = 0; i < nAvalible; i++) {
-			Item t = PickItem();
-			BufferedImage image = t.toImage();
+		for (int i = 0; i < nAvailable; i++) {
+			Item t = PickItem();		
 			System.out.print(t.toString() + "\n");
-			JLabel imgLabel = new JLabel(new ImageIcon(image));
+
+			BufferedImage image = t.toImage();
+			Image resized = image.getScaledInstance(420, 160, Image.SCALE_SMOOTH);
+			JLabel imgLabel = new JLabel(new ImageIcon(resized));
 			imgLabel.setBounds(location[i].x, location[i].y, shelfSize.width, shelfSize.height);
 			layeredPane.add(imgLabel, 0);
 			layeredPane.moveToFront(imgLabel);
 			JButton tButton = MyButton.buyItemButton(
-					t.toString() + " " + String.valueOf(t.getPrice()) + "$ " + t.getDescription(),
-					new Point(location[i].x, location[i].y + 160), ButtonSize, t, this);
+					t.toString() + " " + String.valueOf(t.getPrice()) + "$. " + t.getDescription(),
+					new Point(location[i].x, location[i].y + 160), buttonSize, t, this);
 			layeredPane.add(tButton, 0);
 			layeredPane.moveToFront(tButton);
 		}
