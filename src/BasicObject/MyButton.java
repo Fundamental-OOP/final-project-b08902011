@@ -147,7 +147,6 @@ public class MyButton {
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.addServant((Servant) servant.Duplicate(game, new Point(0, 0), true));
-                System.out.print("Hi\n");
             }
         });
         return b;

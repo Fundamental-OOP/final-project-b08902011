@@ -1,8 +1,6 @@
 package GameScene;
 
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.*;
 import javax.swing.*;
 import javax.imageio.*;
@@ -34,12 +32,12 @@ public class Game extends Screen {
         int buttonWidth = 130, buttonHeight = 210, posX = 400, posY = 530;
         Dimension buttonSize = new Dimension(buttonWidth, buttonHeight);
         for (int i = 0; i < playerServants.size(); i++) {
-            JButton oneServant = MyButton.setServant("", new Point(posX + (buttonWidth + 100) * i, posY), buttonSize, this,
-                    playerServants.get(i));
+            JButton oneServant = MyButton.setServant("", new Point(posX + (buttonWidth + 100) * i, posY), buttonSize,
+                    this, playerServants.get(i));
             BufferedImage img = playerServants.get(i).toImage();
             Image resized = img.getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
             oneServant.setIcon(new ImageIcon(resized));
-            
+
             JLabel servantCost = new JLabel(playerServants.get(i).getClass().toString(), JLabel.CENTER);
             servantCost.setBounds(posX + (buttonWidth + 100) * i, posY + 50, buttonWidth, 100);
 
@@ -64,7 +62,6 @@ public class Game extends Screen {
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
         playerServants = player.Servants();
-        // playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = new BasicTower(new Point(rightBornPoint), true, this);
         this.addServant(new Ninja(new Point(leftBornPoint), false, this));

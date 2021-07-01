@@ -1,7 +1,8 @@
 package GameScene;
 
 import javax.swing.JFrame;
-
+// import java.awt.Component.*;
+import java.awt.event.*;
 public class ScreenController {
     private JFrame mainScreen;
     public ScreenController(JFrame mainScreen){
@@ -10,13 +11,14 @@ public class ScreenController {
     public void start(){
         HomePage menu = new HomePage(mainScreen);
         menu.run();
-        //Hardness set.
         Map gameMap = new Map(mainScreen);
         while(!gameMap.GameOver()){
             gameMap.run();
             Screen nextScreen = gameMap.nextScreen;
             nextScreen.run();
         }
-        //play game end scene
+        End endScene = new End(mainScreen);
+        endScene.run();
+        mainScreen.dispatchEvent(new WindowEvent(mainScreen, WindowEvent.WINDOW_CLOSING));
     }
 }

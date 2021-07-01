@@ -4,7 +4,8 @@ import java.util.*;
 import Unit.Tower.*;
 import Unit.Tower.BasicTower.BasicTower;
 import Unit.Servant.*;
-
+import Unit.Servant.MaleZombie.MaleZombie;
+import java.awt.*;
 public class Player {
     public int stage = 0;
     private int gold = 100;
@@ -13,6 +14,9 @@ public class Player {
     private Vector<Servant> servants = new Vector<Servant>();
     private Tower myTower = new BasicTower();
 
+    public Player(){
+        servants.add(new MaleZombie(new Point(0, 0), true, null));
+    }
     public Vector<Servant> Servants() {
         return this.servants;
     }
