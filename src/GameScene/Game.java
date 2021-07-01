@@ -27,16 +27,29 @@ public class Game extends Screen {
     private static final Point leftBornPoint = new Point(0, 0);
     private static final Point rightBornPoint = new Point(1300, 0);
     Image background;
-    JLayeredPane layeredPane = new JLayeredPane();
 
     private void setButtons(JLayeredPane layeredPane, Vector<Servant> playerServants) {
         int buttonWidth = 200, buttonHeight = 150, posX = 300, posY = 600;
         Dimension buttonSize = new Dimension(buttonWidth, buttonHeight);
         for (int i = 0; i < playerServants.size(); i++) {
-            JButton oneServant = MyButton.make(playerServants.get(i).getClass().toString(),
-                    new Point(posX + (buttonWidth + 50) * i, posY), buttonSize, this, playerServants.get(i));
+            JButton oneServant = MyButton.make("", new Point(posX + (buttonWidth + 50) * i, posY),
+                buttonSize, this, playerServants.get(i));
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new File("Assets/battleField.png"));
+            } catch (Exception e) {
+                System.out.println("No image!");
+            }
+            Image resized = img.getScaledInstance(img.getWidth(), img.getHeight(), Image.SCALE_SMOOTH);
+            oneServant.setIcon(new ImageIcon(resized));
+
+            JLabel servantCost = new JLabel(playerServants.get(i).getClass().toString(), JLabel.CENTER);
+            servantCost.setBounds(posX + (buttonWidth + 50) * i, posY + 50, buttonWidth, 100);
+
             layeredPane.add(oneServant, 1);
             layeredPane.moveToFront(oneServant);
+            layeredPane.add(servantCost, 1);
+            layeredPane.moveToFront(servantCost);
         }
     }
 
@@ -177,9 +190,16 @@ public class Game extends Screen {
             imgLabel.setVisible(true);
             JLayeredPane layeredPane = new JLayeredPane();
             layeredPane.add(imgLabel, 0);
+
             setButtons(layeredPane, playerServants);
-            screen.setContentPane(layeredPane);
             
+            JLabel money = new JLabel("Money", JLabel.CENTER);
+            money.setBounds(70, 570, 200, 200);
+            money.setFont(new Font("Serif", Font.PLAIN, 40));
+            layeredPane.add(money, 1);
+            layeredPane.moveToFront(money);
+
+            screen.setContentPane(layeredPane);
             sharedScreen.setContentPane(screen.getContentPane());
             sharedScreen.validate();
             sharedScreen.repaint();
