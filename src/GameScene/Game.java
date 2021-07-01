@@ -18,8 +18,6 @@ import Unit.Servant.FemaleZombie.*;
 import Unit.Servant.MaleZombie.*;
 import Unit.Servant.CowGirl.*;
 import BasicObject.*;
-import java.awt.Component.*;
-
 public class Game extends Screen {
     Vector<Servant> playerServants = new Vector<Servant>();// Camp == true
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
@@ -29,6 +27,7 @@ public class Game extends Screen {
     private static final Point leftBornPoint = new Point(0, 0);
     private static final Point rightBornPoint = new Point(1300, 0);
     Image background;
+    JLayeredPane layeredPane = new JLayeredPane();
 
     private void setButtons(JLayeredPane layeredPane, Vector<Servant> playerServants) {
         int buttonWidth = 200, buttonHeight = 150, posX = 300, posY = 600;
@@ -68,17 +67,14 @@ public class Game extends Screen {
         }
         loadBackground();
 
-        // JLayeredPane layeredPane = new JLayeredPane();
-        // layeredPane.setLayout(null);
         // setButtons(layeredPane, playerServants);
         // screen.setContentPane(layeredPane);
         // screen.validate();
         // screen.repaint();
-        // // return;
         // screen.setVisible(true);
     }
 
-    private void addServant(Servant s) {
+    public void addServant(Servant s) {
         if (s.Camp) {
             this.Left.add(s);
         } else {
@@ -158,19 +154,19 @@ public class Game extends Screen {
     public void run() {
         this.running = true;
         int gameflag = 0;
-        sharedScreen.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent keyEvent) {
-                System.out.print("Listen\n");
-                if (keyEvent.getKeyCode() == KeyEvent.VK_W) {
-                    addServant(playerServants.get(0));
-                }
-            }
+        // sharedScreen.addKeyListener(new KeyAdapter() {
+        //     @Override
+        //     public void keyPressed(KeyEvent keyEvent) {
+        //         System.out.print("Listen\n");
+        //         if (keyEvent.getKeyCode() == KeyEvent.VK_W) {
+        //             addServant(playerServants.get(0));
+        //         }
+        //     }
 
-            @Override
-            public void keyReleased(KeyEvent keyEvent) {
-            }
-        });
+        //     @Override
+        //     public void keyReleased(KeyEvent keyEvent) {
+        //     }
+        // });
 
         while (this.running) {
             BufferedImage image = new BufferedImage(Screen.width, Screen.height, BufferedImage.TYPE_INT_RGB);
@@ -179,9 +175,11 @@ public class Game extends Screen {
             JLabel imgLabel = new JLabel(new ImageIcon(image));
             imgLabel.setBounds(0, 0, Screen.width, Screen.height);
             imgLabel.setVisible(true);
-            JLayeredPane tmp = new JLayeredPane();
-            tmp.add(imgLabel);
-            screen.setContentPane(tmp);
+            JLayeredPane layeredPane = new JLayeredPane();
+            layeredPane.add(imgLabel, 0);
+            setButtons(layeredPane, playerServants);
+            screen.setContentPane(layeredPane);
+            
             sharedScreen.setContentPane(screen.getContentPane());
             sharedScreen.validate();
             sharedScreen.repaint();

@@ -23,7 +23,7 @@ public class Ninja extends Servant {
         return null;
     }
 
-    public Unit Duplicate(Game world, Point coordinate, boolean Camp) {
+    public Servant Duplicate(Game world, Point coordinate, boolean Camp) {
         return null;
     }
 }
