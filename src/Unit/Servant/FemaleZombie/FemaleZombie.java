@@ -24,7 +24,7 @@ public class FemaleZombie extends Servant {
     public FemaleZombie(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new FemaleZombieState(), world);
         this.stateControl.s = this;
-        this.stride = 20;
+        this.stride = 13;
         this.setNormalAttack(1, 130, 0, true, false);
         this.addSkill(new Strengthen());
     }
