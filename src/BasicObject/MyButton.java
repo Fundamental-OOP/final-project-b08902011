@@ -82,7 +82,7 @@ public class MyButton {
         b.setContentAreaFilled(false);
         b.setBorderPainted(true);
         b.setOpaque(true);
-        b.setFont(new Font("DialogInput", Font.PLAIN, 42));
+        b.setFont(new Font("DialogInput", Font.BOLD, 42));
         b.setForeground(Color.yellow);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
