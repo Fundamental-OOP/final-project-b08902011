@@ -2,6 +2,7 @@ package Unit.Servant.MaleZombie;
 
 import Unit.*;
 import Unit.Servant.Servant;
+import Unit.Servant.Skills.AutoHeal;
 import GameScene.Game;
 import java.awt.*;
 import java.awt.image.*;
@@ -26,6 +27,7 @@ public class MaleZombie extends Servant {
         this.stateControl.s = this;
         this.stride = 5;
         this.setNormalAttack(1, 80, 0, true, false);
+        this.addSkill(new AutoHeal());
     }
 
     @Override

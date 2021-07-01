@@ -11,7 +11,6 @@ public abstract class Skill {
     public boolean toenemy = false;
     public boolean toally = false;
     private int CoolDownCounter = 0;
-    static protected String description = "";
 
     public Skill(int nTarget, int range, int cd, boolean toenemy, boolean toally) {
         this.nTarget = nTarget;
@@ -19,10 +18,6 @@ public abstract class Skill {
         this.toally = toally;
         this.range = range;
         this.cd = cd;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public abstract void Act(Unit performer, Vector<Unit> victim);

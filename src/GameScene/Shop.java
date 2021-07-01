@@ -101,9 +101,7 @@ public class Shop extends Screen {
 		}
 
 		for (int i = 0; i < nAvailable; i++) {
-			Item t = PickItem();		
-			System.out.print(t.toString() + "\n");
-
+			Item t = PickItem();
 			BufferedImage image = t.toImage();
 			Image resized = image.getScaledInstance(420, 160, Image.SCALE_SMOOTH);
 			JLabel imgLabel = new JLabel(new ImageIcon(resized));

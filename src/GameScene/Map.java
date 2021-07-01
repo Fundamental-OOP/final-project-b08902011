@@ -15,7 +15,7 @@ public class Map extends Screen {
 	private static Vector<Vector<Point>> location = new Vector<Vector<Point>>();
 	private boolean gameOver = false;
 	public Screen nextScreen = null;
-	public int charCount = 2;
+	public static int charCount = 2;
 
 	static {
 		location.add(new Vector<Point>());
@@ -73,16 +73,17 @@ public class Map extends Screen {
 		} else {
 			for (int z = 0; z < location.get(stage).size(); z++) {
 				int r = (int) (Math.random() * 400);
-				if (r < 100 && charCount > 0) {
-					JButton b = MyButton.setShopButton("Shop", location.get(stage).get(z), buttonSize, this);
+				if (r < 700 && charCount > 0) {
+					JButton b = MyButton.setConfrontButton("!?!", location.get(stage).get(z), buttonSize, this);
 					layeredPane.add(b, 0);
 					layeredPane.moveToFront(b);
-				} else if (r < 250) {
+
+				} else if (r < 300) {
 					JButton b = MyButton.setGameButton("Battle", location.get(stage).get(z), buttonSize, this);
 					layeredPane.add(b, 0);
 					layeredPane.moveToFront(b);
 				} else {
-					JButton b = MyButton.setConfrontButton("!?!", location.get(stage).get(z), buttonSize, this);
+					JButton b = MyButton.setShopButton("Shop", location.get(stage).get(z), buttonSize, this);
 					layeredPane.add(b, 0);
 					layeredPane.moveToFront(b);
 				}
@@ -94,10 +95,11 @@ public class Map extends Screen {
 	public void end() {
 		super.running = false;
 		Map.stage++;
-		this.screen.removeAll();
-		this.setButtons();
-		this.screen.setContentPane(layeredPane);
-		System.out.println("Leave Map");
+		if (Map.stage < Map.endStage) {
+			this.screen.removeAll();
+			this.setButtons();
+			this.screen.setContentPane(layeredPane);
+		}
 	}
 
 	public int curStage() {

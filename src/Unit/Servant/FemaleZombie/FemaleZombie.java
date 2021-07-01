@@ -2,6 +2,7 @@ package Unit.Servant.FemaleZombie;
 
 import Unit.*;
 import Unit.Servant.Servant;
+import Unit.Servant.Skills.Strengthen;
 import GameScene.Game;
 import java.awt.*;
 import java.awt.image.*;
@@ -25,6 +26,7 @@ public class FemaleZombie extends Servant {
         this.stateControl.s = this;
         this.stride = 20;
         this.setNormalAttack(1, 130, 0, true, false);
+        this.addSkill(new Strengthen());
     }
 
     @Override
