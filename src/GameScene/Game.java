@@ -25,8 +25,8 @@ public class Game extends Screen {
     Vector<Servant> Right = new Vector<Servant>();
     Tower LeftTower = null;
     Tower RightTower = null;
-    private static final Point leftBornPoint = new Point(0, 0);
-    private static final Point rightBornPoint = new Point(1000, 0);
+    private static final Point leftBornPoint = new Point(200, 0);
+    private static final Point rightBornPoint = new Point(1200, 0);
     Image background;
     private int fee = 0;
 
@@ -40,8 +40,8 @@ public class Game extends Screen {
         // playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
         // playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
         // }
-        LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
-        RightTower = new BasicTower(new Point(rightBornPoint), true, this);
+        LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(150, -50), true);
+        RightTower = new BasicTower(new Point(1200, -50), true, this);
         if (true) {
             // this.addServant(new Ninja(new Point(rightBornPoint), false, this));
             // this.addServant(new FemaleZombie(new Point(rightBornPoint), false, this));
@@ -65,13 +65,20 @@ public class Game extends Screen {
 
             String str = playerServants.get(i).getClass().toString();
             String[] split = str.split("\\.");
-            JLabel servantCost = new JLabel(split[2], JLabel.CENTER);
+            JLabel servantName = new JLabel(split[2], JLabel.CENTER);
+            servantName.setFont(new Font("DialogInput", Font.BOLD, 16));
+            servantName.setForeground(Color.white);
+            servantName.setBounds(posX + (buttonWidth + 100) * i, posY + 170, buttonWidth, 100);
+
+            JLabel servantCost = new JLabel("Cost:" + String.valueOf(playerServants.get(i).getCost()), JLabel.CENTER);
             servantCost.setFont(new Font("DialogInput", Font.BOLD, 16));
             servantCost.setForeground(Color.white);
-            servantCost.setBounds(posX + (buttonWidth + 100) * i, posY + 170, buttonWidth, 100);
+            servantCost.setBounds(posX + (buttonWidth + 100) * i, posY + 190, buttonWidth, 100);
 
             layeredPane.add(oneServant, 1);
             layeredPane.moveToFront(oneServant);
+            layeredPane.add(servantName, 1);
+            layeredPane.moveToFront(servantName);
             layeredPane.add(servantCost, 1);
             layeredPane.moveToFront(servantCost);
         }
@@ -181,7 +188,7 @@ public class Game extends Screen {
             setButtons(layeredPane, playerServants);
 
             JLabel money = new JLabel("Gold:" + String.valueOf(fee), JLabel.CENTER);
-            money.setBounds(100, 570, 200, 200);
+            money.setBounds(150, 570, 200, 200);
             money.setFont(new Font("SansSerif", Font.PLAIN, 40));
             layeredPane.add(money, 1);
             layeredPane.moveToFront(money);
