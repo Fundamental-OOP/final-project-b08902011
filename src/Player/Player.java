@@ -52,6 +52,7 @@ public class Player {
 
     public int addItem(Item i) {
         asset.addElement(i);
+        i.onGet(this);
         return asset.size();
     }
 

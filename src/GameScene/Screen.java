@@ -21,7 +21,7 @@ public class Screen{
 	}
 	public void run() {
 		this.running = true;
-		// sharedScreen.getContentPane().removeAll();
+		sharedScreen.getContentPane().removeAll();
 		sharedScreen.setContentPane(screen.getContentPane());
 		sharedScreen.validate();
 		sharedScreen.repaint();
