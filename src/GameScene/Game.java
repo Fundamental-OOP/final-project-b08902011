@@ -14,6 +14,7 @@ import Unit.Servant.*;
 import Unit.Servant.Skills.*;
 import Unit.Servant.Ninja.*;
 import Unit.Servant.FemaleZombie.*;
+import Unit.Servant.Knight.Knight;
 import Unit.Servant.MaleZombie.*;
 import Unit.Servant.CowGirl.*;
 import BasicObject.*;
@@ -32,20 +33,21 @@ public class Game extends Screen {
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
         playerServants = player.Servants();
-        if (true) {
-            playerServants = new Vector<Servant>();
-            playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
-            playerServants.add(new MaleZombie(new Point(leftBornPoint), true, this));
-            playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
-            playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
-        }
+        // if (true) {
+        // playerServants = new Vector<Servant>();
+        // playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
+        // playerServants.add(new MaleZombie(new Point(leftBornPoint), true, this));
+        // playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
+        // playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
+        // }
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = new BasicTower(new Point(rightBornPoint), true, this);
         if (true) {
-            this.addServant(new Ninja(new Point(rightBornPoint), false, this));
-            this.addServant(new FemaleZombie(new Point(rightBornPoint), false, this));
-            this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
-            this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
+            // this.addServant(new Ninja(new Point(rightBornPoint), false, this));
+            // this.addServant(new FemaleZombie(new Point(rightBornPoint), false, this));
+            // this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
+            // this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
+            this.addServant(new Knight(new Point(rightBornPoint), false, this));
         }
         loadBackground();
         fee = 0;
