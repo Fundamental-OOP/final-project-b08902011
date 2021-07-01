@@ -78,11 +78,10 @@ public class MyButton {
         b = new JButton(text);
         b.setLocation(p);
         b.setSize(d);
-        b.setBackground(Color.lightGray);
+        b.setBackground(Color.darkGray);
         b.setContentAreaFilled(false);
         b.setBorderPainted(true);
         b.setOpaque(true);
-        b.setFont(new Font("DialogInput", Font.BOLD, 42));
         b.setForeground(Color.yellow);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
