@@ -78,12 +78,12 @@ public class MyButton {
         b = new JButton(text);
         b.setLocation(p);
         b.setSize(d);
-        b.setBackground(Color.RED);
+        b.setBackground(Color.lightGray);
         b.setContentAreaFilled(false);
         b.setBorderPainted(true);
         b.setOpaque(true);
         b.setFont(new Font("DialogInput", Font.PLAIN, 42));
-        b.setForeground(Color.green);
+        b.setForeground(Color.yellow);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 self.end();
@@ -129,7 +129,7 @@ public class MyButton {
                         ((JButton) e.getSource()).setText("Sold!");
                         self.Buy();
                     } else {
-                        ((JButton) e.getSource()).setText("Not Enough!");
+                        ((JButton) e.getSource()).setText("NOT ENOUGH!!");
                     }
                 }
             }

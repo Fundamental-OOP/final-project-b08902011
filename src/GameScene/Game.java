@@ -64,7 +64,9 @@ public class Game extends Screen {
             String str = playerServants.get(i).getClass().toString();
             String[] split = str.split("\\.");
             JLabel servantCost = new JLabel(split[2], JLabel.CENTER);
-            servantCost.setBounds(posX + (buttonWidth + 100) * i, posY + 50, buttonWidth, 100);
+            servantCost.setFont(new Font("DialogInput", Font.BOLD, 16));
+            servantCost.setForeground(Color.white);
+            servantCost.setBounds(posX + (buttonWidth + 100) * i, posY + 170, buttonWidth, 100);
 
             layeredPane.add(oneServant, 1);
             layeredPane.moveToFront(oneServant);
@@ -176,9 +178,9 @@ public class Game extends Screen {
 
             setButtons(layeredPane, playerServants);
 
-            JLabel money = new JLabel("Fee:" + String.valueOf(fee), JLabel.CENTER);
-            money.setBounds(70, 570, 200, 200);
-            money.setFont(new Font("Serif", Font.PLAIN, 40));
+            JLabel money = new JLabel("Gold:" + String.valueOf(fee), JLabel.CENTER);
+            money.setBounds(100, 570, 200, 200);
+            money.setFont(new Font("SansSerif", Font.PLAIN, 40));
             layeredPane.add(money, 1);
             layeredPane.moveToFront(money);
 
