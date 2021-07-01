@@ -136,7 +136,7 @@ public class MyButton {
         return b;
     }
 
-    public static JButton make(String text, Point p, Dimension d, Game game, Servant servant) {// Game
+    public static JButton setServant(String text, Point p, Dimension d, Game game, Servant servant) {// Game
         JButton b = null;
         b = new JButton(text);
         b.setLocation(p);

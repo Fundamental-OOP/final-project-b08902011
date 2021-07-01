@@ -31,17 +31,17 @@ public class Game extends Screen {
     Image background;
 
     private void setButtons(JLayeredPane layeredPane, Vector<Servant> playerServants) {
-        int buttonWidth = 200, buttonHeight = 150, posX = 300, posY = 600;
+        int buttonWidth = 130, buttonHeight = 210, posX = 400, posY = 530;
         Dimension buttonSize = new Dimension(buttonWidth, buttonHeight);
         for (int i = 0; i < playerServants.size(); i++) {
-            JButton oneServant = MyButton.make("", new Point(posX + (buttonWidth + 50) * i, posY), buttonSize, this,
+            JButton oneServant = MyButton.setServant("", new Point(posX + (buttonWidth + 100) * i, posY), buttonSize, this,
                     playerServants.get(i));
             BufferedImage img = playerServants.get(i).toImage();
-            Image resized = img.getScaledInstance(img.getWidth(), img.getHeight(), Image.SCALE_SMOOTH);
+            Image resized = img.getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
             oneServant.setIcon(new ImageIcon(resized));
-
+            
             JLabel servantCost = new JLabel(playerServants.get(i).getClass().toString(), JLabel.CENTER);
-            servantCost.setBounds(posX + (buttonWidth + 50) * i, posY + 50, buttonWidth, 100);
+            servantCost.setBounds(posX + (buttonWidth + 100) * i, posY + 50, buttonWidth, 100);
 
             layeredPane.add(oneServant, 1);
             layeredPane.moveToFront(oneServant);
