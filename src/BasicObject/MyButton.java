@@ -126,7 +126,7 @@ public class MyButton {
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 assert (e.getSource().equals(this));
-                // TODO
+                game.addServant(servant);
             }
         });
         return b;
