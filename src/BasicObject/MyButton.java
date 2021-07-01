@@ -122,7 +122,7 @@ public class MyButton {
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (!((JButton) e.getSource()).getText().equals("Sold!")) {
-                    if (player.getGold() > item.getPrice()) {
+                    if (player.getGold() >= item.getPrice()) {
                         player.spent(item.getPrice());
                         player.addItem(item);
                         ((JButton) e.getSource()).setText("Sold!");

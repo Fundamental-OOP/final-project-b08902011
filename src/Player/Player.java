@@ -4,8 +4,9 @@ import java.util.*;
 import Unit.Tower.*;
 import Unit.Tower.BasicTower.BasicTower;
 import Unit.Servant.*;
-import Unit.Servant.MaleZombie.MaleZombie;
+import Unit.Servant.FemaleZombie.*;
 import java.awt.*;
+
 public class Player {
     public int stage = 0;
     private int gold = 100;
@@ -14,9 +15,10 @@ public class Player {
     private Vector<Servant> servants = new Vector<Servant>();
     private Tower myTower = new BasicTower();
 
-    public Player(){
-        servants.add(new MaleZombie(new Point(0, 0), true, null));
+    public Player() {
+        servants.add(new FemaleZombie(new Point(0, 0), true, null));
     }
+
     public Vector<Servant> Servants() {
         return this.servants;
     }
@@ -67,5 +69,10 @@ public class Player {
     public int lossItem(Item i) {
         asset.removeElement(i);
         return asset.size();
+    }
+
+    public void Win() {
+        this.gold += 100 * (this.stage + this.hardness);
+        this.stage++;
     }
 }

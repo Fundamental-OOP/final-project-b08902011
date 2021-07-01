@@ -9,9 +9,9 @@ import javax.imageio.*;
 import java.io.*;
 
 public class FemaleZombie extends Servant {
-    static int initHP = 1000;
-    static int initATK = 120;
-    static int initDEF = 60;
+    static int initHP = 500;
+    static int initATK = 50;
+    static int initDEF = 50;
     static BufferedImage Overview;
     static {
         try {
@@ -23,7 +23,7 @@ public class FemaleZombie extends Servant {
     public FemaleZombie(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new FemaleZombieState(), world);
         this.stateControl.s = this;
-        this.stride = 5;
+        this.stride = 20;
         this.setNormalAttack(1, 130, 0, true, false);
     }
 
@@ -40,7 +40,7 @@ public class FemaleZombie extends Servant {
         return "FemaleZombie";
     }
     
-    static int cost = 40;
+    static int cost = 60;
 
     @Override
     public int getCost() {

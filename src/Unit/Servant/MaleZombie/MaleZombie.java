@@ -10,8 +10,8 @@ import java.io.*;
 
 public class MaleZombie extends Servant {
     static int initHP = 2000;
-    static int initATK = 200;
-    static int initDEF = 40;
+    static int initATK = 100;
+    static int initDEF = 0;
     static BufferedImage Overview;
     static {
         try {
@@ -24,7 +24,7 @@ public class MaleZombie extends Servant {
     public MaleZombie(Point coordinate, boolean Camp, Game world) {
         super(coordinate, Camp, initHP, initATK, initDEF, new MaleZombieState(), world);
         this.stateControl.s = this;
-        this.stride = 7;
+        this.stride = 5;
         this.setNormalAttack(1, 80, 0, true, false);
     }
 

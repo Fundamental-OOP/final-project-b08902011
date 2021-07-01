@@ -21,6 +21,7 @@ import BasicObject.*;
 
 public class Game extends Screen {
     Vector<Servant> playerServants = new Vector<Servant>();// Camp == true
+    Vector<Servant> aiServants = new Vector<Servant>();// Camp == true
     Vector<Servant> Left = new Vector<Servant>();// Camp == true
     Vector<Servant> Right = new Vector<Servant>();
     Tower LeftTower = null;
@@ -29,6 +30,9 @@ public class Game extends Screen {
     private static final Point rightBornPoint = new Point(1200, 0);
     Image background;
     private int fee = 0;
+    private int feeIncrement = 1;
+    private int Aicounter = 0;
+    private int Aifrequence = 100;
 
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
@@ -42,9 +46,17 @@ public class Game extends Screen {
             playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
             playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
         }
+        setDifficaulty(player);
         loadBackground();
-        this.Aifequence = 80 - 7 * (player.hardness + player.stage);
-        fee = 0;
+    }
+
+    private void setDifficaulty(Player player) {
+        aiServants.add(new Knight(new Point(rightBornPoint), false, this));
+        aiServants.get(0).addDef((player.hardness + player.stage));
+        aiServants.get(0).addATK(10 * (player.hardness + player.stage));
+        aiServants.get(0).addStride((player.hardness + player.stage));
+        this.Aifrequence = 80 - 7 * (player.hardness + player.stage);
+        this.feeIncrement = 4 - player.hardness;
     }
 
     private void setButtons(JLayeredPane layeredPane, Vector<Servant> playerServants) {
@@ -170,7 +182,7 @@ public class Game extends Screen {
         int gameflag = 0;
         while (this.running) {
             RuleBasedAI();
-            fee += 5;
+            fee += feeIncrement;
             BufferedImage image = new BufferedImage(Screen.width, Screen.height, BufferedImage.TYPE_INT_RGB);
             gameflag = TimeSlice(image.createGraphics());
 
@@ -209,14 +221,11 @@ public class Game extends Screen {
         System.out.print("Calling end in game do nothing.");
     }
 
-    private int Aicounter = 0;
-    private int Aifequence = 100;
-
     private void RuleBasedAI() {
         Aicounter++;
-        if (Aicounter % Aifequence == 0) {
-            addServant(new Knight(new Point(rightBornPoint), false, this));
-            Aicounter %= 100;
+        if (Aicounter % Aifrequence == 0) {
+            addServant(aiServants.get((int) Math.random() * aiServants.size()));
+            Aicounter %= Aifrequence;
         }
     }
 }

@@ -9,9 +9,9 @@ import javax.imageio.*;
 import java.io.*;
 
 public class Knight extends Servant {
-    static int initHP = 1000;
-    static int initATK = 100;
-    static int initDEF = 40;
+    static int initHP = 2000;
+    static int initATK = 200;
+    static int initDEF = 10;
     static BufferedImage Overview;
     static {
         try {

@@ -9,9 +9,9 @@ import javax.imageio.*;
 import java.io.*;
 
 public class Ninja extends Servant {
-    static int initHP = 500;
-    static int initATK = 130;
-    static int initDEF = 50;
+    static int initHP = 1000;
+    static int initATK = 150;
+    static int initDEF = 20;
     static BufferedImage Overview;
     static {
         try {

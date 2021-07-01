@@ -26,6 +26,9 @@ public class ScreenController {
             this.player.stage++;
             Screen nextScreen = gameMap.nextScreen;
             status = nextScreen.run();
+            if(status>0){
+                player.Win();
+            }
         }
         if (status >= 0) {
             End endScene = new End(mainScreen);
