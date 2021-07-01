@@ -38,13 +38,13 @@ public class Game extends Screen {
         playerServants = player.Servants();
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(150, -50), true);
         RightTower = new BasicTower(new Point(1200, -50), true, this);
-        if (true) {
-            playerServants = new Vector<Servant>();
-            playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
-            playerServants.add(new MaleZombie(new Point(leftBornPoint), true, this));
-            playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
-            playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
-        }
+        // if (true) {
+        //     playerServants = new Vector<Servant>();
+        //     playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
+        //     playerServants.add(new MaleZombie(new Point(leftBornPoint), true, this));
+        //     playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
+        //     playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
+        // }
         setDifficulty(player);
         loadBackground();
     }

@@ -15,7 +15,7 @@ public class Map extends Screen {
 	private static Vector<Vector<Point>> location = new Vector<Vector<Point>>();
 	private boolean gameOver = false;
 	public Screen nextScreen = null;
-	public int charCount = 3;
+	public int charCount = 2;
 
 	static {
 		location.add(new Vector<Point>());
