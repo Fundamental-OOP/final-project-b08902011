@@ -14,7 +14,7 @@ public class Main {
         monitor.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Player player = new Player();
         MyButton.Init(monitor, player);
-        ScreenController gameflow = new ScreenController(monitor);
+        ScreenController gameflow = new ScreenController(monitor,player);
         gameflow.start();
     }
 }

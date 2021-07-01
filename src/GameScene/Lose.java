@@ -6,12 +6,12 @@ import javax.swing.*;
 import java.io.*;
 import javax.imageio.*;
 
-public class End extends Screen {
-    public End(JFrame sharedScreen) {
+public class Lose extends Screen {
+    public Lose(JFrame sharedScreen) {
         super(sharedScreen);
         Image img = null;
         try {
-            img = ImageIO.read(new File("Assets/end.jpg")).getScaledInstance(Screen.width, Screen.height,
+            img = ImageIO.read(new File("Assets/lose.png")).getScaledInstance(Screen.width, Screen.height,
                     Image.SCALE_SMOOTH);
         } catch (Exception e) {
             System.out.println("No image!");

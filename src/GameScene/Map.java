@@ -6,14 +6,14 @@ import javax.imageio.*;
 import java.awt.image.*;
 import java.io.*;
 import BasicObject.*;
+
 import java.util.*;
 
 public class Map extends Screen {
 	private static int stage = 0;
-	private static final int endStage = 3;
+	private static final int endStage = 4;
 	private static Vector<Vector<Point>> location = new Vector<Vector<Point>>();
 	private boolean gameOver = false;
-	
 	public Screen nextScreen = null;
 	static {
 		location.add(new Vector<Point>());
@@ -91,5 +91,8 @@ public class Map extends Screen {
 		this.setButtons();
 		this.screen.setContentPane(layeredPane);
 		System.out.println("Leave Map");
+	}
+	public int curStage(){
+		return Map.stage;
 	}
 }

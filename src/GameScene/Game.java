@@ -25,8 +25,31 @@ public class Game extends Screen {
     Tower LeftTower = null;
     Tower RightTower = null;
     private static final Point leftBornPoint = new Point(0, 0);
-    private static final Point rightBornPoint = new Point(1300, 0);
+    private static final Point rightBornPoint = new Point(1000, 0);
     Image background;
+    private int fee = 0;
+
+    public Game(JFrame sharedScreen, Player player) {
+        super(sharedScreen);
+        playerServants = player.Servants();
+        if (true) {
+            playerServants = new Vector<Servant>();
+            playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
+            playerServants.add(new MaleZombie(new Point(leftBornPoint), true, this));
+            playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
+            playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
+        }
+        LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
+        RightTower = new BasicTower(new Point(rightBornPoint), true, this);
+        if (true) {
+            this.addServant(new Ninja(new Point(rightBornPoint), false, this));
+            this.addServant(new FemaleZombie(new Point(rightBornPoint), false, this));
+            this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
+            this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
+        }
+        loadBackground();
+        fee = 0;
+    }
 
     private void setButtons(JLayeredPane layeredPane, Vector<Servant> playerServants) {
         int buttonWidth = 130, buttonHeight = 210, posX = 400, posY = 530;
@@ -37,7 +60,7 @@ public class Game extends Screen {
             BufferedImage img = playerServants.get(i).toImage();
             Image resized = img.getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
             oneServant.setIcon(new ImageIcon(resized));
-            
+
             String str = playerServants.get(i).getClass().toString();
             String[] split = str.split("\\.");
             JLabel servantCost = new JLabel(split[2], JLabel.CENTER);
@@ -61,30 +84,12 @@ public class Game extends Screen {
         background = resized;
     }
 
-    public Game(JFrame sharedScreen, Player player) {
-        super(sharedScreen);
-        playerServants = player.Servants();
-        if(true){
-            playerServants = new Vector<Servant>();
-            playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
-            playerServants.add(new MaleZombie(new Point(leftBornPoint), true, this));
-            playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
-            playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
-        }
-        LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
-        RightTower = new BasicTower(new Point(rightBornPoint), true, this);
-        if(true){
-            this.addServant(new Ninja(new Point(leftBornPoint), false, this));
-            this.addServant(new FemaleZombie(new Point(leftBornPoint), false, this));
-            this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
-            this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
-        }
-        loadBackground();
-    }
-
     public void addServant(Servant s) {
         if (s.Camp) {
-            this.Left.add(s);
+            if (s.getCost() <= fee) {
+                fee -= s.getCost();
+                this.Left.add(s);
+            }
         } else {
             this.Right.add(s);
         }
@@ -155,15 +160,11 @@ public class Game extends Screen {
     }
 
     @Override
-    public void run() {
+    public int run() {
         this.running = true;
         int gameflag = 0;
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         while (this.running) {
+            fee += 5;
             BufferedImage image = new BufferedImage(Screen.width, Screen.height, BufferedImage.TYPE_INT_RGB);
             gameflag = TimeSlice(image.createGraphics());
 
@@ -175,7 +176,7 @@ public class Game extends Screen {
 
             setButtons(layeredPane, playerServants);
 
-            JLabel money = new JLabel("Money", JLabel.CENTER);
+            JLabel money = new JLabel("Fee:" + String.valueOf(fee), JLabel.CENTER);
             money.setBounds(70, 570, 200, 200);
             money.setFont(new Font("Serif", Font.PLAIN, 40));
             layeredPane.add(money, 1);
@@ -190,14 +191,11 @@ public class Game extends Screen {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (gameflag == 1) {
-                System.out.print("Win");
-                return;
-            } else if (gameflag == -1) {
-                System.out.print("Lose");
-                return;
+            if (gameflag != 0) {
+                return gameflag;
             }
         }
+        return -1;
     }
 
     @Override

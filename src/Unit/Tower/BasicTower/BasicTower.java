@@ -18,13 +18,13 @@ public class BasicTower extends Tower {
     static {
         for (int i = 1; i <= nIdleImage; i++) {
             try {
-                img.add(ImageIO.read(new File("Assets/Tower/BasicTower/Idle/" + String.valueOf(i) + ".jpg")));
+                img.add(ImageIO.read(new File("Assets/Tower/BasicTower/Idle/" + String.valueOf(i) + ".png")));
             } catch (Exception e) {
             }
         }
     }
     private int imgCounter = 0;
-    private Dimension size = new Dimension(100, 100);
+    private Dimension size = new Dimension(300, 400);
 
     public BasicTower() {
         super(1000, 10);
@@ -37,7 +37,8 @@ public class BasicTower extends Tower {
     }
 
     public void slice(Graphics g) {// Vector<Unit> target
-        g.drawImage(img.get(imgCounter), this.coordinate.x, this.coordinate.y, size.width, size.height, null);
+        g.drawImage(img.get(imgCounter), this.coordinate.x, 200 + this.coordinate.y, size.width,
+                size.height, null);
         imgCounter++;
         (imgCounter) %= nIdleImage;
     }

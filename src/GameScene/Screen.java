@@ -23,7 +23,7 @@ public class Screen {
 		this.running = false;
 	}
 
-	public void run() {
+	public int run() {
 		this.running = true;
 		sharedScreen.setContentPane(screen.getContentPane());
 		sharedScreen.validate();
@@ -36,6 +36,7 @@ public class Screen {
 
 			}
 		}
+		return 0;
 	}
 
 	public void runningEvent() {

@@ -68,9 +68,4 @@ public class Player {
         asset.removeElement(i);
         return asset.size();
     }
-
-    public int Win() {
-        this.stage++;
-        return this.stage;
-    }
 }

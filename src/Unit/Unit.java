@@ -17,7 +17,7 @@ public abstract class Unit {
     protected int hp = 0;
     protected int def = 0;
     protected Game myWorld = null;
-    public static final int MAX_HEIGHT = 600;
+    public static final int MAX_HEIGHT = 500;
 
     public Unit(Point coordinate, boolean Camp, int hp, int def, Game myWorld) {
         this.coordinate = coordinate;
