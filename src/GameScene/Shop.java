@@ -111,7 +111,7 @@ public class Shop extends Screen {
 			layeredPane.add(imgLabel, 0);
 			layeredPane.moveToFront(imgLabel);
 			JButton tButton = MyButton.buyItemButton(
-					t.toString() + " " + String.valueOf(t.getPrice()) + "$. " + t.getDescription(),
+					t.toString() + " $" + String.valueOf(t.getPrice()) + ". " + t.getDescription(),
 					new Point(location[i].x, location[i].y + 160), buttonSize, t, this);
 			layeredPane.add(tButton, 0);
 			layeredPane.moveToFront(tButton);

@@ -21,11 +21,11 @@ public class HomePage extends Screen {
 
 	private void setButton(Container contentPane) {
 		Dimension buttonSize = new Dimension(200, 200);
-		JButton easy = MyButton.setHardnessButton("Easy", new Point(220, 460), buttonSize, 1, this);
+		JButton easy = MyButton.setDifficultyButton("Easy", new Point(220, 460), buttonSize, 1, this);
 		contentPane.add(easy);
-		JButton medium = MyButton.setHardnessButton("Medium", new Point(670, 460), buttonSize, 2, this);
+		JButton medium = MyButton.setDifficultyButton("Medium", new Point(670, 460), buttonSize, 2, this);
 		contentPane.add(medium);
-		JButton hard = MyButton.setHardnessButton("Hard", new Point(1120, 460), buttonSize, 3, this);
+		JButton hard = MyButton.setDifficultyButton("Hard", new Point(1120, 460), buttonSize, 3, this);
 		contentPane.add(hard);
 	}
 }
