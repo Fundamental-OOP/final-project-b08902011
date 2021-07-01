@@ -37,8 +37,10 @@ public class Game extends Screen {
             BufferedImage img = playerServants.get(i).toImage();
             Image resized = img.getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
             oneServant.setIcon(new ImageIcon(resized));
-
-            JLabel servantCost = new JLabel(playerServants.get(i).getClass().toString(), JLabel.CENTER);
+            
+            String str = playerServants.get(i).getClass().toString();
+            String[] split = str.split("\\.");
+            JLabel servantCost = new JLabel(split[2], JLabel.CENTER);
             servantCost.setBounds(posX + (buttonWidth + 100) * i, posY + 50, buttonWidth, 100);
 
             layeredPane.add(oneServant, 1);
@@ -62,12 +64,21 @@ public class Game extends Screen {
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
         playerServants = player.Servants();
+        if(true){
+            playerServants = new Vector<Servant>();
+            playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
+            playerServants.add(new MaleZombie(new Point(leftBornPoint), true, this));
+            playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
+            playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
+        }
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = new BasicTower(new Point(rightBornPoint), true, this);
-        this.addServant(new Ninja(new Point(leftBornPoint), false, this));
-        this.addServant(new FemaleZombie(new Point(leftBornPoint), false, this));
-        this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
-        this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
+        if(true){
+            this.addServant(new Ninja(new Point(leftBornPoint), false, this));
+            this.addServant(new FemaleZombie(new Point(leftBornPoint), false, this));
+            this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
+            this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
+        }
         loadBackground();
     }
 
