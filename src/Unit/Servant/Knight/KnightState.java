@@ -8,7 +8,7 @@ import java.util.*;
 import java.awt.image.*;
 
 public class KnightState extends State {
-    private static final Dimension size = new Dimension(180, 180);
+    private static final Dimension size = new Dimension(180, 220);
     private static Vector<BufferedImage> attackImage = new Vector<BufferedImage>();
     private static Vector<BufferedImage> deadImage = new Vector<BufferedImage>();
     private static Vector<BufferedImage> walkImage = new Vector<BufferedImage>();

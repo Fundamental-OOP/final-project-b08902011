@@ -33,23 +33,17 @@ public class Game extends Screen {
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
         playerServants = player.Servants();
-        // if (true) {
-        // playerServants = new Vector<Servant>();
-        // playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
-        // playerServants.add(new MaleZombie(new Point(leftBornPoint), true, this));
-        // playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
-        // playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
-        // }
+        if (true) {
+            playerServants = new Vector<Servant>();
+            playerServants.add(new Ninja(new Point(leftBornPoint), true, this));
+            playerServants.add(new MaleZombie(new Point(leftBornPoint), true, this));
+            playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
+            playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
+        }
         LeftTower = (Tower) player.MyTower().Duplicate(this, new Point(leftBornPoint), true);
         RightTower = new BasicTower(new Point(rightBornPoint), true, this);
-        if (true) {
-            // this.addServant(new Ninja(new Point(rightBornPoint), false, this));
-            // this.addServant(new FemaleZombie(new Point(rightBornPoint), false, this));
-            // this.addServant(new MaleZombie(new Point(rightBornPoint), false, this));
-            // this.addServant(new CowGirl(new Point(rightBornPoint), false, this));
-            this.addServant(new Knight(new Point(rightBornPoint), false, this));
-        }
         loadBackground();
+        this.Aifequence = 100 - 7 * (player.hardness + player.stage);
         fee = 0;
     }
 
@@ -168,6 +162,7 @@ public class Game extends Screen {
         this.running = true;
         int gameflag = 0;
         while (this.running) {
+            RuleBasedAI();
             fee += 5;
             BufferedImage image = new BufferedImage(Screen.width, Screen.height, BufferedImage.TYPE_INT_RGB);
             gameflag = TimeSlice(image.createGraphics());
@@ -205,5 +200,15 @@ public class Game extends Screen {
     @Override
     public void end() {
         System.out.print("Calling end in game do nothing.");
+    }
+
+    private int Aicounter = 0;
+    private int Aifequence = 100;
+    private void RuleBasedAI() {
+        Aicounter++;
+        if (Aicounter % Aifequence == 0) {
+            addServant(new Knight(new Point(rightBornPoint), false, this));
+            Aicounter %= 100;
+        }
     }
 }
