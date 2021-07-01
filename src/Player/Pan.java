@@ -19,7 +19,7 @@ public class Pan extends Item {
     public Pan() {
         super();
         this.price = 1000;
-        this.description = "It can cook good meal.";
+        this.description = "It can cook good meal~";
     }
 
     @Override

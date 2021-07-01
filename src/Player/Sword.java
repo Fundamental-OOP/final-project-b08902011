@@ -21,7 +21,7 @@ public class Sword extends Item {
     public Sword() {
         super();
         this.price = 100;
-        this.description = "Add 10 Atk to your Servants.";
+        this.description = "Add 10 ATK to your Servants.";
     }
 
     @Override

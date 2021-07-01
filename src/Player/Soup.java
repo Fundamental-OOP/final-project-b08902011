@@ -16,7 +16,7 @@ public class Soup extends Item {
     public Soup(){
         super();
         this.price = 30;
-        this.description = "Add 100 Hp to your Tower.";
+        this.description = "Add 100 HP to your Tower.";
     }
     @Override
     public String toString() {

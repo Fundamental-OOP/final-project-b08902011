@@ -21,7 +21,7 @@ public class Armor extends Item {
     public Armor() {
         super();
         this.price = 200;
-        this.description = "Add 20 Def to your Servants.";
+        this.description = "Add 20 DEF to your Servants.";
     }
 
     @Override

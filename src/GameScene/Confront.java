@@ -62,11 +62,12 @@ public class Confront extends Screen {
             layeredPane.add(imgLabel2, 1);
             layeredPane.moveToFront(imgLabel2);
 
-            JLabel Label = new JLabel("Let me join you!");
-            Label.setFont(new Font("Dialog", Font.BOLD, 60));
-            Label.setBounds(520, 85, 600, 100);
-            layeredPane.add(Label, 1);
-            layeredPane.moveToFront(Label);
+            JLabel label = new JLabel("Let me join you!");
+            label.setForeground(Color.white);
+            label.setFont(new Font("Dialog", Font.BOLD, 60));
+            label.setBounds(520, 85, 600, 100);
+            layeredPane.add(label, 1);
+            layeredPane.moveToFront(label);
 
             JButton b = MyButton.exitButton("Back", new Point(1120, 680), new Dimension(170, 80), this);
             b.setFont(new Font("DialogInput", Font.BOLD, 42));

@@ -19,7 +19,7 @@ public class Brick extends Item {
     public Brick() {
         super();
         this.price = 70;
-        this.description = "Add 30 Def to your Tower.";
+        this.description = "Add 30 DEF to your Tower.";
     }
 
     @Override

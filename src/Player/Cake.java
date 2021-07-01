@@ -20,7 +20,7 @@ public class Cake extends Item {
     public Cake() {
         super();
         this.price = 90;
-        this.description = "Add 100 Hp to your Servants.";
+        this.description = "Add 100 HP to your Servants.";
     }
 
     @Override
