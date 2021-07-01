@@ -22,8 +22,9 @@ public class End extends Screen {
         layeredPane.add(imgLabel, 0);
         screen.setContentPane(layeredPane);
     }
+
     @Override
-    public void runningEvent(){
+    public void runningEvent() {
         this.end();
     }
 }

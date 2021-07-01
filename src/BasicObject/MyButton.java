@@ -66,14 +66,14 @@ public class MyButton {
         b.setForeground(Color.white);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                self.charCount--;
+                Map.charCount--;
                 self.nextScreen = new Confront(sharedScreen, player);
                 self.end();
             }
         });
         return b;
     }
-    
+
     public static JButton exitButton(String text, Point p, Dimension d, Screen self) {// Map
         JButton b = null;
         b = new JButton(text);
@@ -97,10 +97,8 @@ public class MyButton {
         b = new JButton(text);
         b.setLocation(p);
         b.setSize(d);
-        // b.setBackground(Color.RED);
         b.setContentAreaFilled(false);
         b.setBorderPainted(true);
-        // b.setOpaque(true);
         b.setFont(new Font("DialogInput", Font.BOLD, 44));
         b.setForeground(Color.white);
         b.addActionListener(new ActionListener() {

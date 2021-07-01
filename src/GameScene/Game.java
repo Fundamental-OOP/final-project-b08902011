@@ -12,11 +12,7 @@ import Unit.Tower.*;
 import Unit.Tower.BasicTower.BasicTower;
 import Unit.Servant.*;
 import Unit.Servant.Skills.*;
-import Unit.Servant.Ninja.*;
-import Unit.Servant.FemaleZombie.*;
 import Unit.Servant.Knight.Knight;
-import Unit.Servant.MaleZombie.*;
-import Unit.Servant.CowGirl.*;
 import BasicObject.*;
 
 public class Game extends Screen {
@@ -33,6 +29,7 @@ public class Game extends Screen {
     private int feeIncrement = 1;
     private int Aicounter = 0;
     private int Aifrequence = 100;
+
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
         playerServants = player.Servants();
@@ -45,7 +42,7 @@ public class Game extends Screen {
     private void setDifficulty(Player player) {
         int difficulty = (3 * player.hardness + player.stage);
         aiServants.add(new Knight(new Point(rightBornPoint), false, this));
-        aiServants.get(0).addDef(5 * difficulty);
+        aiServants.get(0).addDef(10 * difficulty);
         aiServants.get(0).addATK(7 * difficulty);
         aiServants.get(0).addStride(difficulty);
         this.Aifrequence = 100 - 5 * difficulty;
