@@ -15,6 +15,8 @@ public class Map extends Screen {
 	private static Vector<Vector<Point>> location = new Vector<Vector<Point>>();
 	private boolean gameOver = false;
 	public Screen nextScreen = null;
+	public int charCount = 3;
+
 	static {
 		location.add(new Vector<Point>());
 		location.get(0).add(new Point(330, 500));
@@ -64,20 +66,26 @@ public class Map extends Screen {
 
 	private void setButtons() {
 		Dimension buttonSize = new Dimension(100, 100);
-		for (int z = 0; z < location.get(stage).size(); z++) {
-			int r = (int) (Math.random() * 400);
-			if (r < 100) {
-				JButton b = MyButton.setShopButton("Shop", location.get(stage).get(z), buttonSize, this);
-				layeredPane.add(b, 0);
-				layeredPane.moveToFront(b);
-			} else if (r < 250) {
-				JButton b = MyButton.setGameButton("Battle", location.get(stage).get(z), buttonSize, this);
-				layeredPane.add(b, 0);
-				layeredPane.moveToFront(b);
-			} else {
-				JButton b = MyButton.setConfrontButton("!?!", location.get(stage).get(z), buttonSize, this);
-				layeredPane.add(b, 0);
-				layeredPane.moveToFront(b);
+		if (stage == 3) {
+			JButton b = MyButton.setGameButton("Battle", location.get(3).get(0), buttonSize, this);
+			layeredPane.add(b, 0);
+			layeredPane.moveToFront(b);
+		} else {
+			for (int z = 0; z < location.get(stage).size(); z++) {
+				int r = (int) (Math.random() * 400);
+				if (r < 100 && charCount > 0) {
+					JButton b = MyButton.setShopButton("Shop", location.get(stage).get(z), buttonSize, this);
+					layeredPane.add(b, 0);
+					layeredPane.moveToFront(b);
+				} else if (r < 250) {
+					JButton b = MyButton.setGameButton("Battle", location.get(stage).get(z), buttonSize, this);
+					layeredPane.add(b, 0);
+					layeredPane.moveToFront(b);
+				} else {
+					JButton b = MyButton.setConfrontButton("!?!", location.get(stage).get(z), buttonSize, this);
+					layeredPane.add(b, 0);
+					layeredPane.moveToFront(b);
+				}
 			}
 		}
 	}

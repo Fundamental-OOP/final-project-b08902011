@@ -10,7 +10,7 @@ import java.io.*;
 
 public class CowGirl extends Servant {
     static int initHP = 200;
-    static int initATK = 60;
+    static int initATK = 100;
     static int initDEF = 30;
     static BufferedImage Overview;
     static {

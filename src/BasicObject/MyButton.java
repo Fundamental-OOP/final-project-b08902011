@@ -66,6 +66,7 @@ public class MyButton {
         b.setForeground(Color.white);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                self.charCount--;
                 self.nextScreen = new Confront(sharedScreen, player);
                 self.end();
             }

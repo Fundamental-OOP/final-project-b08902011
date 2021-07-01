@@ -20,13 +20,15 @@ public class ScreenController {
         HomePage menu = new HomePage(mainScreen);
         menu.run();
         int status = 0;
+        Confront confront = new Confront(mainScreen, player);
+        confront.run();
         Map gameMap = new Map(mainScreen);
         while (!gameMap.GameOver() && status >= 0) {
             gameMap.run();
             this.player.stage++;
             Screen nextScreen = gameMap.nextScreen;
             status = nextScreen.run();
-            if(status>0){
+            if (status > 0) {
                 player.Win();
             }
         }

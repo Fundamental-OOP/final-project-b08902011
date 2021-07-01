@@ -33,7 +33,6 @@ public class Game extends Screen {
     private int feeIncrement = 1;
     private int Aicounter = 0;
     private int Aifrequence = 100;
-
     public Game(JFrame sharedScreen, Player player) {
         super(sharedScreen);
         playerServants = player.Servants();
@@ -46,17 +45,18 @@ public class Game extends Screen {
             playerServants.add(new FemaleZombie(new Point(leftBornPoint), true, this));
             playerServants.add(new CowGirl(new Point(leftBornPoint), true, this));
         }
-        setDifficaulty(player);
+        setDifficulty(player);
         loadBackground();
     }
 
-    private void setDifficaulty(Player player) {
+    private void setDifficulty(Player player) {
+        int difficulty = (3 * player.hardness + player.stage);
         aiServants.add(new Knight(new Point(rightBornPoint), false, this));
-        aiServants.get(0).addDef((player.hardness + player.stage));
-        aiServants.get(0).addATK(10 * (player.hardness + player.stage));
-        aiServants.get(0).addStride((player.hardness + player.stage));
-        this.Aifrequence = 80 - 7 * (player.hardness + player.stage);
-        this.feeIncrement = 4 - player.hardness;
+        aiServants.get(0).addDef(5 * difficulty);
+        aiServants.get(0).addATK(7 * difficulty);
+        aiServants.get(0).addStride(difficulty);
+        this.Aifrequence = 100 - 5 * difficulty;
+        this.feeIncrement = 8 - 2 * player.hardness;
     }
 
     private void setButtons(JLayeredPane layeredPane, Vector<Servant> playerServants) {

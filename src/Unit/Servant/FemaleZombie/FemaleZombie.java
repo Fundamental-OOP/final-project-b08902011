@@ -40,7 +40,7 @@ public class FemaleZombie extends Servant {
         return "FemaleZombie";
     }
     
-    static int cost = 60;
+    static int cost = 50;
 
     @Override
     public int getCost() {
